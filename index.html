@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Arcade</title>
+<meta name="description" content="Snake, Fruit Ninja e Flappy Bird: jogos fan-made rodando 100% no navegador.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2307030f'/%3E%3Cpath d='M6 24L16 6L26 24Z' fill='none' stroke='%23ff2bd6' stroke-width='3.5' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared/style.css">
+</head>
+<body class="home">
+<div class="horizon" aria-hidden="true"><div class="floor"></div><div class="horizon-line"></div></div>
+
+<main class="home-main">
+  <h1 class="logo">NEON<span>ARCADE</span></h1>
+  <p class="tagline">&gt; Insira uma ficha. Escolha seu jogo._</p>
+
+  <div class="cards">
+    <a class="card" href="snake/" style="--c:#39ff14">
+      <svg viewBox="0 0 320 180" role="img" aria-label="Cobra verde em uma grade 2D indo em direção a uma maçã">
+        <defs>
+          <pattern id="chk" width="40" height="40" patternUnits="userSpaceOnUse">
+            <rect width="40" height="40" fill="#050c07"/><rect width="20" height="20" fill="#08130b"/><rect x="20" y="20" width="20" height="20" fill="#08130b"/>
+          </pattern>
+          <filter id="glowS" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <rect width="320" height="180" fill="url(#chk)"/>
+        <rect x="3" y="3" width="314" height="174" fill="none" stroke="#39ff14" stroke-width="3" filter="url(#glowS)"/>
+        <polyline points="50,150 50,110 130,110 130,70 190,70" fill="none" stroke="#1a9a3f" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" filter="url(#glowS)"/>
+        <polyline points="130,90 130,70 190,70" fill="none" stroke="#5ee23f" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+        <ellipse cx="196" cy="70" rx="13" ry="11" fill="#8bff5c"/>
+        <circle cx="200" cy="65" r="3.5" fill="#fff"/><circle cx="200" cy="75" r="3.5" fill="#fff"/>
+        <circle cx="201.5" cy="65" r="1.8" fill="#000"/><circle cx="201.5" cy="75" r="1.8" fill="#000"/>
+        <circle cx="258" cy="70" r="10" fill="#ff2238" filter="url(#glowS)"/>
+        <path d="M258 60l2-6" stroke="#6b3a17" stroke-width="2.5" stroke-linecap="round"/>
+        <ellipse cx="264" cy="57" rx="5" ry="2.4" fill="#3bd13b" transform="rotate(-25 264 57)"/>
+      </svg>
+      <h2>SNAKE</h2>
+      <p>O clássico: coma as maçãs, cresça e não bata em nada. Pegue a estrela dourada antes que ela suma.</p>
+      <div class="tags"><span class="tag">recorde salvo</span><span class="tag">3 velocidades</span><span class="tag">bordas atravessáveis</span></div>
+      <span class="play">JOGAR ►</span>
+    </a>
+
+    <a class="card" href="fruit-ninja/" style="--c:#ff3b5c">
+      <svg viewBox="0 0 320 180" role="img" aria-label="Melancia sendo fatiada sobre uma tábua de madeira, com uma laranja e uma bomba">
+        <defs>
+          <linearGradient id="wood" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#5b3a21"/><stop offset=".5" stop-color="#634126"/><stop offset="1" stop-color="#4f321c"/>
+          </linearGradient>
+          <radialGradient id="mel" cx="35%" cy="35%" r="70%"><stop offset="0" stop-color="#ff7b88"/><stop offset="1" stop-color="#e3102c"/></radialGradient>
+          <radialGradient id="ora" cx="35%" cy="35%" r="70%"><stop offset="0" stop-color="#ffd27a"/><stop offset=".55" stop-color="#ff8c00"/><stop offset="1" stop-color="#b84a00"/></radialGradient>
+          <radialGradient id="bmb" cx="35%" cy="35%" r="70%"><stop offset="0" stop-color="#6a6a72"/><stop offset="1" stop-color="#09090b"/></radialGradient>
+          <filter id="glowF" x="-20%" y="-50%" width="140%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <rect width="320" height="180" fill="url(#wood)"/>
+        <g stroke="#2a160a" stroke-width="2" opacity=".6"><line x1="80" y1="0" x2="80" y2="180"/><line x1="160" y1="0" x2="160" y2="180"/><line x1="240" y1="0" x2="240" y2="180"/></g>
+        <ellipse cx="120" cy="120" rx="46" ry="22" fill="#ff2a44" opacity=".25"/>
+        <g transform="translate(108 92) rotate(-20)">
+          <path d="M-40 0A40 33 0 0 1 40 0Z" fill="#1d6b1f"/><path d="M-36 0A36 29 0 0 1 36 0Z" fill="#dff5b8"/><path d="M-32 0A32 26 0 0 1 32 0Z" fill="url(#mel)"/>
+          <ellipse cx="-12" cy="-10" rx="2.6" ry="1.6" fill="#1b1010"/><ellipse cx="6" cy="-15" rx="2.6" ry="1.6" fill="#1b1010"/><ellipse cx="18" cy="-6" rx="2.6" ry="1.6" fill="#1b1010"/>
+        </g>
+        <g transform="translate(132 120) rotate(-20)">
+          <path d="M-40 0A40 33 0 0 0 40 0Z" fill="#1d6b1f"/><path d="M-36 0A36 29 0 0 0 36 0Z" fill="#dff5b8"/><path d="M-32 0A32 26 0 0 0 32 0Z" fill="url(#mel)"/>
+          <ellipse cx="-8" cy="12" rx="2.6" ry="1.6" fill="#1b1010"/><ellipse cx="12" cy="9" rx="2.6" ry="1.6" fill="#1b1010"/>
+        </g>
+        <circle cx="236" cy="62" r="26" fill="url(#ora)"/>
+        <ellipse cx="226" cy="52" rx="7" ry="3.5" fill="#fff" opacity=".4" transform="rotate(-40 226 52)"/>
+        <circle cx="270" cy="138" r="18" fill="url(#bmb)" filter="url(#glowF)"/>
+        <path d="M270 120q6-10 12-4" stroke="#a07040" stroke-width="3" fill="none"/><circle cx="283" cy="116" r="3" fill="#ffe27a"/>
+        <path d="M30 160L210 40" stroke="#bff6ff" stroke-width="5" stroke-linecap="round" filter="url(#glowF)"/>
+        <path d="M30 160L210 40" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="96" cy="128" r="3" fill="#ff2a44"/><circle cx="150" cy="96" r="2.5" fill="#ff2a44"/><circle cx="142" cy="140" r="2" fill="#ff2a44"/>
+      </svg>
+      <h2>FRUIT NINJA</h2>
+      <p>Fatie as frutas no ar com o dedo ou o mouse. Combos dão bônus, bombas explodem tudo.</p>
+      <div class="tags"><span class="tag">toque e mouse</span><span class="tag">clássico · arcade · zen</span><span class="tag">combos</span></div>
+      <span class="play">JOGAR ►</span>
+    </a>
+
+    <a class="card" href="flappy-bird/" style="--c:#ffd400">
+      <svg viewBox="0 0 320 180" role="img" aria-label="Passarinho amarelo voando entre canos verdes">
+        <defs>
+          <linearGradient id="pipeG" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#5f9e2a"/><stop offset=".15" stop-color="#9ce659"/><stop offset=".7" stop-color="#73bf2e"/><stop offset="1" stop-color="#4f7d20"/>
+          </linearGradient>
+        </defs>
+        <rect width="320" height="180" fill="#4ec0ca"/>
+        <g fill="#e9fcd9"><circle cx="20" cy="120" r="18"/><circle cx="50" cy="114" r="22"/><circle cx="90" cy="122" r="16"/><circle cx="130" cy="112" r="24"/><circle cx="175" cy="120" r="18"/><circle cx="215" cy="114" r="22"/><circle cx="260" cy="120" r="18"/><circle cx="300" cy="112" r="24"/><rect y="120" width="320" height="30"/></g>
+        <g fill="#a9e1b9"><rect x="10" y="126" width="24" height="24"/><rect x="40" y="118" width="20" height="32"/><rect x="150" y="122" width="26" height="28"/><rect x="250" y="116" width="22" height="34"/></g>
+        <g fill="#5ee270"><circle cx="20" cy="150" r="12"/><circle cx="60" cy="148" r="14"/><circle cx="110" cy="150" r="12"/><circle cx="160" cy="147" r="14"/><circle cx="210" cy="150" r="12"/><circle cx="260" cy="148" r="14"/><circle cx="305" cy="150" r="12"/></g>
+        <g stroke="#543847" stroke-width="2" fill="url(#pipeG)">
+          <rect x="190" y="-2" width="38" height="52"/><rect x="186" y="40" width="46" height="16"/>
+          <rect x="190" y="118" width="38" height="46"/><rect x="186" y="112" width="46" height="16"/>
+        </g>
+        <rect y="152" width="320" height="28" fill="#ded895"/>
+        <rect y="150" width="320" height="8" fill="#73bf2e" stroke="#543847" stroke-width="2"/>
+        <g transform="translate(110 82) rotate(-15)" stroke="#543847" stroke-width="2">
+          <ellipse rx="17" ry="12.5" fill="#f8c51c"/>
+          <ellipse cx="-1" cy="5.5" rx="10" ry="5" fill="#fbe48e" stroke="none"/>
+          <ellipse cx="7" cy="-4.5" rx="6" ry="6" fill="#fff"/>
+          <rect x="8.5" y="-6.5" width="3" height="5" fill="#111" stroke="none"/>
+          <ellipse cx="13.5" cy="1.5" rx="8" ry="3.2" fill="#f0612b"/>
+          <ellipse cx="12.5" cy="5.5" rx="6.5" ry="2.6" fill="#e04a1e"/>
+          <ellipse cx="-8" cy="-3" rx="8.5" ry="5.5" fill="#fdf6d8"/>
+        </g>
+        <text x="160" y="34" text-anchor="middle" font-family="Arial Black, Impact, sans-serif" font-size="26" font-weight="900" fill="#fff" stroke="#543847" stroke-width="5" paint-order="stroke">12</text>
+      </svg>
+      <h2>FLAPPY BIRD</h2>
+      <p>Um toque, uma batida de asas. Passe pelos canos, ganhe medalhas e bata seu recorde.</p>
+      <div class="tags"><span class="tag">um botão</span><span class="tag">dia e noite</span><span class="tag">medalhas</span></div>
+      <span class="play">JOGAR ►</span>
+    </a>
+  </div>
+
+  <footer>
+    Fan games não oficiais, sem fins lucrativos. Feitos só com HTML, CSS e JavaScript e hospedados no GitHub Pages.<br>
+    Snake, Fruit Ninja (Halfbrick) e Flappy Bird são marcas de seus respectivos donos.
+  </footer>
+</main>
+</body>
+</html>
