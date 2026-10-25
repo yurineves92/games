@@ -17,22 +17,43 @@ Tudo é HTML, CSS e JavaScript puro, sem build e sem dependências, publicado no
 
 ## Códigos secretos
 
-Cada jogo tem códigos (listados na seção Dicas & Macetes de cada edição). Para usar, digite o código na caixa **CÓDIGO SECRETO** do menu do jogo ou direto no teclado. O código `KONAMI` também vale pela sequência ↑ ↑ ↓ ↓ ← → ← → B A. Com código ligado, o recorde não é salvo e o placar não vai para o ranking.
+Cada jogo tem códigos (listados na seção Dicas & Macetes de cada edição). Para usar, digite o código na caixa **CÓDIGO SECRETO** do menu do jogo. O código `KONAMI` também vale pela sequência ↑ ↑ ↓ ↓ ← → ← → B A no teclado, com o menu aberto. Com código ligado, o recorde não é salvo e o placar não vai para o ranking.
 
 ## Hall da Fama (ranking global com Firebase)
 
 O ranking usa o Firestore no plano gratuito (Spark). Enquanto ele não estiver configurado, os jogos funcionam normalmente com o recorde salvo no navegador.
 
-1. Entre em https://console.firebase.google.com e clique em **Adicionar projeto** (pode desligar o Google Analytics).
-2. No menu **Criação → Firestore Database**, clique em **Criar banco de dados**. Escolha um local (por exemplo `southamerica-east1`, São Paulo) e o **modo de produção**.
-3. Na aba **Regras** do Firestore, apague tudo, cole o conteúdo do arquivo [`firestore.rules`](firestore.rules) e clique em **Publicar**.
-4. Em **Configurações do projeto (engrenagem) → Geral → Seus apps**, clique no ícone **Web `</>`**, dê um apelido (ex.: `super-neon`) e registre o app. Não precisa do Firebase Hosting.
-5. Copie os valores `apiKey`, `authDomain`, `projectId` e `appId` que aparecem e cole em [`shared/firebase-config.js`](shared/firebase-config.js).
-6. Faça commit e push. Pronto: no fim de cada partida aparece o placar TOP 10 e a caixa para gravar as iniciais.
+A configuração do Firebase **não fica no repositório**. Ela é guardada nos *secrets* do GitHub, e o workflow [`pages.yml`](.github/workflows/pages.yml) escreve o `shared/firebase-config.js` só na hora de publicar.
 
-A `apiKey` do Firebase para web não é segredo: ela só identifica o projeto, e quem protege os dados são as regras do `firestore.rules`. Elas permitem ler o ranking e criar placares novos (3 letras/números e uma pontuação inteira), mas não deixam editar nem apagar nada.
+### 1. Criar o projeto e o banco
+1. Em https://console.firebase.google.com, clique em **Criar um projeto**. Pode desligar o Google Analytics.
+2. Abra **Criação → Firestore Database → Criar banco de dados**, escolha o local `southamerica-east1` (São Paulo) e o **modo de produção**.
+3. Na aba **Regras** do Firestore, cole o conteúdo de [`firestore.rules`](firestore.rules) e clique em **Publicar**.
+4. Em **⚙ Configurações do projeto → Geral → Seus apps**, clique em **Web `</>`** e registre o app (sem Firebase Hosting). Deixe aberta a tela com o `firebaseConfig`.
 
-Os placares ficam em `ranking/{jogo-modo}/scores`. O plano gratuito permite 50 mil leituras e 20 mil gravações por dia, o que sobra para um site como este.
+### 2. Guardar a configuração nos secrets do GitHub
+No repositório, abra **Settings → Secrets and variables → Actions → New repository secret** e crie os quatro secrets abaixo, copiando os valores do `firebaseConfig` sem as aspas:
+
+| Secret | Valor do `firebaseConfig` |
+|---|---|
+| `FIREBASE_API_KEY` | `apiKey` |
+| `FIREBASE_AUTH_DOMAIN` | `authDomain` |
+| `FIREBASE_PROJECT_ID` | `projectId` |
+| `FIREBASE_APP_ID` | `appId` |
+
+Depois, em **Actions → Publicar no GitHub Pages → Run workflow**, rode a publicação de novo, ou só faça um push.
+
+### 3. Trancar a chave no seu domínio (recomendado)
+Num site estático, o navegador precisa receber a configuração para falar com o Firebase. Por isso ela nunca é 100% secreta no site publicado, só fica fora do código. Para que ninguém use a chave em outro site:
+
+1. Abra https://console.cloud.google.com/apis/credentials (no projeto do Firebase).
+2. Clique na chave **Browser key (auto created by Firebase)**.
+3. Em **Restrições de aplicativo**, escolha **Sites** e adicione `https://yurineves92.github.io/*`. Para testar localmente, adicione também `http://localhost:*/*`.
+4. Salve.
+
+As regras do [`firestore.rules`](firestore.rules) completam a proteção: elas permitem ler o ranking e criar placares novos (3 letras/números e uma pontuação inteira), mas não deixam editar nem apagar nada.
+
+Os placares ficam em `ranking/{jogo-modo}/scores`. O plano gratuito permite 50 mil leituras e 20 mil gravações por dia.
 
 ## Estrutura
 
@@ -47,9 +68,10 @@ revista/revista.js         capas, CD-ROM estilo Windows 95, Hall da Fama, navega
 jogos/<jogo>/              cada jogo (index.html + .js)
 shared/common.js           sons sintetizados, canvas, joystick na tela, controle, códigos secretos
 shared/ranking.js          Hall da Fama (Firestore)
-shared/firebase-config.js  configuração do Firebase (cole aqui a sua)
+shared/firebase-config.js  configuração do Firebase (gerada no deploy a partir dos secrets)
 shared/style.css           visual neon das telas de jogo
 firestore.rules            regras de segurança do ranking
+.github/workflows/pages.yml publicação no GitHub Pages
 ```
 
 ## Rodar localmente

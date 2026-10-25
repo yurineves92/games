@@ -1,0 +1,54 @@
+# Publica a Super Neon no GitHub Pages.
+# A configuração do Firebase não fica no repositório: ela vem dos secrets do GitHub
+# (Settings → Secrets and variables → Actions) e só é escrita no arquivo na hora de publicar.
+name: Publicar no GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Gerar shared/firebase-config.js a partir dos secrets
+        env:
+          FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+          FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
+          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
+          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
+        run: |
+          node -e '
+            const e = process.env;
+            const cfg = {
+              apiKey: e.FIREBASE_API_KEY || "",
+              authDomain: e.FIREBASE_AUTH_DOMAIN || "",
+              projectId: e.FIREBASE_PROJECT_ID || "",
+              appId: e.FIREBASE_APP_ID || "",
+            };
+            require("fs").writeFileSync("shared/firebase-config.js",
+              "// Gerado no deploy a partir dos secrets do GitHub.\nwindow.SUPER_NEON_FIREBASE = " + JSON.stringify(cfg) + ";\n");
+            console.log(cfg.apiKey && cfg.projectId ? "Firebase configurado." : "Secrets do Firebase vazios: ranking global desligado.");
+          '
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deploy
+        uses: actions/deploy-pages@v4
