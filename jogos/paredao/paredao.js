@@ -1,7 +1,8 @@
 // Paredão: quebra-tijolos com fases desenhadas em texto, cápsulas de poder e bola que acelera.
 (() => {
   const W = 480;
-  let H = 640;                                      // cresce até 860 em telas em pé (celular)
+  let H = 640;                                      // altura da quadra (fixa: a mesma em todo aparelho)
+  let FAIXA = 0;                                    // faixa para o dedo embaixo da raquete (só em tela de toque)
   const WALL = 12;                                  // espessura das paredes laterais e do teto
   const COLS = 13, BW = (W - WALL * 2) / COLS, BH = 18, TOP = 66;
   const PH = 14;                                    // espessura da raquete
@@ -184,9 +185,12 @@
 
   function resize() {
     const { w, h } = Arcade.innerSize(wrap);
-    H = Math.round(Math.max(640, Math.min(860, (W * h) / Math.max(1, w))));
+    // No celular, a sobra de altura vira uma faixa abaixo da raquete: o dedo arrasta ali
+    // e não cobre a bola nem os tijolos.
+    const touch = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+    FAIXA = touch ? Math.round(Math.max(120, Math.min(240, (W * h) / Math.max(1, w) - H))) : 0;
     PY = H - 46;
-    k = Arcade.fit(canvas, W, H, wrap);
+    k = Arcade.fit(canvas, W, H + FAIXA, wrap);
     buildBackground();
     buildScan();
     layerDirty = true;
@@ -232,6 +236,27 @@
     g.moveTo(WALL + 1, H); g.lineTo(WALL + 1, WALL + 1); g.lineTo(W - WALL - 1, WALL + 1); g.lineTo(W - WALL - 1, H);
     g.stroke();
     g.restore();
+    if (FAIXA) buildFaixa(g);
+  }
+
+  // Faixa do dedo: painel com ranhuras e o aviso "arraste aqui".
+  function buildFaixa(g) {
+    const y0 = H, cy = H + FAIXA / 2;
+    const fg = g.createLinearGradient(0, y0, 0, y0 + FAIXA);
+    fg.addColorStop(0, '#1d1028'); fg.addColorStop(1, '#0a0512');
+    g.fillStyle = fg; g.fillRect(0, y0, W, FAIXA);
+    g.save();
+    g.shadowColor = '#ff8a00'; g.shadowBlur = 10;
+    g.fillStyle = '#ff8a00'; g.fillRect(0, y0, W, 2);
+    g.restore();
+    g.fillStyle = 'rgba(255,138,0,0.08)';
+    for (let x = 22; x < W - 10; x += 14) g.fillRect(x, y0 + FAIXA * 0.22, 4, FAIXA * 0.56);
+    g.fillStyle = 'rgba(10,5,18,0.85)';
+    g.fillRect(W / 2 - 120, cy - 18, 240, 36);
+    g.font = '700 15px Orbitron, sans-serif';
+    g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillStyle = 'rgba(255,190,120,0.75)';
+    g.fillText('◄  ARRASTE AQUI  ►', W / 2, cy + 1);
   }
 
   function buildScan() {
@@ -870,7 +895,7 @@
     const reveal = introT < 1 ? TOP - 10 + introT * (H * 0.55) : H;
     ctx.save();
     if (introT < 1) { ctx.beginPath(); ctx.rect(0, 0, W, reveal); ctx.clip(); }
-    ctx.drawImage(layer, 0, 0, W, H);
+    ctx.drawImage(layer, 0, 0, W, H + FAIXA);
     ctx.restore();
     if (introT < 1) {
       ctx.save();
