@@ -66,7 +66,8 @@ const Revista = (() => {
         return `<a class="icone" href="${base}${j.pasta}" data-jogo="${id}">
           <span class="icone-img" aria-hidden="true">${ICONE[id] || ''}</span>
           <span>${esc(j.nome)}.exe</span>
-          <small>${rec ? `Recorde: ${rec}` : 'Sem recorde'}</small></a>`;
+          <small>${rec ? `Recorde: ${rec}` : 'Sem recorde'}</small>
+          <small class="jogando" data-jogando="${id}" hidden></small></a>`;
       }).join('');
       el.innerHTML = `
         <div class="win">
@@ -96,6 +97,7 @@ const Revista = (() => {
         <div class="hall-jogo" style="--c:${j.cor}">
           <h3>${esc(j.nome)}</h3>
           <p class="local">Seu recorde: <b>${lerRecorde(j) || '—'}</b> · Edição ${j.ed}</p>
+          <p class="local jogando" data-jogando="${id}" hidden></p>
           <ol data-board="${j.ranking}"></ol>
           ${j.rankingNome ? `<p class="local">Ranking: ${esc(j.rankingNome)}</p>` : ''}
         </div>`).join('');
@@ -104,6 +106,18 @@ const Revista = (() => {
         else ol.innerHTML = '<li class="rank-empty">Ranking indisponível.</li>';
       }
     }
+  }
+
+  // Quantas pessoas estão em cada jogo agora (shared/presenca.js).
+  function montarJogando() {
+    if (typeof Presenca === 'undefined') return;
+    Presenca.onChange(e => {
+      for (const el of document.querySelectorAll('[data-jogando]')) {
+        const n = e.porLocal[el.dataset.jogando] || 0;
+        el.hidden = n === 0;
+        el.textContent = `● ${n} jogando agora`;
+      }
+    });
   }
 
   /* ---------- navegação e animações ---------- */
@@ -148,6 +162,7 @@ const Revista = (() => {
     montarCapas();
     montarCDROM();
     montarHall();
+    montarJogando();
     montarNav();
     segredo();
     const ano = document.querySelector('[data-ano]');

@@ -355,3 +355,12 @@ kbd {
 .rank-list .rank-pos { color: var(--muted); }
 .rank-list .rank-name { letter-spacing: 0.25em; color: var(--yellow); }
 .rank-list .rank-empty { display: block; color: var(--muted); text-align: center; }
+
+/* ---------- jogando agora (shared/presenca.js) ---------- */
+.online {
+  display: inline-flex; align-items: center; gap: 6px; margin-left: auto;
+  font-family: var(--mono); font-size: 14px; color: var(--muted); white-space: nowrap;
+}
+.online[hidden] { display: none; }
+.online i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+.online:not([hidden]) + .icon-btn { margin-left: 0; }

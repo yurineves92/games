@@ -6,22 +6,29 @@ const Ranking = (() => {
   const enabled = !!(cfg.apiKey && cfg.projectId);
   let dbP = null;
 
-  const loadScript = src => new Promise((ok, fail) => {
-    const s = document.createElement('script');
-    s.src = src; s.onload = ok; s.onerror = fail;
-    document.head.appendChild(s);
-  });
+  // Carrega cada módulo do SDK uma vez só (o contador de presença usa o mesmo carregador).
+  const scripts = new Map();
+  const loadScript = src => {
+    if (!scripts.has(src)) {
+      scripts.set(src, new Promise((ok, fail) => {
+        const s = document.createElement('script');
+        s.src = src; s.onload = ok; s.onerror = fail;
+        document.head.appendChild(s);
+      }));
+    }
+    return scripts.get(src);
+  };
+  // App do Firebase com os módulos pedidos, por exemplo app('firestore') ou app('database').
+  async function app(...modulos) {
+    if (!enabled) throw new Error('firebase desligado');
+    await loadScript(SDK + 'firebase-app-compat.js');
+    for (const m of modulos) await loadScript(SDK + `firebase-${m}-compat.js`);
+    return firebase.apps.length ? firebase.app() : firebase.initializeApp(cfg);
+  }
   function db() {
     if (!enabled) return Promise.reject(new Error('ranking desligado'));
     if (!dbP) {
-      dbP = (async () => {
-        if (!window.firebase) {
-          await loadScript(SDK + 'firebase-app-compat.js');
-          await loadScript(SDK + 'firebase-firestore-compat.js');
-        }
-        const app = firebase.apps.length ? firebase.app() : firebase.initializeApp(cfg);
-        return app.firestore();
-      })();
+      dbP = app('firestore').then(a => a.firestore());
       dbP.catch(() => { dbP = null; });
     }
     return dbP;
@@ -109,5 +116,5 @@ const Ranking = (() => {
     });
   }
 
-  return { enabled, top, submit, list, gameOver };
+  return { enabled, app, top, submit, list, gameOver };
 })();

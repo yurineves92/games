@@ -40,6 +40,7 @@ No repositório, abra **Settings → Secrets and variables → Actions → New r
 | `FIREBASE_AUTH_DOMAIN` | `authDomain` |
 | `FIREBASE_PROJECT_ID` | `projectId` |
 | `FIREBASE_APP_ID` | `appId` |
+| `FIREBASE_DATABASE_URL` | URL do Realtime Database (contador de leitores online) |
 
 Depois, em **Actions → Publicar no GitHub Pages → Run workflow**, rode a publicação de novo, ou só faça um push.
 
@@ -52,6 +53,15 @@ Num site estático, o navegador precisa receber a configuração para falar com 
 4. Salve.
 
 As regras do [`firestore.rules`](firestore.rules) completam a proteção: elas permitem ler o ranking e criar placares novos (3 letras/números e uma pontuação inteira), mas não deixam editar nem apagar nada.
+
+### 4. Contador de leitores online (Realtime Database)
+A banca e as edições mostram quantas pessoas estão no site agora, e cada jogo mostra quantas estão jogando. Isso usa o **Realtime Database** do mesmo projeto:
+
+1. No console do Firebase, abra **Criação → Realtime Database → Criar banco de dados** e escolha o **modo bloqueado**.
+2. Na aba **Regras**, cole o conteúdo de [`database.rules.json`](database.rules.json) e publique. As regras deixam cada visitante criar e apagar só a própria marca de presença.
+3. Crie o secret `FIREBASE_DATABASE_URL` com a URL do banco (algo como `https://SEU-PROJETO-default-rtdb.firebaseio.com`).
+
+O plano gratuito aceita até 100 conexões simultâneas. Acima disso, o contador para de subir, mas o site continua funcionando.
 
 Os placares ficam em `ranking/{jogo-modo}/scores`. O plano gratuito permite 50 mil leituras e 20 mil gravações por dia.
 
@@ -67,10 +77,12 @@ revista/edicoes.js         dados das capas e catálogo de jogos
 revista/revista.js         capas, CD-ROM estilo Windows 95, Hall da Fama, navegação
 jogos/<jogo>/              cada jogo (index.html + .js)
 shared/common.js           sons sintetizados, canvas, joystick na tela, controle, códigos secretos
-shared/ranking.js          Hall da Fama (Firestore)
+shared/ranking.js          Hall da Fama (Firestore) e carregador do SDK do Firebase
+shared/presenca.js         leitores online e "jogando agora" (Realtime Database)
 shared/firebase-config.js  configuração do Firebase (gerada no deploy a partir dos secrets)
 shared/style.css           visual neon das telas de jogo
 firestore.rules            regras de segurança do ranking
+database.rules.json        regras do contador de leitores online
 .github/workflows/pages.yml publicação no GitHub Pages
 ```
 

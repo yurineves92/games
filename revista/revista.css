@@ -494,3 +494,20 @@ body.turbo { filter: hue-rotate(var(--h, 0deg)) saturate(1.4); }
 @keyframes pulsa { to { transform: scale(1.35) rotate(-10deg); } }
 @media (prefers-reduced-motion: reduce) { .musica-btn.on .musica-ico { animation: none; } }
 .musica-btn:hover { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 #000; }
+
+/* ---------- leitores online (shared/presenca.js) ---------- */
+.online-flutuante {
+  position: fixed; left: 14px; bottom: 14px; z-index: 40;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border: 3px solid #000; border-radius: 999px;
+  font-family: var(--f-texto); font-weight: 900; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
+  background: #000; color: #fff; box-shadow: 3px 3px 0 var(--verde);
+}
+.online-flutuante[hidden] { display: none; }
+.online-flutuante b { color: var(--amarelo); font-size: 16px; }
+.online-flutuante i, .jogando::first-letter { color: #39ff14; }
+.online-flutuante i { width: 10px; height: 10px; border-radius: 50%; background: #39ff14; box-shadow: 0 0 8px #39ff14; animation: pisca 1.4s ease-in-out infinite; }
+@keyframes pisca { 50% { opacity: 0.35; } }
+@media (prefers-reduced-motion: reduce) { .online-flutuante i { animation: none; } }
+.icone .jogando { color: #0a7a2a; font-weight: 700; }
+.hall-jogo .jogando { color: #39ff14; font-weight: 700; }

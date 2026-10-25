@@ -1,0 +1,18 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "presenca": {
+      ".read": true,
+      "$local": {
+        ".validate": "$local.matches(/^[a-z0-9-]{1,30}$/)",
+        "$id": {
+          ".write": "$id.matches(/^[-_a-zA-Z0-9]{10,40}$/) && (!data.exists() || !newData.exists())",
+          ".validate": "newData.hasChildren(['t']) && newData.child('t').isNumber() && newData.child('t').val() <= now + 60000",
+          "t": { ".validate": true },
+          "$outro": { ".validate": false }
+        }
+      }
+    }
+  }
+}
