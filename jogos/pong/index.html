@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pong</title>
+<meta name="description" content="Pong neon: contra a CPU ou contra um amigo no mesmo aparelho. Partidas até 7, bola que acelera e efeito com a raquete.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23030a10'/%3E%3Crect x='4' y='8' width='3' height='12' fill='%234dd2ff'/%3E%3Crect x='25' y='13' width='3' height='12' fill='%234dd2ff'/%3E%3Crect x='14' y='14' width='4' height='4' fill='%23fff'/%3E%3Cpath d='M16 2v28' stroke='%234dd2ff' stroke-width='1' stroke-dasharray='2 2' opacity='.5'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/style.css">
+<style>
+  .pong #game { cursor: none; }
+  .vs { display: flex; justify-content: center; align-items: center; gap: 18px; margin-top: 10px; font-family: var(--mono); color: var(--muted); letter-spacing: 0.12em; font-size: 13px; }
+  .vs b { display: block; font-family: var(--font); font-size: 40px; color: #fff; text-shadow: 0 0 14px var(--accent); }
+  .vs .x { font-size: 22px; color: var(--accent); }
+  @media (max-width: 520px) {
+    .topbar { gap: 4px 10px; padding: 6px 12px; }
+    .topbar h1 { font-size: 14px; letter-spacing: 0.12em; }
+    .hud { order: 3; flex-basis: 100%; gap: 2px 14px; font-size: 14px; }
+  }
+</style>
+</head>
+<body class="game-page pong" style="--accent:#4dd2ff">
+<header class="topbar">
+  <a class="back" href="../../edicoes/02/#cdrom">◄ REVISTA</a>
+  <h1>PONG</h1>
+  <div class="hud">
+    <span><span id="hP1Name">VOCÊ</span><b id="hP1">0</b></span>
+    <span><span id="hP2Name">CPU</span><b id="hP2">0</b></span>
+    <span id="hHiWrap">RECORDE<b id="hHi">0</b></span>
+    <span class="hud-status" id="hStatus"></span>
+  </div>
+  <button class="icon-btn" id="muteBtn" type="button">🔊</button>
+</header>
+
+<main class="stage no-pads" id="stage">
+  <div class="game-wrap" id="gameWrap">
+    <div class="screen" id="screen">
+      <canvas id="game" aria-label="Quadra do Pong"></canvas>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <section class="panel" id="menuPanel">
+      <h2>PONG</h2>
+      <p class="sub">O avô de todos os videogames, agora em neon. Quem fizer 7 pontos primeiro vence. A bola acelera a cada rebatida, e mexer a raquete na hora do toque dá efeito na bola.</p>
+      <div class="opt">
+        <span class="opt-label">MODO</span>
+        <div class="seg" data-setting="mode">
+          <button type="button" data-value="1p">1 JOGADOR</button>
+          <button type="button" data-value="2p">2 JOGADORES</button>
+        </div>
+      </div>
+      <div class="opt" id="diffOpt">
+        <span class="opt-label">DIFICULDADE DA CPU</span>
+        <div class="seg" data-setting="diff">
+          <button type="button" data-value="easy">FÁCIL</button>
+          <button type="button" data-value="normal">NORMAL</button>
+          <button type="button" data-value="hard">DIFÍCIL</button>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">INICIAR</button>
+      </div>
+      <div id="codeMount"></div>
+      <div class="keys">
+        <div class="no-touch">Jogador 1: <kbd>W</kbd>/<kbd>S</kbd> · Jogador 2: <kbd>↑</kbd>/<kbd>↓</kbd> (no modo 1 jogador, as setas também movem você) · mouse também move o jogador 1</div>
+        <div class="no-touch"><kbd>P</kbd>/<kbd>Esc</kbd> pausa · <kbd>M</kbd> som</div>
+        <div>Na tela: arraste o dedo na metade de cada raquete (dois dedos ao mesmo tempo funcionam). Celular em pé: você joga embaixo.</div>
+        <div>Controle de videogame: 1º controle = jogador 1, 2º controle = jogador 2 (analógico ou direcional), <kbd>Start</kbd> pausa.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="pausePanel" hidden>
+      <h2>PAUSADO</h2>
+      <p class="sub">Bola parada no ar. Respire.</p>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="resume">CONTINUAR</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+
+    <section class="panel" id="overPanel" hidden>
+      <h2 id="overTitle">FIM DE JOGO</h2>
+      <div class="vs" id="overVs"></div>
+      <div class="big-score" id="overScore">0</div>
+      <p class="sub" id="overInfo"></p>
+      <p class="record" id="overRecord" hidden>NOVO RECORDE!</p>
+      <div class="rank" id="rankBox" hidden></div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">JOGAR DE NOVO</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="../../shared/common.js"></script>
+<script src="../../shared/firebase-config.js"></script>
+<script src="../../shared/ranking.js"></script>
+<script src="pong.js"></script>
+</body>
+</html>

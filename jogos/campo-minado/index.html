@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Campo Minado</title>
+<meta name="description" content="Campo Minado com cara de Windows 95 em neon: abra todas as casas sem pisar nas minas. Jogo da revista Super Neon.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231d1846'/%3E%3Cpath d='M16 4V28M4 16H28M7.5 7.5L24.5 24.5M24.5 7.5L7.5 24.5' stroke='%23c9ccff' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='16' r='8' fill='%2314122a' stroke='%23ff2bd6' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/style.css">
+<style>
+  .campo #game { cursor: default; image-rendering: auto; }
+  .campo .icon-btn[hidden] { display: none; }
+  .campo .icon-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .campo #modeBtn { font-size: 17px; }
+  .diff-info { font-family: var(--mono); font-size: 13px; color: var(--muted); margin-top: -4px; }
+</style>
+</head>
+<body class="game-page campo" style="--accent:#8aa0ff">
+<header class="topbar">
+  <a class="back" href="../../edicoes/03/#cdrom">◄ REVISTA</a>
+  <h1>CAMPO MINADO</h1>
+  <div class="hud">
+    <span>MINAS<b id="hMines">10</b></span>
+    <span>TEMPO<b id="hTime">0</b></span>
+    <span>MELHOR<b id="hBest">—</b></span>
+    <span class="hud-status" id="hStatus"></span>
+  </div>
+  <button class="icon-btn" id="modeBtn" type="button" aria-label="Modo do toque: abrir ou marcar">⛏</button>
+  <button class="icon-btn" id="xrayBtn" type="button" aria-label="Raio-X: mostrar as minas por 2 segundos" title="Raio-X (tecla X)" hidden>👁</button>
+  <button class="icon-btn" id="muteBtn" type="button">🔊</button>
+</header>
+
+<main class="stage no-pads" id="stage">
+  <div class="game-wrap" id="gameWrap">
+    <div class="screen" id="screen">
+      <canvas id="game" aria-label="Tabuleiro do Campo Minado"></canvas>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <section class="panel" id="menuPanel">
+      <h2>CAMPO MINADO</h2>
+      <p class="sub">Abra todas as casas sem pisar em nenhuma mina. Cada número diz quantas minas estão encostadas naquela casa (inclusive na diagonal). O primeiro clique é sempre seguro.</p>
+      <div class="opt">
+        <span class="opt-label">DIFICULDADE</span>
+        <div class="seg" data-setting="diff">
+          <button type="button" data-value="iniciante">INICIANTE</button>
+          <button type="button" data-value="intermediario">INTERMEDIÁRIO</button>
+          <button type="button" data-value="expert">EXPERT</button>
+        </div>
+        <span class="diff-info">9×9 com 10 minas · 16×16 com 40 · 16×30 com 99</span>
+      </div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">INICIAR</button>
+      </div>
+      <div id="codeMount"></div>
+      <div class="keys">
+        <div class="no-touch">Mouse: esquerdo abre, direito marca 🚩 (e depois ?). Clique num número com as bandeiras certas em volta para abrir os vizinhos.</div>
+        <div class="touch-only">Toque abre. Segure 0,4 s para marcar bandeira. O botão ⛏/🚩 no alto troca o que o toque faz.</div>
+        <div class="no-touch">Teclado: setas movem o cursor, <kbd>Espaço</kbd> abre, <kbd>F</kbd> marca, <kbd>N</kbd>/<kbd>F2</kbd> novo jogo, <kbd>P</kbd>/<kbd>Esc</kbd> pausa, <kbd>M</kbd> som.</div>
+        <div>Controle de videogame: direcional move, <kbd>A</kbd> abre, <kbd>X</kbd>/<kbd>B</kbd> marca, <kbd>Start</kbd> pausa.</div>
+        <div>A carinha 😀 lá em cima recomeça a partida. Pontos = minas × 1000 ÷ segundos.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="pausePanel" hidden>
+      <h2>PAUSADO</h2>
+      <p class="sub">O cronômetro parou e o campo ficou escondido. Nada de espiar!</p>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="resume">CONTINUAR</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+
+    <section class="panel" id="overPanel" hidden>
+      <h2 id="overTitle">FIM DE JOGO</h2>
+      <div class="big-score" id="overScore">0</div>
+      <p class="sub" id="overInfo"></p>
+      <p class="record" id="overRecord" hidden>NOVO RECORDE!</p>
+      <div class="rank" id="rankBox" hidden></div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">JOGAR DE NOVO</button>
+        <button class="btn-ghost" type="button" data-action="view">VER CAMPO</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="../../shared/common.js"></script>
+<script src="../../shared/firebase-config.js"></script>
+<script src="../../shared/ranking.js"></script>
+<script src="campominado.js"></script>
+</body>
+</html>

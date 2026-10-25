@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+  <defs>
+    <radialGradient id="sol" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff3a0"/><stop offset=".5" stop-color="#ffb000"/><stop offset="1" stop-color="#ff2bd6" stop-opacity="0"/></radialGradient>
+    <linearGradient id="solFaixas" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe14a"/><stop offset="1" stop-color="#ff2bd6"/></linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <clipPath id="faixas"><rect x="0" y="210" width="600" height="80"/><rect x="0" y="300" width="600" height="18"/><rect x="0" y="328" width="600" height="14"/><rect x="0" y="352" width="600" height="11"/><rect x="0" y="372" width="600" height="8"/><rect x="0" y="388" width="600" height="6"/></clipPath>
+  </defs>
+  <circle cx="380" cy="400" r="250" fill="url(#sol)" opacity=".8"/>
+  <circle cx="380" cy="330" r="120" fill="url(#solFaixas)" clip-path="url(#faixas)"/>
+  <path d="M0 420L80 360 150 395 240 330 330 390 420 345 510 385 600 350V420Z" fill="#3a0a4a"/>
+  <path d="M0 420L60 395 140 410 230 385 320 405 400 380 480 405 600 390V420Z" fill="#5a1060"/>
+  <rect y="420" width="600" height="380" fill="#1a6b2a"/>
+  <path d="M0 470H600V500H0ZM0 560H600V610H0ZM0 700H600V800H0Z" fill="#167a2a"/>
+  <path d="M355 420L380 420 640 800H90Z" fill="#555"/>
+  <path d="M355 420L349 420 75 800H100ZM380 420L386 420 660 800H630Z" fill="#fff"/>
+  <path d="M352 420h3l-27 40h-6ZM318 470h7l-34 50h-9ZM279 530h9l-45 66h-12ZM228 605h12l-62 92h-16Z" fill="#ff3b5c"/>
+  <path d="M366 430h3l2 18h-6ZM364 468h5l3 30h-9ZM360 520h7l5 46h-14ZM355 595h10l8 70h-20Z" fill="#fff" opacity=".9"/>
+  <g transform="translate(520 520)"><path d="M0 0Q-8 -110 18 -190" stroke="#6b3a17" stroke-width="12" fill="none"/>
+    <g fill="#22c55e"><path d="M18-190Q-50-220-90-170Q-40-200 18-188Z"/><path d="M18-190Q80-230 130-180Q70-205 18-188Z"/><path d="M18-190Q-20-260-70-260Q-10-235 18-192Z"/><path d="M18-190Q60-260 110-250Q50-235 18-192Z"/></g></g>
+  <g transform="translate(200 450) scale(.5)"><path d="M0 0Q-8 -110 18 -190" stroke="#6b3a17" stroke-width="12" fill="none"/>
+    <g fill="#22c55e"><path d="M18-190Q-50-220-90-170Q-40-200 18-188Z"/><path d="M18-190Q80-230 130-180Q70-205 18-188Z"/><path d="M18-190Q-20-260-70-260Q-10-235 18-192Z"/></g></g>
+  <g transform="translate(330 640)" filter="url(#glow)">
+    <rect x="-120" y="-50" width="240" height="80" rx="18" fill="#ff2bd6"/>
+    <path d="M-80 -50L-55 -100H55L80 -50Z" fill="#c21a9f"/><path d="M-60 -56L-44 -92H44L60 -56Z" fill="#4dd2ff" opacity=".8"/>
+    <rect x="-108" y="-34" width="54" height="16" rx="4" fill="#ff3b5c"/><rect x="54" y="-34" width="54" height="16" rx="4" fill="#ff3b5c"/>
+    <rect x="-40" y="-10" width="80" height="20" fill="#ffd400"/>
+    <path d="M-28 -6h8l-4 12zM-14 -6h6v12h-6zM-2 -6h8v3h-5v2h4v2h-4v2h5v3h-8zM10 -6h10v12h-10z" fill="#000"/>
+    <rect x="-125" y="24" width="56" height="34" rx="6" fill="#111"/><rect x="69" y="24" width="56" height="34" rx="6" fill="#111"/>
+    <path d="M-30 30h60" stroke="#ff8a00" stroke-width="10"/><path d="M-10 46l-24 40M10 46l24 40" stroke="#ff8a00" stroke-width="6" opacity=".7"/>
+  </g>
+  <g transform="translate(425 178) scale(8)" shape-rendering="crispEdges">
+    <rect x="2" y="0" width="6" height="2" fill="#ffb000"/><rect x="1" y="2" width="8" height="1" fill="#ffb000"/><rect x="2" y="3" width="6" height="2" fill="#ffd9b0"/>
+    <rect x="6" y="3" width="1" height="1" fill="#000"/><rect x="2" y="5" width="6" height="4" fill="#7b3bff"/><rect x="0" y="5" width="2" height="2" fill="#ffd9b0"/><rect x="8" y="3" width="2" height="2" fill="#ffd9b0"/>
+    <rect x="2" y="9" width="2" height="2" fill="#2a2a5a"/><rect x="6" y="9" width="2" height="2" fill="#2a2a5a"/><rect x="2" y="2" width="6" height="0.4" fill="#00e5ff"/>
+  </g>
+  <g fill="#ffd400" stroke="#8a5a00" stroke-width="3" filter="url(#glow)"><ellipse cx="395" cy="150" rx="12" ry="15"/><ellipse cx="435" cy="132" rx="12" ry="15"/><ellipse cx="475" cy="140" rx="12" ry="15"/></g>
+  <g transform="translate(522 190)"><rect width="60" height="60" fill="#ffb000" stroke="#000" stroke-width="5"/><path d="M20 22q0-12 10-12t10 10q0 6-6 9t-4 9h-1v-5q0-6 5-9t3-6q0-4-5-4t-6 6Zm7 22h6v6h-6z" fill="#fff" stroke="#000" stroke-width="1.5"/></g>
+</svg>

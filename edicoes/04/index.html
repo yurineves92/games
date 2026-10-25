@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="pt-BR" data-base="../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Super Neon Nº 4</title>
+<meta name="description" content="Super Neon Nº 4, edição especial: Turbo Neon, a corrida do Rio ao deserto, e Super Pixel, o herói de plataforma, com detonado das 3 fases e do chefe.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ff2bd6'/%3E%3Ctext x='16' y='24' font-family='Arial Black' font-size='20' text-anchor='middle' fill='%23ffd400' stroke='%23000' stroke-width='1.5'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee&family=Caveat:wght@600&family=Press+Start+2P&family=Roboto+Condensed:ital,wght@0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../revista/revista.css">
+<style>
+  .pistas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 16px; margin: 6px 0 26px; }
+  .pista { border: 3px solid #000; background: var(--bg); color: #fff; padding: 14px; box-shadow: 5px 5px 0 #000; }
+  .pista h3 { font-family: var(--f-logo); font-weight: normal; font-size: 22px; text-shadow: 2px 2px 0 #000; }
+  .pista dl { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; font-size: 15px; margin: 6px 0; }
+  .pista dt { font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 0.08em; padding-top: 2px; opacity: 0.85; }
+  .pista p { font-size: 15px; line-height: 1.4; }
+  .rivais { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 18px; }
+  .rivais span { font-family: var(--f-pixel); font-size: 10px; padding: 6px 8px; background: #111; color: var(--amarelo); border: 2px solid #000; }
+</style>
+</head>
+<body style="--cor: var(--magenta)">
+
+<section class="mesa" aria-label="Capa">
+  <div data-capa="4"></div>
+  <div class="mesa-acoes">
+    <a class="botao" href="#editorial">Abrir a revista ▼</a>
+    <a class="botao escuro" href="#cdrom">💿 Direto pro CD-ROM</a>
+    <a class="botao alt" href="../../">◄ Banca</a>
+  </div>
+</section>
+
+<nav class="nav" aria-label="Seções da revista">
+  <a class="nav-logo" href="../../">SUPER <i>NEON</i> Nº4</a>
+  <a href="#editorial">Editorial</a>
+  <a href="#plantao">Plantão</a>
+  <a href="#analises">Análises</a>
+  <a href="#dicas">Dicas</a>
+  <a href="#pitstop">Pit stop</a>
+  <a href="#detonado">Detonado</a>
+  <a href="#cartas">Cartas</a>
+  <a href="#classificados">Classificados</a>
+  <a href="#cdrom">CD-ROM</a>
+</nav>
+
+<main class="revista">
+
+  <article class="pagina surge" id="editorial">
+    <span class="chapeu">Editorial</span>
+    <h1 class="titulo">Edição especial, pé na tábua!</h1>
+    <p class="linha-fina">Dois jogos grandes, um CD-ROM recheado e a revista mais grossa que já fizemos. Coloque o cinto.</p>
+    <div class="colunas">
+      <p>Quando começamos a Super Neon, a redação tinha um sonho: colocar no CD-ROM uma corrida de verdade, daquelas com a estrada vindo na sua direção, curva, subida e descida, coqueiro passando do lado. Pois o sonho virou o <b>Turbo Neon</b>. São três pistas, do pôr do sol carioca à noite paulistana e às dunas do deserto, contra sete pilotos que não aliviam.</p>
+      <p>E como edição especial que se preze tem que ter um herói, apresentamos o <b>Super Pixel</b>: um bonequinho de capacete neon que corre, pula, pisa em inimigo e enfrenta um chefe chamado <b>MEGA GLITCH</b>. São três fases desenhadas casa a casa, com trilha chiptune própria em cada uma.</p>
+      <p>Por isso mesmo esta edição custa um pouquinho mais. Mas, cá entre nós, vale cada centavo de mentirinha.</p>
+      <h3>Obrigado, leitor</h3>
+      <p>Quatro edições, doze jogos e um Hall da Fama cheio de iniciais. Nada disso existiria sem as suas cartas. Continue jogando, continue escrevendo, e a gente se vê na próxima.</p>
+      <p class="assinatura">A Redação</p>
+    </div>
+
+    <h2 class="titulo" style="font-size:34px;margin-top:30px">Nesta edição</h2>
+    <ul class="sumario">
+      <li><a href="#plantao"><span>04</span><div><b>Plantão Neon</b><small>Notícias em alta velocidade</small></div></a></li>
+      <li><a href="#turbo"><span>06</span><div><b>Turbo Neon</b><small>Capa! Do Rio ao deserto</small></div></a></li>
+      <li><a href="#super-pixel"><span>11</span><div><b>Super Pixel</b><small>O herói de 8 bits que pula até a lua</small></div></a></li>
+      <li><a href="#dicas"><span>16</span><div><b>Dicas &amp; Macetes</b><small>Os 6 códigos secretos</small></div></a></li>
+      <li><a href="#pitstop"><span>18</span><div><b>Pit stop</b><small>As três pistas e os segredos do nitro</small></div></a></li>
+      <li><a href="#detonado"><span>22</span><div><b>Detonado</b><small>Super Pixel: as 3 fases e o MEGA GLITCH</small></div></a></li>
+      <li><a href="#cartas"><span>28</span><div><b>Cartas</b><small>O correio da galera</small></div></a></li>
+      <li><a href="#classificados"><span>30</span><div><b>Classificados</b><small>Compra, vende, troca e procura</small></div></a></li>
+      <li><a href="#cdrom"><span>32</span><div><b>CD-ROM</b><small>Os 2 jogos completos desta edição</small></div></a></li>
+    </ul>
+    <div class="folio"><span>Super Neon Nº 4 · Edição especial</span><span>3</span></div>
+  </article>
+
+  <section class="pagina surge" id="plantao" style="--cor: var(--ciano)">
+    <span class="chapeu">Plantão Neon</span>
+    <h2 class="titulo">Notícias a 300 por hora</h2>
+    <div class="noticias">
+      <div class="noticia" style="--c: var(--magenta)">
+        <h3>Carro rosa é visto passando o Pão de Açúcar</h3>
+        <p>Turistas no bondinho garantem que um carro rosa fez a curva da praia "voando baixo". A polícia rodoviária pediu calma: era só o Turbo Neon.</p>
+      </div>
+      <div class="noticia" style="--c: var(--laranja)">
+        <h3>Glitch ataca fortaleza</h3>
+        <p>Um ser chamado MEGA GLITCH tomou a Fortaleza Neon e solta ondas de choque pelo chão. Especialistas recomendam três pisões na cabeça.</p>
+      </div>
+      <div class="noticia" style="--c: var(--amarelo)">
+        <h3>Moedas valem vida?</h3>
+        <p>Economistas confirmam: no Super Pixel, 100 moedas compram uma vida. A inflação, por enquanto, está sob controle.</p>
+      </div>
+      <div class="noticia" style="--c: var(--verde)">
+        <h3>Hall da Fama ganha duas categorias</h3>
+        <p>Agora tem ranking para cada pista do Turbo Neon e para o Super Pixel. Corra lá, que o pódio está vazio.</p>
+      </div>
+    </div>
+    <div class="folio"><span>Plantão</span><span>4</span></div>
+  </section>
+
+  <section class="pagina surge" id="analises" style="--cor: var(--roxo)">
+    <span class="chapeu">Análises</span>
+    <h2 class="titulo">Testamos tudo</h2>
+    <p class="linha-fina">Notas de 0 a 5 em Gráfico, Som, Jogabilidade e Diversão.</p>
+
+    <article class="analise" id="turbo" style="--c:#db2777">
+      <div class="analise-topo"><h3>Turbo Neon</h3><span>Corrida · 1 jogador · ★ Capa</span></div>
+      <div class="analise-corpo">
+        <div class="prints">
+          <figure class="print" style="--r:-1.5deg"><img src="prints/turbo-1.jpg" alt="Carro rosa correndo numa estrada em perspectiva com coqueiros e pôr do sol" loading="lazy" width="640" height="480"><figcaption>Rio de Janeiro ao pôr do sol. Repare no Pão de Açúcar lá atrás!</figcaption></figure>
+        </div>
+        <div>
+          <div class="texto">
+            <p>É aquela corrida que a gente jogava no fim de semana inteiro: a estrada vem na sua direção, as curvas puxam o carro para fora, as subidas escondem o que vem depois. Você larga em 8º lugar contra sete rivais e tem três voltas para chegar na frente.</p>
+            <p>As três pistas são bem diferentes. O <b>Rio</b> tem pôr do sol, mar, coqueiros, Pão de Açúcar com bondinho e o Cristo no alto. <b>São Paulo</b> é de noite, com prédios iluminados, viaduto e curvas fechadas. O <b>Deserto</b> tem dunas altas que escondem a pista, cactos e caveiras na beira da estrada.</p>
+            <p>Para ajudar, três cargas de <b>nitro</b> por corrida. No celular, o modo de aceleração automática deixa você só se preocupar com o volante.</p>
+          </div>
+          <div class="ficha"><dl><dt>Gênero</dt><dd>Corrida</dd><dt>Pistas</dt><dd>Rio, São Paulo e Deserto · 3 voltas</dd><dt>Controles</dt><dd>Teclado, toque e controle</dd><dt>Dificuldade</dt><dd>Média, e as curvas não perdoam</dd></dl></div>
+          <div class="notas">
+            <div class="nota-final"><div><small>NOTA</small><b>4,8</b></div></div>
+            <h4>Notas</h4>
+            <div class="nota" style="--v:5">Gráfico<i></i><b>5,0</b></div>
+            <div class="nota" style="--v:4">Som<i></i><b>4,0</b></div>
+            <div class="nota" style="--v:4.5">Jogabilidade<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:5">Diversão<i></i><b>5,0</b></div>
+          </div>
+          <p class="veredito">Veredito: o jogo mais bonito que já saiu num CD-ROM da Super Neon. Pistas brasileiras, sensação de velocidade de verdade e nitro na medida.</p>
+          <p class="jogar-agora"><a class="botao" href="../../jogos/turbo/">▶ Jogar Turbo Neon</a></p>
+        </div>
+      </div>
+    </article>
+
+    <article class="analise" id="super-pixel" style="--c:#d97706">
+      <div class="analise-topo"><h3>Super Pixel</h3><span>Plataforma · 1 jogador</span></div>
+      <div class="analise-corpo">
+        <div class="prints">
+          <figure class="print" style="--r:1deg"><img src="prints/super-pixel-1.jpg" alt="Herói de capacete neon pulando entre plataformas e moedas" loading="lazy" width="640" height="480"><figcaption>Segure o botão para pular mais alto.</figcaption></figure>
+        </div>
+        <div>
+          <div class="texto">
+            <p>Correr para a direita, pular buracos, pisar em inimigos e chegar na bandeira. A fórmula é clássica e o Super Pixel executa direitinho: o pulo tem altura variável (segurou, subiu mais), o controle responde na hora e dá até para pular um pouquinho depois de sair da beirada, aquele "perdão" que todo bom jogo de plataforma tem.</p>
+            <p>São três fases: os <b>Campos de Pixel</b>, ensolarados; as <b>Cavernas de Cristal</b>, escuras, com a luz só em volta do herói e dos cristais; e a <b>Fortaleza Neon</b>, com lava e o chefe <b>MEGA GLITCH</b> no final. Tem moedas, blocos "?" com corações, plataformas que se mexem, checkpoint no meio de cada fase e trilha chiptune própria.</p>
+          </div>
+          <div class="ficha"><dl><dt>Gênero</dt><dd>Plataforma</dd><dt>Fases</dt><dd>3 + chefe · 300 s por fase</dd><dt>Controles</dt><dd>Teclado, toque e controle</dd><dt>Dificuldade</dt><dd>Média, com chefe exigente</dd></dl></div>
+          <div class="notas">
+            <div class="nota-final"><div><small>NOTA</small><b>4,7</b></div></div>
+            <h4>Notas</h4>
+            <div class="nota" style="--v:4.5">Gráfico<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:5">Som<i></i><b>5,0</b></div>
+            <div class="nota" style="--v:4.5">Jogabilidade<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:5">Diversão<i></i><b>5,0</b></div>
+          </div>
+          <p class="veredito">Veredito: um herói novo que já nasceu clássico. A luta contra o MEGA GLITCH vale a revista.</p>
+          <p class="jogar-agora"><a class="botao" href="../../jogos/super-pixel/">▶ Jogar Super Pixel</a></p>
+        </div>
+      </div>
+    </article>
+    <div class="folio"><span>Análises</span><span>6–15</span></div>
+  </section>
+
+  <section class="pagina surge" id="dicas" style="--cor: var(--verde)">
+    <span class="chapeu">Dicas &amp; Macetes</span>
+    <h2 class="titulo">Códigos secretos</h2>
+    <p class="linha-fina">Digite o código na caixa <b>CÓDIGO SECRETO</b> do menu do jogo. O KONAMI também vale pela sequência <span class="setas">↑ ↑ ↓ ↓ ← → ← → B A</span> no teclado, com o menu aberto. No celular, escreva KONAMI na caixa.</p>
+    <div class="dicas">
+      <div class="dica" style="--c:#db2777">
+        <h3>Turbo Neon</h3>
+        <div class="dica-corpo">
+          <div class="senha"><code>KONAMI</code><p>Nitro infinito. O painel mostra ∞.</p></div>
+          <div class="senha"><code>NOITE</code><p>Qualquer pista vira corrida noturna, com farol, lanternas dos rivais e estrelas.</p></div>
+          <div class="senha"><code>PILOTO</code><p>Os adversários correm a 85% da velocidade.</p></div>
+        </div>
+      </div>
+      <div class="dica" style="--c:#d97706">
+        <h3>Super Pixel</h3>
+        <div class="dica-corpo">
+          <div class="senha"><code>KONAMI</code><p>Pulo duplo! E ele recarrega quando você pisa num inimigo.</p></div>
+          <div class="senha"><code>LUA</code><p>Pulo bem mais alto e queda mais leve.</p></div>
+          <div class="senha"><code>IMORTAL</code><p>Invencível. Espinho, lava e buraco jogam você de volta. O chefe ainda precisa de 3 pisões!</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="box-aviso">⚠ Com qualquer código ligado, o recorde não é salvo e o placar fica fora do Hall da Fama.</p>
+    <div class="folio"><span>Dicas &amp; Macetes</span><span>16–17</span></div>
+  </section>
+
+  <section class="pagina surge" id="pitstop" style="--cor: var(--ciano)">
+    <span class="chapeu">Pit stop</span>
+    <h2 class="titulo">Turbo Neon: as pistas</h2>
+    <p class="linha-fina">Tempos de volta com o pé embaixo o tempo todo. Bata esses números e você está pronto para o pódio.</p>
+    <div class="pistas">
+      <div class="pista" style="--bg: linear-gradient(160deg, #ff7a59, #6a0a4a)">
+        <h3>Rio</h3>
+        <dl><dt>Volta</dt><dd>~46 s</dd><dt>Faixas</dt><dd>3</dd></dl>
+        <p>Pôr do sol, mar, coqueiros, guarda-sóis, quiosque de coco e posto de salva-vidas. Pista larga e curvas longas: ótima para aprender.</p>
+      </div>
+      <div class="pista" style="--bg: linear-gradient(160deg, #0b1030, #3a1a6a)">
+        <h3>São Paulo</h3>
+        <dl><dt>Volta</dt><dd>~41 s</dd><dt>Faixas</dt><dd>4</dd></dl>
+        <p>Noite, faixa dupla amarela, viaduto, ponte estaiada, orelhões e um prédio ondulado conhecido. É a volta mais curta, mas as curvas são as mais fechadas.</p>
+      </div>
+      <div class="pista" style="--bg: linear-gradient(160deg, #e0a040, #8a3a10)">
+        <h3>Deserto</h3>
+        <dl><dt>Volta</dt><dd>~51 s</dd><dt>Faixas</dt><dd>2</dd></dl>
+        <p>Dunas altas que escondem a pista, mesetas, cactos, pedras e caveiras. Só duas faixas: ultrapassar aqui é para os corajosos.</p>
+      </div>
+    </div>
+    <h3 style="font-family:var(--f-grito);font-size:26px;font-weight:normal;color:var(--cor)">Os rivais</h3>
+    <p>Sete pilotos, do mais rápido ao mais lento (de 97,5% a 87% da sua velocidade máxima):</p>
+    <div class="rivais"><span>FAÍSCA</span><span>TROVÃO</span><span>CORISCO</span><span>FURACÃO</span><span>BALA</span><span>CICLONE</span><span>RAIO</span></div>
+    <ol class="passos">
+      <li><h4>Largada perfeita</h4>Aperte o acelerador nos últimos 0,45 segundo antes do sinal verde. O carro sai a uns 100 km/h e você passa uns três rivais logo de cara.</li>
+      <li><h4>Respeite as placas amarelas</h4>Elas avisam a direção da curva. Em curva forte, a força centrífuga é maior que o volante: tire o pé um pouquinho e entre por dentro.</li>
+      <li><h4>Nitro na reta</h4>Cada carga dura 2,5 segundos e dá 35% a mais de velocidade máxima. Use na saída de curva, quando a reta é longa. No meio da curva, o nitro só joga você para fora.</li>
+      <li><h4>Não saia da pista</h4>Na areia ou na grama a velocidade cai para um quarto. Bater numa placa ou num coqueiro é pior: você fica com 18% da velocidade. E encostar na traseira de um rival joga você para trás dele.</li>
+      <li><h4>O pódio vale ponto</h4>No ranking, cada posição vale 1.000 pontos (1º lugar = 8.000), mais 10 pontos por segundo abaixo de 10 minutos. Ganhar rápido é o que conta.</li>
+    </ol>
+    <div class="folio"><span>Pit stop</span><span>18–21</span></div>
+  </section>
+
+  <section class="pagina surge" id="detonado" style="--cor: var(--laranja)">
+    <span class="chapeu">Detonado</span>
+    <h2 class="titulo">Super Pixel: zerando</h2>
+    <p class="linha-fina">As três fases e o chefe, passo a passo. Cada fase tem 300 segundos, checkpoint no meio e bandeira no fim.</p>
+    <ol class="passos">
+      <li><h4>Domine o pulo</h4>Um toque rápido sobe menos de um bloco. Segurando, o herói sobe quase 5 blocos. Dá para pular até um instantinho depois de sair da beirada, e se você apertar um pouquinho antes de pousar, o pulo sai na hora.</li>
+      <li><h4>Fase 1 · Campos de Pixel</h4>Dia de sol e os primeiros inimigos. Os andarilhos viram quando chegam na beirada do chão: espere o momento certo e pise na cabeça deles. Segure o pulo na hora do pisão para quicar mais alto e alcançar moedas lá em cima.</li>
+      <li><h4>Os blocos "?"</h4>Bata com a cabeça para ganhar moeda ou coração. Cada coração aguenta um dano, até três acumulados. Com três corações, um novo vale 1.000 pontos. E 100 moedas valem uma vida.</li>
+      <li><h4>Fase 2 · Cavernas de Cristal</h4>Escuridão total: só há luz em volta do herói e dos cristais. Ande devagar perto dos buracos. Os voadores fazem um "8" no ar: observe uma volta inteira antes de passar.</li>
+      <li><h4>Fase 3 · Fortaleza Neon</h4>Lava, tochas e inimigos mais rápidos. As plataformas móveis são o único caminho em alguns trechos. Pule no meio delas, nunca na ponta.</li>
+      <li><h4>Chefe · MEGA GLITCH</h4>As portas da arena se fecham. Ele pula na sua direção e solta duas ondas de choque pelo chão: pule sobre elas. Depois dispara bolas que quicam (três, e cinco na última vida). Pise na cabeça dele três vezes; depois de cada pisão ele fica 1,3 s piscando, invulnerável, e volta mais rápido. Vencer vale 5.000 pontos.</li>
+      <li><h4>Feche com estilo</h4>A bandeira vale de 100 a 1.000 pontos conforme a altura em que você encosta nela: pule o mais alto que puder! O tempo que sobra vale 10 pontos por segundo, e no fim cada vida restante vale 1.000.</li>
+    </ol>
+    <div class="folio"><span>Detonado</span><span>22–27</span></div>
+  </section>
+
+  <section class="pagina surge" id="cartas" style="--cor: var(--vermelho)">
+    <span class="chapeu">Cartas</span>
+    <h2 class="titulo">Fala, leitor!</h2>
+    <div class="cartas">
+      <div class="carta" style="--r:-0.8deg">
+        <p class="msg">Li o dossiê dos fantasmas e agora o Molenga é meu favorito. Ele é tão medroso que dá dó de comer.</p>
+        <p class="de">Gabriel, 9 anos, São Luís (MA)</p>
+        <p class="resp"><b>SN:</b> Gabriel, o Molenga mandou um abraço tímido. Ele pediu para avisar que não gosta de ser comido, obrigado.</p>
+      </div>
+      <div class="carta" style="--r:0.6deg">
+        <p class="msg">Vocês vão fazer uma corrida com a pista de Interlagos? Meu pai disse que seria o máximo.</p>
+        <p class="de">Fernanda, Santo André (SP)</p>
+        <p class="resp"><b>SN:</b> Fernanda, nesta edição tem a pista de São Paulo, de noite, com viaduto e prédio iluminado. Não é Interlagos, mas seu pai vai gostar. Fica a dica: código NOITE.</p>
+      </div>
+      <div class="carta" style="--r:-0.3deg">
+        <p class="msg">Fiz 121 casas de uma vez no primeiro clique do Campo Minado. Isso é recorde mundial?</p>
+        <p class="de">Lucas, Uberlândia (MG)</p>
+        <p class="resp"><b>SN:</b> Lucas, a gente desconfia que tinha código KONAMI ligado aí. Mas tudo bem, a redação também usa.</p>
+      </div>
+      <div class="carta" style="--r:0.9deg">
+        <p class="msg">Guardo todas as edições da Super Neon numa pasta. Quando vem a número 5?</p>
+        <p class="de">Mariana, Salvador (BA)</p>
+        <p class="resp"><b>SN:</b> Mariana, a redação está tirando umas férias merecidas depois desta edição especial. Mas fique de olho na banca!</p>
+      </div>
+    </div>
+    <div class="folio"><span>Cartas</span><span>28–29</span></div>
+  </section>
+
+  <section class="pagina surge" id="classificados" style="--cor: var(--tinta)">
+    <span class="chapeu">Classificados</span>
+    <h2 class="titulo">Troca-troca</h2>
+    <div class="classificados">
+      <div class="classificado"><b>Vendo</b>Carro rosa, poucos quilômetros, nitro com três cargas. Pequena batida num coqueiro no Rio.<span class="tel">TEL (21) 5555-0404</span></div>
+      <div class="classificado"><b>Procuro</b>Mecânico que saiba consertar ondas de choque. Urgente. Tratar com o MEGA GLITCH.<span class="tel">FORTALEZA NEON, S/N</span></div>
+      <div class="classificado"><b>Troco</b>99 moedas por 1 moeda. Motivo: preciso de 100.<span class="tel">TEL (85) 5555-0111</span></div>
+      <div class="classificado"><b>Aluga-se</b>Capacete neon tamanho pixel. Brilha no escuro (testado nas Cavernas de Cristal).<span class="tel">TEL (51) 5555-0122</span></div>
+      <div class="classificado"><b>Excursão</b>Rio–São Paulo–Deserto em três voltas. Saída às 8h, chegada em 2 minutos e meio.<span class="tel">TURBO VIAGENS</span></div>
+      <div class="classificado"><b>Compro</b>Sapato antiderrapante para curva fechada de viaduto.<span class="tel">TEL (11) 5555-0155</span></div>
+    </div>
+    <div class="anuncio" style="--anuncio: linear-gradient(135deg, #1a0010, #ff2bd6 55%, #ffb000)">
+      <h3>Volante Turbo Neon Pro</h3>
+      <p>Com pedais de verdade, câmbio que faz barulho de câmbio e uma buzina que toca a trilha da Super Neon. Para pilotos que levam o pódio a sério.</p>
+      <span class="preco">só 10x de R$ 14,90</span>
+      <small>Produto imaginário. Não use na rua. Nem na pista. É imaginário.</small>
+    </div>
+    <div class="folio"><span>Classificados</span><span>30–31</span></div>
+  </section>
+
+  <section class="cdrom-mesa" id="cdrom" aria-label="CD-ROM da edição">
+    <div data-cdrom="4"></div>
+  </section>
+
+  <section class="pagina surge" style="--cor: var(--magenta)">
+    <span class="chapeu">Até a próxima</span>
+    <h2 class="titulo">Game over? Nunca!</h2>
+    <p class="linha-fina">Esta foi a última edição por enquanto. Os 12 jogos continuam no CD-ROM de cada número, e o Hall da Fama continua aberto. A redação volta das férias quando menos se espera.</p>
+    <p><a class="botao escuro" href="../../">◄ Voltar para a banca</a> <a class="botao alt" href="../../#hall">Ver o Hall da Fama</a></p>
+    <h3 style="font-family:var(--f-grito);font-size:24px;margin-top:26px;font-weight:normal">Expediente</h3>
+    <div class="expediente">
+      <p><b>Super Neon</b>, a revista de games que vem com jogo. Número 4, Ano 2. Edição especial.</p>
+      <p><b>Redação:</b> de férias a partir de amanhã. <b>CD-ROM:</b> jogos feitos só com HTML, CSS e JavaScript.</p>
+      <p>Fan games não oficiais e sem fins lucrativos. Os clássicos que inspiraram nossos jogos são marcas de seus respectivos donos.</p>
+    </div>
+    <div class="folio"><span>Super Neon Nº 4</span><span>34</span></div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <a href="../03/">◄ Edição anterior</a> · <a href="../../">Banca</a>
+</footer>
+
+<script src="../../shared/common.js"></script>
+<script src="../../revista/edicoes.js"></script>
+<script src="../../revista/revista.js"></script>
+<script src="../../revista/musica.js"></script>
+</body>
+</html>

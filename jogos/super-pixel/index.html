@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Super Pixel</title>
+<meta name="description" content="Plataforma 2D de rolagem lateral: três fases, moedas, blocos surpresa e um chefe no fim da Fortaleza Neon.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' fill='%23120a24'/%3E%3Cpath d='M4 2h7v1h1v1h1v5H3V4h1z' fill='%23ffb000'/%3E%3Cpath d='M6 5h6v2H6z' fill='%2300e5ff'/%3E%3Cpath d='M5 9h6v3H5z' fill='%23ff2bd6'/%3E%3Cpath d='M4 12h3v2H4zM9 12h3v2H9z' fill='%232b2340'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/style.css">
+<style>
+  #game { image-rendering: pixelated; image-rendering: crisp-edges; }
+  /* Botões grandes de toque */
+  .pbtn {
+    width: 78px; height: 78px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font); font-weight: 900; font-size: 28px; color: #fff;
+    border: 2px solid var(--accent);
+    background: radial-gradient(circle at 50% 35%, color-mix(in srgb, var(--accent) 30%, transparent), rgba(0, 0, 0, 0.55) 75%);
+    box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 35%, transparent), inset 0 0 14px color-mix(in srgb, var(--accent) 22%, transparent);
+    touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+  }
+  .pbtn.on { background: var(--accent); color: #1a0f00; box-shadow: 0 0 24px var(--accent); }
+  .pbtn.jump { width: 96px; height: 96px; font-size: 15px; letter-spacing: 0.08em; border-color: var(--magenta); --accent: var(--magenta); }
+  .move-row { display: flex; gap: 12px; }
+  @media (max-height: 520px) and (orientation: landscape) {
+    .pbtn { width: 68px; height: 68px; }
+    .pbtn.jump { width: 84px; height: 84px; }
+  }
+</style>
+</head>
+<body class="game-page" style="--accent:#ffb000">
+<header class="topbar">
+  <a class="back" href="../../edicoes/04/#cdrom">◄ REVISTA</a>
+  <h1>SUPER PIXEL</h1>
+  <div class="hud">
+    <span>PONTOS<b id="hScore">0</b></span>
+    <span>RECORDE<b id="hHi">0</b></span>
+    <span>FASE<b id="hStage">1</b></span>
+    <span class="hud-status" id="hStatus"></span>
+  </div>
+  <button class="icon-btn" id="padBtn" type="button" aria-label="Controles na tela">🎮</button>
+  <button class="icon-btn" id="muteBtn" type="button">🔊</button>
+</header>
+
+<main class="stage" id="stage">
+  <div class="pad pad-left">
+    <div class="move-row">
+      <button class="pbtn" type="button" id="tLeft" aria-label="Andar para a esquerda">◄</button>
+      <button class="pbtn" type="button" id="tRight" aria-label="Andar para a direita">►</button>
+    </div>
+    <span class="pad-label">ANDAR</span>
+  </div>
+  <div class="game-wrap" id="gameWrap">
+    <div class="screen" id="screen">
+      <canvas id="game" aria-label="Fase do Super Pixel"></canvas>
+    </div>
+  </div>
+  <div class="pad pad-right">
+    <button class="pbtn jump" type="button" id="tJump" aria-label="Pular">PULO</button>
+    <span class="pad-label">SEGURE = MAIS ALTO</span>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <section class="panel" id="menuPanel">
+      <h2>SUPER PIXEL</h2>
+      <p class="sub">O Pixel precisa atravessar os Campos de Pixel, as Cavernas de Cristal e a Fortaleza Neon para derrotar o MEGA GLITCH. Pegue moedas, pise nos inimigos e chegue à bandeira!</p>
+      <div class="opt">
+        <span class="opt-label">MÚSICA</span>
+        <div class="seg" data-setting="musica">
+          <button type="button" data-value="on">LIGADA</button>
+          <button type="button" data-value="off">DESLIGADA</button>
+        </div>
+      </div>
+      <div class="opt">
+        <span class="opt-label">TELA</span>
+        <div class="seg" data-setting="crt">
+          <button type="button" data-value="off">LIMPA</button>
+          <button type="button" data-value="on">TV DE TUBO</button>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">JOGAR</button>
+      </div>
+      <div id="codeMount"></div>
+      <div class="keys">
+        <div class="no-touch"><kbd>←</kbd><kbd>→</kbd> ou <kbd>A</kbd><kbd>D</kbd> anda · <kbd>↑</kbd>/<kbd>W</kbd>/<kbd>Espaço</kbd>/<kbd>Z</kbd> pula (segure para ir mais alto)</div>
+        <div class="no-touch"><kbd>P</kbd>/<kbd>Esc</kbd> pausa · <kbd>M</kbd> som</div>
+        <div>Na tela: ◄ ► à esquerda e PULO à direita (🎮 mostra/esconde).</div>
+        <div>Controle de videogame: direcional ou analógico anda, <kbd>A</kbd> pula, <kbd>Start</kbd> pausa.</div>
+        <div>Moeda 100 · inimigo 200 · bônus de tempo no fim da fase · chefe 5000. 100 moedas = 1 vida.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="pausePanel" hidden>
+      <h2>PAUSADO</h2>
+      <p class="sub">O Pixel está tomando um fôlego.</p>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="resume">CONTINUAR</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+
+    <section class="panel" id="overPanel" hidden>
+      <h2 id="overTitle">FIM DE JOGO</h2>
+      <div class="big-score" id="overScore">0</div>
+      <p class="sub" id="overInfo"></p>
+      <p class="record" id="overRecord" hidden>NOVO RECORDE!</p>
+      <div class="rank" id="rankBox" hidden></div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">JOGAR DE NOVO</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="../../shared/common.js"></script>
+<script src="../../shared/firebase-config.js"></script>
+<script src="../../shared/ranking.js"></script>
+<script src="superpixel.js"></script>
+</body>
+</html>

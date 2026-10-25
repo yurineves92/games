@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Paredão</title>
+<meta name="description" content="Paredão: quebra-tijolos neon com 10 fases, tijolos duros, cápsulas de poder e bola de fogo. Direto no navegador.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23100618'/%3E%3Crect x='3' y='4' width='8' height='5' fill='%23ff3b5c'/%3E%3Crect x='12' y='4' width='8' height='5' fill='%23ffd400'/%3E%3Crect x='21' y='4' width='8' height='5' fill='%2339ff14'/%3E%3Crect x='3' y='10' width='8' height='5' fill='%2300e5ff'/%3E%3Crect x='21' y='10' width='8' height='5' fill='%23ff2bd6'/%3E%3Ccircle cx='17' cy='20' r='3' fill='%23fff'/%3E%3Crect x='9' y='26' width='14' height='3' rx='1.5' fill='%23ff8a00'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/style.css">
+<style>
+  .paredao #game { cursor: none; }
+  /* celular em pé: o placar vai para uma linha só dele, embaixo do título */
+  @media (max-width: 520px) {
+    .topbar { gap: 4px 10px; padding: 6px 12px; }
+    .topbar h1 { font-size: 14px; letter-spacing: 0.12em; }
+    .hud { order: 3; flex-basis: 100%; gap: 2px 14px; font-size: 14px; }
+  }
+  .caps { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; align-items: center; margin-top: 4px; }
+  .cap {
+    display: inline-block; min-width: 34px; padding: 1px 0; border-radius: 99px; text-align: center;
+    font-family: var(--font); font-weight: 900; font-size: 12px; color: #0d0518;
+    background: var(--c); box-shadow: 0 0 8px var(--c);
+  }
+</style>
+</head>
+<body class="game-page paredao" style="--accent:#ff8a00">
+<header class="topbar">
+  <a class="back" href="../../edicoes/02/#cdrom">◄ REVISTA</a>
+  <h1>PAREDÃO</h1>
+  <div class="hud">
+    <span>PONTOS<b id="hScore">0</b></span>
+    <span>RECORDE<b id="hHi">0</b></span>
+    <span>VIDAS<b id="hLives">3</b></span>
+    <span>FASE<b id="hLevel">1</b></span>
+    <span class="hud-status" id="hStatus"></span>
+  </div>
+  <button class="icon-btn" id="muteBtn" type="button">🔊</button>
+</header>
+
+<main class="stage no-pads" id="stage">
+  <div class="game-wrap" id="gameWrap">
+    <div class="screen" id="screen">
+      <canvas id="game" aria-label="Quadra do Paredão"></canvas>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <section class="panel" id="menuPanel">
+      <h2>PAREDÃO</h2>
+      <p class="sub">Rebata a bola e derrube o paredão de tijolos. O ângulo muda conforme o ponto da raquete onde a bola bate. Pegue as cápsulas que caem!</p>
+      <div class="opt">
+        <span class="opt-label">SENSIBILIDADE DO TOQUE</span>
+        <div class="seg" data-setting="sens">
+          <button type="button" data-value="low">BAIXA</button>
+          <button type="button" data-value="med">MÉDIA</button>
+          <button type="button" data-value="high">ALTA</button>
+        </div>
+      </div>
+      <div class="opt">
+        <span class="opt-label">EFEITO TV DE TUBO</span>
+        <div class="seg" data-setting="crt">
+          <button type="button" data-value="on">LIGADO</button>
+          <button type="button" data-value="off">DESLIGADO</button>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">INICIAR</button>
+      </div>
+      <div id="codeMount"></div>
+      <div class="keys">
+        <div class="caps">
+          <span class="cap" style="--c:#ff3b5c">L</span><span>Laser: atire com Espaço, clique ou toque</span>
+          <span class="cap" style="--c:#3b7bff">E</span><span>Raquete larga</span>
+          <span class="cap" style="--c:#00e5ff">M</span><span>Multibola: cada bola vira três</span>
+          <span class="cap" style="--c:#ff8a00">S</span><span>Bola lenta</span>
+          <span class="cap" style="--c:#c9c9dd">V</span><span>Vida extra</span>
+        </div>
+        <div class="no-touch"><kbd>←</kbd><kbd>→</kbd> ou <kbd>A</kbd><kbd>D</kbd> movem · <kbd>Espaço</kbd> lança e atira · ou use o mouse</div>
+        <div class="no-touch"><kbd>P</kbd>/<kbd>Esc</kbd> pausa · <kbd>M</kbd> som</div>
+        <div>Na tela: arraste o dedo em qualquer ponto do jogo para mover a raquete. Toque rápido lança a bola.</div>
+        <div>Controle de videogame: analógico ou direcional move, <kbd>A</kbd> lança e atira, <kbd>Start</kbd> pausa.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="pausePanel" hidden>
+      <h2>PAUSADO</h2>
+      <p class="sub">O paredão continua de pé. Por enquanto.</p>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="resume">CONTINUAR</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+
+    <section class="panel" id="overPanel" hidden>
+      <h2>FIM DE JOGO</h2>
+      <div class="big-score" id="overScore">0</div>
+      <p class="sub" id="overInfo"></p>
+      <p class="record" id="overRecord" hidden>NOVO RECORDE!</p>
+      <div class="rank" id="rankBox" hidden></div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">JOGAR DE NOVO</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="../../shared/common.js"></script>
+<script src="../../shared/firebase-config.js"></script>
+<script src="../../shared/ranking.js"></script>
+<script src="paredao.js"></script>
+</body>
+</html>

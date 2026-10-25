@@ -15,6 +15,11 @@
   /* ---------- configurações ---------- */
   const settings = { speed: 'normal', walls: 'solid' };
   Arcade.bindSettings(panels.menu, settings, 'snake_', key => { if (key === 'walls') buildBoard(); });
+  const codes = Arcade.codes('snake', {
+    KONAMI: 'Cobra arco-íris',
+    GULOSO: 'Maçãs valem 30 pontos',
+    FANTASMA: 'A cobra atravessa o próprio corpo',
+  }, $('codeMount'));
 
   /* ---------- tela ---------- */
   let k = 1;
@@ -103,8 +108,9 @@
 
   function gameOver() {
     state = 'over';
-    const rec = score > hi;
+    const rec = score > hi && !codes.any();
     if (rec) { hi = score; Arcade.store.set('snake_hi', hi); }
+    Ranking.gameOver($('rankBox'), { board: `snake-${settings.speed}-${settings.walls}`, score, cheated: codes.any() });
     $('overScore').textContent = score;
     $('overInfo').textContent = `Tamanho ${body.length} · ${eaten} ${eaten === 1 ? 'maçã' : 'maçãs'}`;
     $('overRecord').hidden = !rec;
@@ -132,6 +138,7 @@
 
   const blocked = (x, y, ignoreTail) => {
     if (x < 0 || y < 0 || x >= COLS || y >= ROWS) return true;
+    if (codes.has('FANTASMA')) return false;
     const n = ignoreTail ? body.length - 1 : body.length;
     for (let i = 0; i < n; i++) if (body[i].x === x && body[i].y === y) return true;
     return false;
@@ -199,9 +206,10 @@
     food = null;
     food = freeCell();
     if (demo) return;
-    score += 10;
+    const pts = codes.has('GULOSO') ? 30 : 10;
+    score += pts;
     interval = Math.max(SPEEDS[settings.speed] * 0.55, interval - 1.6);
-    popups.push({ x: f.x + 0.5, y: f.y + 0.5, text: '+10', color: '#ff6b81', life: 0.9 });
+    popups.push({ x: f.x + 0.5, y: f.y + 0.5, text: `+${pts}`, color: '#ff6b81', life: 0.9 });
     Sfx.tone(660, 0.06, 'square', 0.09); Sfx.tone(990, 0.08, 'square', 0.08, null, 0.05);
     if (!bonus && ++sinceBonus >= 5 && Math.random() < 0.7) {
       sinceBonus = 0;
@@ -360,6 +368,7 @@
     const fade = dead ? Math.min(1, deadT * 2) : 0;
     const C = i => {
       if (flash) return '#ff3355';
+      if (codes.has('KONAMI') && !dead) return `hsl(${(time * 160 + i * 22) % 360},100%,60%)`;
       const c = mix(TAIL, HEAD, 1 - i / n);
       return rgb(dead ? mix(c, DEAD, fade) : c);
     };

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Come-Come</title>
+<meta name="description" content="Come-Come: coma todas as pastilhas do labirinto neon e fuja dos fantasmas. Jogo da revista Super Neon.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2303020a'/%3E%3Cpath d='M16 16L28 9A13 13 0 1 0 28 23Z' fill='%23ffe600'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/style.css">
+<style>
+  /* linhas de varredura de monitor de fliperama por cima do canvas */
+  .comecome .screen::after {
+    content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    background: repeating-linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 3px);
+    mix-blend-mode: screen;
+  }
+  .ghost-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 14px; margin: 12px 0 4px; text-align: left; font-family: var(--mono); font-size: 13px; color: #cbbfe0; }
+  .ghost-list b { font-family: var(--font); font-weight: 900; letter-spacing: 0.08em; font-size: 12px; display: block; }
+  .ghost-list i { font-style: normal; display: inline-block; width: 10px; height: 10px; border-radius: 50% 50% 2px 2px; margin-right: 6px; box-shadow: 0 0 8px currentColor; background: currentColor; }
+  @media (max-width: 420px) { .ghost-list { font-size: 12px; } }
+</style>
+</head>
+<body class="game-page comecome" style="--accent:#ffe600">
+<header class="topbar">
+  <a class="back" href="../../edicoes/03/#cdrom">◄ REVISTA</a>
+  <h1>COME-COME</h1>
+  <div class="hud">
+    <span>PONTOS<b id="hScore">0</b></span>
+    <span>RECORDE<b id="hHi">0</b></span>
+    <span>FASE<b id="hLevel">1</b></span>
+    <span>VIDAS<b id="hLives">3</b></span>
+    <span class="hud-status" id="hStatus"></span>
+  </div>
+  <button class="icon-btn" id="padBtn" type="button" aria-label="Controles na tela">🎮</button>
+  <button class="icon-btn" id="muteBtn" type="button">🔊</button>
+</header>
+
+<main class="stage solo-pad" id="stage">
+  <div class="pad pad-left">
+    <div class="vjoy" id="joy" aria-label="Joystick: direção"><div class="vjoy-knob"></div></div>
+    <span class="pad-label">DIREÇÃO</span>
+  </div>
+  <div class="game-wrap" id="gameWrap">
+    <div class="screen" id="screen">
+      <canvas id="game" aria-label="Labirinto do Come-Come"></canvas>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <section class="panel" id="menuPanel">
+      <h2>COME-COME</h2>
+      <p class="sub">Coma todas as pastilhas do labirinto sem ser pego. As 4 pastilhas grandes deixam os fantasmas azuis: aí é a sua vez de caçar! Fique de olho nas frutas que aparecem embaixo da casa.</p>
+      <div class="ghost-list">
+        <div><b style="color:#ff2a3d"><i></i>BRASA</b>vai direto atrás de você</div>
+        <div><b style="color:#ff7ad9"><i></i>CHICLETE</b>arma emboscada lá na frente</div>
+        <div><b style="color:#22e8ff"><i></i>GELADO</b>imprevisível, trabalha com o Brasa</div>
+        <div><b style="color:#ffa53a"><i></i>MOLENGA</b>corre atrás, mas foge de perto</div>
+      </div>
+      <div class="opt">
+        <span class="opt-label">CORES DO LABIRINTO</span>
+        <div class="seg" data-setting="walls">
+          <button type="button" data-value="classic">AZUL</button>
+          <button type="button" data-value="cycle">MUDA POR FASE</button>
+        </div>
+      </div>
+      <div class="opt">
+        <span class="opt-label">SIRENE DE FUNDO</span>
+        <div class="seg" data-setting="siren">
+          <button type="button" data-value="on">LIGADA</button>
+          <button type="button" data-value="off">DESLIGADA</button>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">INICIAR</button>
+      </div>
+      <div id="codeMount"></div>
+      <div class="keys">
+        <div class="no-touch"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> ou setas: direção (aperte antes da curva, o Come-Come vira sozinho)</div>
+        <div class="no-touch"><kbd>P</kbd>/<kbd>Esc</kbd> pausa · <kbd>M</kbd> som</div>
+        <div>Na tela: deslize o dedo sobre o labirinto ou use o joystick (🎮 mostra/esconde).</div>
+        <div>Controle de videogame: direcional ou analógico, <kbd>Start</kbd> pausa.</div>
+        <div>Pastilha 10 · energia 50 · fantasmas 200, 400, 800, 1600 · vida extra aos 10.000.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="pausePanel" hidden>
+      <h2>PAUSADO</h2>
+      <p class="sub">Os fantasmas fingem que não estão vendo.</p>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="resume">CONTINUAR</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+
+    <section class="panel" id="overPanel" hidden>
+      <h2>FIM DE JOGO</h2>
+      <div class="big-score" id="overScore">0</div>
+      <p class="sub" id="overInfo"></p>
+      <p class="record" id="overRecord" hidden>NOVO RECORDE!</p>
+      <div class="rank" id="rankBox" hidden></div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">JOGAR DE NOVO</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="../../shared/common.js"></script>
+<script src="../../shared/firebase-config.js"></script>
+<script src="../../shared/ranking.js"></script>
+<script src="comecome.js"></script>
+</body>
+</html>

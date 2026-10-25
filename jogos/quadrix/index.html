@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quadrix</title>
+<meta name="description" content="Quadrix: encaixe os blocos que caem e limpe linhas. Visual neon, direto no navegador.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2302060e'/%3E%3Crect x='3' y='17' width='8' height='8' fill='%2300f0ff'/%3E%3Crect x='12' y='17' width='8' height='8' fill='%2300f0ff'/%3E%3Crect x='21' y='17' width='8' height='8' fill='%2300f0ff'/%3E%3Crect x='12' y='8' width='8' height='8' fill='%23d040ff'/%3E%3Crect x='3' y='26' width='26' height='3' fill='%23ff2d55'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/style.css">
+<style>
+  .quadrix #game { cursor: pointer; }
+
+  /* Botões na tela: em paisagem ficam em blocos 2x2 dos lados; em retrato, numa linha embaixo. */
+  .tpad { display: grid; gap: 10px; grid-template-columns: repeat(2, 66px); }
+  .pad-left .tpad { grid-template-areas: "l r" "d d"; }
+  .pad-right .tpad { grid-template-areas: "rot rot" "hold drop"; }
+  .tbtn {
+    --b: var(--accent);
+    height: 64px; border-radius: 12px; border: 2px solid var(--b);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px;
+    font-size: 22px; font-weight: 900; line-height: 1; color: #eafcff;
+    background: radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--b) 24%, transparent), rgba(0, 0, 0, 0.6) 78%);
+    box-shadow: 0 0 14px color-mix(in srgb, var(--b) 35%, transparent), inset 0 0 14px color-mix(in srgb, var(--b) 20%, transparent);
+    touch-action: none; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent;
+  }
+  .tbtn small { font-size: 9px; letter-spacing: 0.12em; font-weight: 700; color: var(--muted); }
+  .tbtn.on { background: var(--b); color: #03151a; box-shadow: 0 0 24px var(--b); }
+  .tbtn.on small { color: #03151a; }
+  .tbtn[data-k="l"] { grid-area: l; }
+  .tbtn[data-k="r"] { grid-area: r; }
+  .tbtn[data-k="d"] { grid-area: d; }
+  .tbtn[data-k="rot"] { grid-area: rot; --b: var(--magenta); }
+  .tbtn[data-k="hold"] { grid-area: hold; --b: var(--green); }
+  .tbtn[data-k="drop"] { grid-area: drop; --b: var(--yellow); }
+
+  @media (orientation: portrait) {
+    .tpad { grid-template-columns: repeat(3, 54px); gap: 8px; }
+    .pad-left .tpad { grid-template-areas: "l d r"; }
+    .pad-right .tpad { grid-template-areas: "hold rot drop"; }
+    .tbtn { height: 56px; }
+  }
+  @media (orientation: portrait) and (max-width: 400px) {
+    .tpad { grid-template-columns: repeat(3, 48px); gap: 7px; }
+    .tbtn { height: 52px; font-size: 20px; }
+  }
+  @media (max-height: 520px) {
+    .tpad { grid-template-columns: repeat(2, 56px); gap: 8px; }
+    .tbtn { height: 52px; }
+  }
+  /* Celular em pé: o placar vai para uma linha só, embaixo do título. */
+  @media (max-width: 480px) {
+    .quadrix .topbar { gap: 6px 10px; }
+    .quadrix .hud { order: 3; flex-basis: 100%; font-size: 13px; gap: 2px 12px; }
+  }
+</style>
+</head>
+<body class="game-page quadrix" style="--accent:#00e5ff">
+<header class="topbar">
+  <a class="back" href="../../edicoes/01/#cdrom">◄ REVISTA</a>
+  <h1>QUADRIX</h1>
+  <div class="hud">
+    <span>PONTOS<b id="hScore">0</b></span>
+    <span>RECORDE<b id="hHi">0</b></span>
+    <span>NÍVEL<b id="hLevel">1</b></span>
+    <span>LINHAS<b id="hLines">0</b></span>
+    <span class="hud-status" id="hStatus"></span>
+  </div>
+  <button class="icon-btn" id="padBtn" type="button" aria-label="Controles na tela">🎮</button>
+  <button class="icon-btn" id="muteBtn" type="button">🔊</button>
+</header>
+
+<main class="stage" id="stage">
+  <div class="pad pad-left">
+    <div class="tpad">
+      <button class="tbtn" type="button" data-k="l" aria-label="Mover para a esquerda">◀</button>
+      <button class="tbtn" type="button" data-k="r" aria-label="Mover para a direita">▶</button>
+      <button class="tbtn" type="button" data-k="d" aria-label="Descer rápido">▼<small>DESCE</small></button>
+    </div>
+  </div>
+  <div class="game-wrap" id="gameWrap">
+    <div class="screen" id="screen">
+      <canvas id="game" aria-label="Poço do Quadrix"></canvas>
+    </div>
+  </div>
+  <div class="pad pad-right">
+    <div class="tpad">
+      <button class="tbtn" type="button" data-k="rot" aria-label="Girar">⟳<small>GIRAR</small></button>
+      <button class="tbtn" type="button" data-k="hold" aria-label="Guardar peça (HOLD)">⇄<small>HOLD</small></button>
+      <button class="tbtn" type="button" data-k="drop" aria-label="Derrubar">⤓<small>CAIR</small></button>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <section class="panel" id="menuPanel">
+      <h2>QUADRIX</h2>
+      <p class="sub">Encaixe os blocos que caem e complete linhas inteiras para apagá-las. Quatro linhas de uma vez é um QUADRIX!</p>
+      <div class="opt">
+        <span class="opt-label">MODO</span>
+        <div class="seg" data-setting="mode">
+          <button type="button" data-value="maratona">MARATONA</button>
+          <button type="button" data-value="ultra">ULTRA</button>
+        </div>
+      </div>
+      <p class="sub" id="modeInfo"></p>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">INICIAR</button>
+      </div>
+      <div id="codeMount"></div>
+      <div class="keys">
+        <div class="no-touch"><kbd>←</kbd><kbd>→</kbd> move · <kbd>↓</kbd> desce rápido · <kbd>Espaço</kbd> derruba</div>
+        <div class="no-touch"><kbd>↑</kbd>/<kbd>X</kbd> gira horário · <kbd>Z</kbd> gira anti-horário · <kbd>C</kbd>/<kbd>Shift</kbd> HOLD</div>
+        <div class="no-touch"><kbd>P</kbd>/<kbd>Esc</kbd> pausa · <kbd>M</kbd> som</div>
+        <div>Na tela: botões (🎮 mostra/esconde). Toque rápido no poço gira; deslize para o lado move, para baixo desce, um peteleco para baixo derruba e para cima guarda a peça.</div>
+        <div>Controle de videogame: direcional move, <kbd>A</kbd> gira, <kbd>B</kbd> gira ao contrário, <kbd>X</kbd>/<kbd>LB</kbd> HOLD, <kbd>↑</kbd>/<kbd>RT</kbd> derruba, <kbd>Start</kbd> pausa.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="pausePanel" hidden>
+      <h2>PAUSADO</h2>
+      <p class="sub">Os blocos ficaram suspensos no ar. Respire fundo.</p>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="resume">CONTINUAR</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+
+    <section class="panel" id="overPanel" hidden>
+      <h2 id="overTitle">FIM DE JOGO</h2>
+      <div class="big-score" id="overScore">0</div>
+      <p class="sub" id="overInfo"></p>
+      <p class="record" id="overRecord" hidden>NOVO RECORDE!</p>
+      <div class="rank" id="rankBox" hidden></div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">JOGAR DE NOVO</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="../../shared/common.js"></script>
+<script src="../../shared/firebase-config.js"></script>
+<script src="../../shared/ranking.js"></script>
+<script src="quadrix.js"></script>
+</body>
+</html>

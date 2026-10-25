@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Travessia</title>
+<meta name="description" content="Travessia: ajude o sapo a cruzar a estrada e o rio até as 5 tocas. Jogo da revista Super Neon.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23061a4a'/%3E%3Cellipse cx='16' cy='18' rx='9' ry='10' fill='%2339ff14'/%3E%3Ccircle cx='11' cy='10' r='4' fill='%23eaffd8'/%3E%3Ccircle cx='21' cy='10' r='4' fill='%23eaffd8'/%3E%3Ccircle cx='11' cy='10' r='2' fill='%23000'/%3E%3Ccircle cx='21' cy='10' r='2' fill='%23000'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/style.css">
+<style>
+  .travessia #game { cursor: pointer; }
+  /* direcional na tela */
+  .dpad {
+    display: grid; gap: 6px;
+    grid-template-columns: repeat(3, 54px); grid-template-rows: repeat(3, 54px);
+    grid-template-areas: ". up ." "left mid right" ". down .";
+    touch-action: none; user-select: none; -webkit-user-select: none;
+  }
+  .dpad button {
+    border: 2px solid var(--accent); border-radius: 10px; font-size: 20px; color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, rgba(0, 0, 0, 0.5)); touch-action: none;
+    box-shadow: 0 0 12px color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+  .dpad button.on { background: var(--accent); color: #0d0518; box-shadow: 0 0 20px var(--accent); }
+  .dpad [data-dir="0,-1"] { grid-area: up; }
+  .dpad [data-dir="-1,0"] { grid-area: left; }
+  .dpad [data-dir="1,0"] { grid-area: right; }
+  .dpad [data-dir="0,1"] { grid-area: down; }
+  .dpad .mid { grid-area: mid; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--accent) 25%, transparent), transparent 70%); }
+  @media (max-height: 520px) { .dpad { grid-template-columns: repeat(3, 44px); grid-template-rows: repeat(3, 44px); } }
+</style>
+</head>
+<body class="game-page travessia" style="--accent:#39ff14">
+<header class="topbar">
+  <a class="back" href="../../edicoes/03/#cdrom">◄ REVISTA</a>
+  <h1>TRAVESSIA</h1>
+  <div class="hud">
+    <span>PONTOS<b id="hScore">0</b></span>
+    <span>RECORDE<b id="hHi">0</b></span>
+    <span>FASE<b id="hLevel">1</b></span>
+    <span>VIDAS<b id="hLives">3</b></span>
+    <span class="hud-status" id="hStatus"></span>
+  </div>
+  <button class="icon-btn" id="padBtn" type="button" aria-label="Controles na tela">🎮</button>
+  <button class="icon-btn" id="muteBtn" type="button">🔊</button>
+</header>
+
+<main class="stage solo-pad" id="stage">
+  <div class="pad pad-left">
+    <div class="dpad" aria-label="Direcional">
+      <button type="button" data-dir="0,-1" aria-label="Pular para cima">▲</button>
+      <button type="button" data-dir="-1,0" aria-label="Pular para a esquerda">◀</button>
+      <span class="mid"></span>
+      <button type="button" data-dir="1,0" aria-label="Pular para a direita">▶</button>
+      <button type="button" data-dir="0,1" aria-label="Pular para baixo">▼</button>
+    </div>
+    <span class="pad-label">PULAR</span>
+  </div>
+  <div class="game-wrap" id="gameWrap">
+    <div class="screen" id="screen">
+      <canvas id="game" aria-label="Estrada e rio da Travessia"></canvas>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <section class="panel" id="menuPanel">
+      <h2>TRAVESSIA</h2>
+      <p class="sub">Leve o sapo da calçada até as 5 tocas lá no alto. Desvie dos carros, caminhões e motos e atravesse o rio pulando nos troncos e nas tartarugas. Cuidado: algumas tartarugas mergulham!</p>
+      <div class="opt">
+        <span class="opt-label">TOQUE NA TELA</span>
+        <div class="seg" data-setting="tap">
+          <button type="button" data-value="on">TOCAR + DESLIZAR</button>
+          <button type="button" data-value="off">SÓ DESLIZAR</button>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">INICIAR</button>
+      </div>
+      <div id="codeMount"></div>
+      <div class="keys">
+        <div class="no-touch"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> ou setas: um pulo por toque</div>
+        <div class="no-touch"><kbd>P</kbd>/<kbd>Esc</kbd> pausa · <kbd>M</kbd> som</div>
+        <div>Na tela: deslize na direção do pulo ou toque acima, abaixo ou dos lados do sapo. O 🎮 mostra/esconde o direcional.</div>
+        <div>Controle de videogame: direcional ou analógico, <kbd>Start</kbd> pausa.</div>
+        <div>10 por linha nova · 50 por toca + 10 por segundo que sobrar · mosca 200 · fase completa 1000.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="pausePanel" hidden>
+      <h2>PAUSADO</h2>
+      <p class="sub">O sapo aproveita para tomar um ar.</p>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="resume">CONTINUAR</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+
+    <section class="panel" id="overPanel" hidden>
+      <h2>FIM DE JOGO</h2>
+      <div class="big-score" id="overScore">0</div>
+      <p class="sub" id="overInfo"></p>
+      <p class="record" id="overRecord" hidden>NOVO RECORDE!</p>
+      <div class="rank" id="rankBox" hidden></div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">JOGAR DE NOVO</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="../../shared/common.js"></script>
+<script src="../../shared/firebase-config.js"></script>
+<script src="../../shared/ranking.js"></script>
+<script src="travessia.js"></script>
+</body>
+</html>

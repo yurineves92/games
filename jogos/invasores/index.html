@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Invasores</title>
+<meta name="description" content="Invasores: defenda a Terra da frota alienígena que desce em passos. Pixel art neon, bunkers destrutíveis e disco voador misterioso.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 8' shape-rendering='crispEdges'%3E%3Crect width='11' height='8' fill='%230b0418'/%3E%3Cpath fill='%23b26bff' d='M2 0h1v1H2zM8 0h1v1H8zM3 1h1v1H3zM7 1h1v1H7zM2 2h7v1H2zM1 3h2v1H1zM4 3h3v1H4zM8 3h2v1H8zM0 4h11v1H0zM0 5h1v1H0zM2 5h7v1H2zM10 5h1v1h-1zM0 6h1v1H0zM2 6h1v1H2zM8 6h1v1H8zM10 6h1v1h-1zM3 7h2v1H3zM6 7h2v1H6z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/style.css">
+<style>
+  /* botões de toque: ◄ ► à esquerda e FOGO à direita */
+  .pbtn {
+    --size: 76px;
+    width: var(--size); height: var(--size); border-radius: 50%; flex: none;
+    font-family: var(--font); font-weight: 900; font-size: 26px; color: var(--accent);
+    background: radial-gradient(circle, color-mix(in srgb, var(--accent) 16%, transparent), rgba(0, 0, 0, 0.55) 70%);
+    border: 2px solid var(--accent); touch-action: none; user-select: none; -webkit-user-select: none;
+    box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 35%, transparent), inset 0 0 18px color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+  .pbtn.fire { --size: 92px; font-size: 16px; letter-spacing: 0.1em; color: #fff; border-color: #ff3b5c; box-shadow: 0 0 18px rgba(255, 59, 92, 0.45), inset 0 0 18px rgba(255, 59, 92, 0.3); }
+  .pbtn.down { background: var(--accent); color: #0d0518; box-shadow: 0 0 26px var(--accent); }
+  .pbtn.fire.down { background: #ff3b5c; box-shadow: 0 0 26px #ff3b5c; }
+  .pad-left .pad-row { display: flex; gap: 14px; }
+  @media (orientation: landscape) { .pad-left .pad-row { flex-direction: column; } }
+  @media (max-height: 520px) { .pbtn { --size: 62px; } .pbtn.fire { --size: 74px; } }
+  @media (max-width: 520px) {
+    .topbar { gap: 4px 10px; padding: 6px 12px; }
+    .topbar h1 { font-size: 14px; letter-spacing: 0.12em; }
+    .hud { order: 3; flex-basis: 100%; gap: 2px 14px; font-size: 14px; }
+  }
+  .table { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; align-items: center; justify-items: start; margin-top: 2px; }
+  .table canvas { display: block; }
+</style>
+</head>
+<body class="game-page invasores" style="--accent:#b26bff">
+<header class="topbar">
+  <a class="back" href="../../edicoes/02/#cdrom">◄ REVISTA</a>
+  <h1>INVASORES</h1>
+  <div class="hud">
+    <span>PONTOS<b id="hScore">0</b></span>
+    <span>RECORDE<b id="hHi">0</b></span>
+    <span>VIDAS<b id="hLives">3</b></span>
+    <span>ONDA<b id="hWave">1</b></span>
+    <span class="hud-status" id="hStatus"></span>
+  </div>
+  <button class="icon-btn" id="padBtn" type="button" aria-label="Controles na tela">🎮</button>
+  <button class="icon-btn" id="muteBtn" type="button">🔊</button>
+</header>
+
+<main class="stage" id="stage">
+  <div class="pad pad-left">
+    <div class="pad-row">
+      <button class="pbtn" id="btnLeft" type="button" aria-label="Mover para a esquerda">◄</button>
+      <button class="pbtn" id="btnRight" type="button" aria-label="Mover para a direita">►</button>
+    </div>
+    <span class="pad-label">MOVER</span>
+  </div>
+  <div class="game-wrap" id="gameWrap">
+    <div class="screen" id="screen">
+      <canvas id="game" aria-label="Céu dos Invasores"></canvas>
+    </div>
+  </div>
+  <div class="pad pad-right">
+    <button class="pbtn fire" id="btnFire" type="button" aria-label="Atirar">FOGO</button>
+    <span class="pad-label">ATIRAR</span>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <section class="panel" id="menuPanel">
+      <h2>INVASORES</h2>
+      <p class="sub">A frota alienígena desce em passos, cada vez mais rápida. Derrube todos antes que pousem. Esconda-se atrás dos bunkers e fique de olho no disco voador!</p>
+      <div class="opt">
+        <span class="opt-label">CORES</span>
+        <div class="seg" data-setting="look">
+          <button type="button" data-value="neon">NEON</button>
+          <button type="button" data-value="cel">CELOFANE 1978</button>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">INICIAR</button>
+      </div>
+      <div id="codeMount"></div>
+      <div class="keys">
+        <div class="table" id="pointsTable"></div>
+        <div>Vida extra aos 1500 pontos.</div>
+        <div class="no-touch"><kbd>←</kbd><kbd>→</kbd> ou <kbd>A</kbd><kbd>D</kbd> movem · <kbd>Espaço</kbd> atira</div>
+        <div class="no-touch"><kbd>P</kbd>/<kbd>Esc</kbd> pausa · <kbd>M</kbd> som</div>
+        <div>Na tela: botões ◄ ► e FOGO (🎮 mostra/esconde), ou arraste o dedo no jogo para mover e toque para atirar.</div>
+        <div>Controle de videogame: analógico ou direcional move, <kbd>A</kbd> atira, <kbd>Start</kbd> pausa.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="pausePanel" hidden>
+      <h2>PAUSADO</h2>
+      <p class="sub">A frota está esperando. Ela é paciente.</p>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="resume">CONTINUAR</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+
+    <section class="panel" id="overPanel" hidden>
+      <h2 id="overTitle">FIM DE JOGO</h2>
+      <div class="big-score" id="overScore">0</div>
+      <p class="sub" id="overInfo"></p>
+      <p class="record" id="overRecord" hidden>NOVO RECORDE!</p>
+      <div class="rank" id="rankBox" hidden></div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">JOGAR DE NOVO</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="../../shared/common.js"></script>
+<script src="../../shared/firebase-config.js"></script>
+<script src="../../shared/ranking.js"></script>
+<script src="invasores.js"></script>
+</body>
+</html>

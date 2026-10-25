@@ -191,6 +191,101 @@ const Arcade = (() => {
         sync();
       }
     },
+    // Códigos secretos (seção Dicas & Macetes da revista).
+    // defs: { KONAMI: 'descrição', GULOSO: 'descrição', ... }. Cria a caixa "CÓDIGO SECRETO"
+    // dentro de `mount`. Com o menu aberto, KONAMI também vale pela sequência ↑ ↑ ↓ ↓ ← → ← → B A.
+    // Retorna { has(code), any(), list() }. Com código ativo, o recorde não deve ser salvo.
+    codes(gameId, defs, mount, onChange = () => {}) {
+      const key = 'codes_' + gameId;
+      let active;
+      try { active = new Set(JSON.parse(Arcade.store.get(key, '[]')).filter(c => defs[c])); } catch (e) { active = new Set(); }
+      const save = () => Arcade.store.set(key, JSON.stringify([...active]));
+      const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+
+      const box = document.createElement('div');
+      box.className = 'codebox';
+      box.innerHTML = `
+        <span class="opt-label">CÓDIGO SECRETO</span>
+        <form class="code-form" autocomplete="off">
+          <input class="code-input" maxlength="14" spellcheck="false" autocapitalize="characters" placeholder="DIGITE AQUI" aria-label="Código secreto">
+          <button type="submit">OK</button>
+        </form>
+        <div class="code-list"></div>
+        <p class="code-msg" aria-live="polite"></p>`;
+      if (mount) mount.appendChild(box);
+      const input = box.querySelector('.code-input'), list = box.querySelector('.code-list'), msg = box.querySelector('.code-msg');
+
+      let toastEl = null, toastT = 0;
+      function toast(text, ok) {
+        if (!toastEl) { toastEl = document.createElement('div'); toastEl.className = 'code-toast'; document.body.appendChild(toastEl); }
+        toastEl.textContent = text;
+        toastEl.classList.toggle('bad', !ok);
+        toastEl.classList.add('show');
+        clearTimeout(toastT);
+        toastT = setTimeout(() => toastEl.classList.remove('show'), 2200);
+      }
+      function render() {
+        list.innerHTML = '';
+        for (const c of active) {
+          const b = document.createElement('button');
+          b.type = 'button'; b.className = 'code-chip';
+          b.textContent = `${c} ✕`;
+          b.title = `${defs[c]} (clique para desligar)`;
+          b.addEventListener('click', () => toggle(c));
+          list.appendChild(b);
+        }
+        box.classList.toggle('has-codes', active.size > 0);
+      }
+      function toggle(c) {
+        if (active.has(c)) {
+          active.delete(c);
+          msg.textContent = `${c} desligado.`;
+          toast(`CÓDIGO DESLIGADO: ${c}`, true);
+          Sfx.tone(400, 0.15, 'square', 0.08, 200);
+        } else {
+          active.add(c);
+          msg.textContent = `CÓDIGO ACEITO! ${defs[c]}. Com código ligado o recorde não é salvo.`;
+          toast(`★ CÓDIGO ACEITO: ${defs[c]}`, true);
+          [523, 784, 1047, 1568].forEach((f, i) => Sfx.tone(f, 0.1, 'square', 0.08, null, i * 0.06));
+        }
+        save(); render(); onChange(c, active.has(c));
+      }
+      function tryCode(raw) {
+        const c = norm(raw);
+        if (defs[c]) { toggle(c); return true; }
+        msg.textContent = 'CÓDIGO INVÁLIDO. Confira na revista!';
+        toast('CÓDIGO INVÁLIDO', false);
+        Sfx.tone(140, 0.25, 'sawtooth', 0.1);
+        return false;
+      }
+      box.querySelector('.code-form').addEventListener('submit', e => {
+        e.preventDefault();
+        Sfx.ensure();
+        if (input.value.trim()) tryCode(input.value);
+        input.value = '';
+        input.blur();
+      });
+      // Impede que as teclas digitadas na caixa controlem o jogo.
+      input.addEventListener('keydown', e => e.stopPropagation());
+
+      let buf = '';
+      const KONAMI = 'UUDDLRLRBA';
+      const ARROWS = { arrowup: 'U', arrowdown: 'D', arrowleft: 'L', arrowright: 'R' };
+      addEventListener('keydown', e => {
+        if (e.target && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+        // Só no menu: durante a partida as letras são controles do jogo.
+        if (mount && !mount.offsetParent) { buf = ''; return; }
+        const k = e.key.toLowerCase();
+        const t = ARROWS[k] || (/^[a-z0-9]$/.test(k) ? k.toUpperCase() : '');
+        if (!t) return;
+        buf = (buf + t).slice(-20);
+        // Códigos com letras só pela caixa: digitados soltos, as letras acionariam teclas do jogo (M = som).
+        if (defs.KONAMI && buf.endsWith(KONAMI)) { buf = ''; toggle('KONAMI'); }
+      }, true);
+
+      render();
+      return { has: c => active.has(c), any: () => active.size > 0, list: () => [...active] };
+    },
     rand: (a, b) => a + Math.random() * (b - a),
     pick: a => a[(Math.random() * a.length) | 0],
   };

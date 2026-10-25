@@ -125,6 +125,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 /* ---------- PÁGINAS DOS JOGOS ---------- */
 .game-page {
+  /* recalcula aqui para seguir o --accent de cada jogo (definido no body) */
+  --accent-dim: color-mix(in srgb, var(--accent) 30%, transparent);
   height: 100vh; height: 100dvh;
   display: flex; flex-direction: column; overflow: hidden;
 }
@@ -298,3 +300,58 @@ kbd {
   .topbar { min-height: 0; padding: 4px 12px; }
   .stage { padding: 4px 8px; }
 }
+
+/* ---------- CÓDIGOS SECRETOS ---------- */
+.codebox {
+  margin: 16px auto 0; padding: 12px; max-width: 380px;
+  border: 1px dashed var(--accent-dim); border-radius: 6px;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.codebox.has-codes { border-style: solid; border-color: var(--accent); }
+.code-form { display: flex; gap: 6px; width: 100%; }
+.code-input, .rank-input {
+  flex: 1; min-width: 0; padding: 8px 10px; border-radius: 4px;
+  font-family: var(--mono); font-size: 16px; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--text); background: rgba(0, 0, 0, 0.45); border: 1px solid var(--accent-dim);
+}
+.code-input:focus, .rank-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 10px var(--accent-dim); }
+.code-form button, .rank-form button {
+  padding: 8px 14px; border-radius: 4px; font-weight: 900; font-size: 13px; letter-spacing: 0.12em;
+  background: transparent; color: var(--accent); border: 1px solid var(--accent);
+}
+.code-form button:hover, .rank-form button:hover { background: color-mix(in srgb, var(--accent) 18%, transparent); }
+.code-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.code-list:empty { display: none; }
+.code-chip {
+  font-family: var(--mono); font-size: 13px; padding: 2px 10px; border-radius: 99px;
+  background: var(--accent); color: #0d0518; border: none;
+}
+.code-msg { font-family: var(--mono); font-size: 13px; color: var(--muted); min-height: 1em; line-height: 1.4; }
+.code-msg:empty { display: none; }
+.code-toast {
+  position: fixed; left: 50%; top: 64px; z-index: 50; transform: translate(-50%, -20px);
+  padding: 10px 18px; border-radius: 6px; max-width: calc(100% - 32px);
+  font-family: var(--font); font-weight: 900; font-size: 14px; letter-spacing: 0.08em; text-align: center;
+  background: #0d0518; color: var(--yellow); border: 2px solid var(--yellow);
+  box-shadow: 0 0 24px rgba(255, 212, 0, 0.5);
+  opacity: 0; pointer-events: none; transition: opacity 0.2s, transform 0.2s;
+}
+.code-toast.bad { color: var(--red); border-color: var(--red); box-shadow: 0 0 24px rgba(255, 59, 92, 0.5); }
+.code-toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ---------- HALL DA FAMA (fim de jogo) ---------- */
+.rank { margin: 16px auto 0; max-width: 340px; text-align: left; }
+.rank[hidden] { display: none; }
+.rank-title { text-align: center; font-size: 15px; letter-spacing: 0.2em; color: var(--yellow); text-shadow: 0 0 10px var(--yellow); }
+.rank-form { display: flex; align-items: flex-end; gap: 8px; margin-top: 10px; }
+.rank-form[hidden] { display: none; }
+.rank-form label { flex: 1; display: flex; flex-direction: column; gap: 4px; font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 0.12em; }
+.rank-msg { font-family: var(--mono); font-size: 13px; color: var(--green); margin-top: 8px; text-align: center; }
+.rank-msg:empty { display: none; }
+.rank-list { list-style: none; margin-top: 10px; display: grid; gap: 3px; font-family: var(--mono); font-size: 15px; }
+.rank-list li { display: grid; grid-template-columns: 3em 1fr auto; gap: 8px; padding: 2px 8px; border-radius: 3px; }
+.rank-list li:nth-child(odd) { background: rgba(255, 255, 255, 0.04); }
+.rank-list li.me { background: color-mix(in srgb, var(--yellow) 25%, transparent); color: #fff; }
+.rank-list .rank-pos { color: var(--muted); }
+.rank-list .rank-name { letter-spacing: 0.25em; color: var(--yellow); }
+.rank-list .rank-empty { display: block; color: var(--muted); text-align: center; }

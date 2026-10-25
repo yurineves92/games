@@ -18,6 +18,11 @@
 
   const settings = { mode: 'classic' };
   Arcade.bindSettings(panels.menu, settings, 'fruit_', () => syncMode());
+  const codes = Arcade.codes('fruit-ninja', {
+    KONAMI: 'Lâmina arco-íris',
+    MELANCIA: 'Só caem melancias, e cada uma vale 2',
+    SEMBOMBA: 'Nenhuma bomba',
+  }, $('codeMount'));
   function syncMode() {
     $('modeInfo').textContent = MODES[settings.mode].info;
     hi = +Arcade.store.get('fruit_hi_' + settings.mode, 0) || 0;
@@ -301,8 +306,9 @@
 
   function gameOver(title) {
     state = 'over';
-    const rec = score > hi;
+    const rec = score > hi && !codes.any();
     if (rec) { hi = score; Arcade.store.set('fruit_hi_' + settings.mode, hi); }
+    Ranking.gameOver($('rankBox'), { board: 'fruit-ninja-' + settings.mode, score, cheated: codes.any() });
     $('overTitle').textContent = title;
     $('overScore').textContent = score;
     $('overInfo').textContent = `${sliced} ${sliced === 1 ? 'fruta fatiada' : 'frutas fatiadas'}` + (bestCombo >= 3 ? ` · maior combo x${bestCombo}` : '');
@@ -327,7 +333,7 @@
 
   /* ---------- lançamento ---------- */
   function launch(bomb, fromX) {
-    const type = bomb ? null : Arcade.pick(FRUITS);
+    const type = bomb ? null : codes.has('MELANCIA') ? FRUITS[0] : Arcade.pick(FRUITS);
     const r = bomb ? 38 : type.r;
     const x = fromX !== undefined ? fromX : Arcade.rand(W * 0.12, W * 0.88);
     const apex = Arcade.rand(H * 0.5, H * 0.86);
@@ -342,7 +348,7 @@
   function spawnWave() {
     const d = Math.min(1, elapsed / 80);
     const demo = state === 'menu';
-    const bombChance = demo || !mode.bombs ? 0 : 0.1 + 0.12 * d;
+    const bombChance = demo || !mode.bombs || codes.has('SEMBOMBA') ? 0 : 0.1 + 0.12 * d;
     if (Math.random() < 0.35 && !demo) {
       // sequência da esquerda para a direita (ou vice-versa)
       const n = 3 + ((Math.random() * (2 + d * 3)) | 0);
@@ -402,7 +408,7 @@
     Sfx.tone(Arcade.rand(170, 230), 0.09, 'sine', 0.12, 90);
     if (state !== 'play') return;
     sliced++;
-    score += f.type.pts;
+    score += codes.has('MELANCIA') ? 2 : f.type.pts;
     combo = comboT > 0 ? combo + 1 : 1;
     comboT = 0.22; comboX = f.x; comboY = f.y;
     updateHud();
@@ -615,7 +621,8 @@
       for (let i = 1; i < pts.length; i++) {
         const f = 1 - (now - pts[i].t) / 130;
         if (f <= 0) continue;
-        ctx.strokeStyle = pass ? `rgba(255,255,255,${f})` : `rgba(120,240,255,${f * 0.8})`;
+        if (codes.has('KONAMI')) ctx.strokeStyle = `hsla(${(i * 25 + now / 4) % 360},100%,${pass ? 80 : 60}%,${f})`;
+        else ctx.strokeStyle = pass ? `rgba(255,255,255,${f})` : `rgba(120,240,255,${f * 0.8})`;
         ctx.lineWidth = (pass ? 5 : 11) * f + 1;
         ctx.beginPath(); ctx.moveTo(pts[i - 1].x, pts[i - 1].y); ctx.lineTo(pts[i].x, pts[i].y); ctx.stroke();
       }

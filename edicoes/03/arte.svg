@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+  <defs>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <symbol id="fant" viewBox="0 0 40 42">
+      <path d="M0 20A20 20 0 0 1 40 20V42L33 36 27 42 20 36 13 42 7 36 0 42Z" fill="currentColor"/>
+      <ellipse cx="13" cy="18" rx="6" ry="7.5" fill="#fff"/><ellipse cx="28" cy="18" rx="6" ry="7.5" fill="#fff"/>
+      <circle cx="15" cy="20" r="3.2" fill="#1a3cff"/><circle cx="30" cy="20" r="3.2" fill="#1a3cff"/>
+    </symbol>
+  </defs>
+  <g fill="none" stroke="#2f5bff" stroke-width="10" stroke-linejoin="round" stroke-linecap="round" filter="url(#glow)" opacity=".85">
+    <path d="M20 230H580V780H20Z"/>
+    <path d="M80 300H200V340H80ZM260 290V380M260 330H340M400 300H520V340H400Z"/>
+    <path d="M80 420V520H140M200 420H330V470M400 420V520H520"/>
+    <path d="M80 600H220M290 560V660M360 600H520M80 700H200V740M400 700H520"/>
+  </g>
+  <g fill="#ffd9b0">
+    <circle cx="50" cy="270" r="5"/><circle cx="90" cy="270" r="5"/><circle cx="130" cy="270" r="5"/><circle cx="170" cy="270" r="5"/><circle cx="210" cy="270" r="5"/>
+    <circle cx="50" cy="390" r="5"/><circle cx="50" cy="430" r="5"/><circle cx="50" cy="470" r="5"/><circle cx="50" cy="510" r="5"/><circle cx="50" cy="550" r="5"/>
+    <circle cx="370" cy="560" r="5"/><circle cx="410" cy="560" r="5"/><circle cx="450" cy="560" r="5"/><circle cx="490" cy="560" r="5"/><circle cx="530" cy="560" r="5"/>
+    <circle cx="555" cy="390" r="13" filter="url(#glow)"/><circle cx="50" cy="750" r="13" filter="url(#glow)"/>
+  </g>
+  <g transform="translate(380 150)" filter="url(#glow)">
+    <path d="M0 0L150 -88A175 175 0 1 0 150 88Z" fill="#ffe600"/>
+    <circle cx="-10" cy="-95" r="16" fill="#000"/><circle cx="-4" cy="-100" r="5" fill="#fff"/>
+  </g>
+  <circle cx="560" cy="150" r="10" fill="#ffd9b0" filter="url(#glow)"/>
+  <g filter="url(#glow)">
+    <use href="#fant" x="310" y="420" width="110" height="115" color="#ff2a2a"/>
+    <use href="#fant" x="440" y="460" width="90" height="95" color="#ff9ad5"/>
+    <use href="#fant" x="380" y="620" width="85" height="90" color="#00e5ff"/>
+    <use href="#fant" x="490" y="650" width="80" height="84" color="#ff9a1a"/>
+  </g>
+  <g transform="translate(150 640)" filter="url(#glow)">
+    <ellipse cx="0" cy="0" rx="34" ry="28" fill="#39ff14"/><circle cx="-16" cy="-24" r="12" fill="#39ff14"/><circle cx="16" cy="-24" r="12" fill="#39ff14"/>
+    <circle cx="-16" cy="-26" r="6" fill="#fff"/><circle cx="16" cy="-26" r="6" fill="#fff"/><circle cx="-15" cy="-26" r="3"/><circle cx="17" cy="-26" r="3"/>
+    <path d="M-14 6Q0 16 14 6" stroke="#0a4a0a" stroke-width="3" fill="none"/>
+    <path d="M-30 20l-20 18M30 20l20 18" stroke="#39ff14" stroke-width="9" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(240 470)">
+    <circle r="26" fill="#111"/><g stroke="#111" stroke-width="7"><path d="M0-38V38M-38 0H38M-27-27L27 27M27-27L-27 27"/></g>
+    <rect x="-12" y="-12" width="9" height="9" fill="#fff"/>
+  </g>
+</svg>

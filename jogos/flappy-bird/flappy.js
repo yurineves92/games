@@ -15,6 +15,7 @@
     blue: { body: '#4fb3e8', belly: '#b5e2f7', wing: '#e6f6ff' },
     red: { body: '#f0533a', belly: '#f9b1a1', wing: '#fff0ea' },
   };
+  const GOLD = { body: '#ffd700', belly: '#fff3a0', wing: '#fffbe0' };
   const OUTLINE = '#543847';
 
   const $ = id => document.getElementById(id);
@@ -24,6 +25,11 @@
 
   const settings = { bird: 'yellow', sky: 'day', diff: 'normal' };
   Arcade.bindSettings(panels.menu, settings, 'flappy_', key => { if (key === 'sky') { night = settings.sky === 'night'; buildBackground(); } });
+  const codes = Arcade.codes('flappy-bird', {
+    KONAMI: 'Pássaro dourado',
+    LUA: 'Gravidade da Lua',
+    CANOLARGO: 'Vão dos canos bem maior',
+  }, $('codeMount'));
 
   /* ---------- cenário ---------- */
   const seeded = s => () => ((s = (s * 16807) % 2147483647) - 1) / 2147483646;
@@ -101,7 +107,8 @@
   let hi = +Arcade.store.get('flappy_hi', 0) || 0;
 
   function reset() {
-    diff = DIFF[settings.diff] || DIFF.normal;
+    diff = { ...(DIFF[settings.diff] || DIFF.normal) };
+    if (codes.has('CANOLARGO')) diff.gap += 45;
     bird = { y: 236, vy: 0, rot: 0, frame: 0, ft: 0 };
     pipes = []; score = 0; flashT = 0;
     updateHud();
@@ -132,7 +139,7 @@
   function flap() {
     if (state === 'ready') state = 'play';
     if (state !== 'play') return;
-    bird.vy = FLAP;
+    bird.vy = codes.has('LUA') ? FLAP * 0.78 : FLAP;
     Sfx.noise(0.09, 0.12, 2200, 0, 'bandpass', 500);
     Sfx.tone(420, 0.06, 'triangle', 0.05, 640);
   }
@@ -150,8 +157,9 @@
   function finish() {
     state = 'over'; overT = 0;
     bird.y = GROUND - BR;
-    const rec = score > hi;
+    const rec = score > hi && !codes.any();
     if (rec) { hi = score; Arcade.store.set('flappy_hi', hi); }
+    Ranking.gameOver($('rankBox'), { board: 'flappy-bird-' + settings.diff, score, cheated: codes.any() });
     setTimeout(() => {
       if (state !== 'over') return;
       $('overScore').textContent = score;
@@ -208,7 +216,7 @@
       return;
     }
     if (state === 'play' || state === 'dying') {
-      bird.vy = Math.min(MAX_FALL, bird.vy + GRAV * dt);
+      bird.vy = Math.min(MAX_FALL, bird.vy + (codes.has('LUA') ? GRAV * 0.55 : GRAV) * dt);
       bird.y += bird.vy * dt;
       if (bird.vy < 160 && state === 'play') bird.rot = Math.max(-0.45, bird.rot - 10 * dt);
       else bird.rot = Math.min(Math.PI / 2, bird.rot + (state === 'dying' ? 9 : 5.5) * dt);
@@ -278,7 +286,7 @@
   }
 
   function drawBird() {
-    const c = BIRDS[settings.bird] || BIRDS.yellow;
+    const c = codes.has('KONAMI') ? GOLD : BIRDS[settings.bird] || BIRDS.yellow;
     ctx.save();
     ctx.translate(BX, bird.y);
     ctx.rotate(bird.rot);

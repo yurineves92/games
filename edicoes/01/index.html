@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="pt-BR" data-base="../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Super Neon Nº 1</title>
+<meta name="description" content="Super Neon Nº 1: Quadrix na capa, análises de Snake, Fruit Ninja e Flappy Bird, todos os códigos secretos e um CD-ROM com 4 jogos.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ff2bd6'/%3E%3Ctext x='16' y='24' font-family='Arial Black' font-size='20' text-anchor='middle' fill='%23ffd400' stroke='%23000' stroke-width='1.5'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee&family=Caveat:wght@600&family=Press+Start+2P&family=Roboto+Condensed:ital,wght@0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../revista/revista.css">
+</head>
+<body style="--cor: var(--magenta)">
+
+<section class="mesa" aria-label="Capa">
+  <div data-capa="1"></div>
+  <div class="mesa-acoes">
+    <a class="botao" href="#editorial">Abrir a revista ▼</a>
+    <a class="botao escuro" href="#cdrom">💿 Direto pro CD-ROM</a>
+    <a class="botao alt" href="../../">◄ Banca</a>
+  </div>
+</section>
+
+<nav class="nav" aria-label="Seções da revista">
+  <a class="nav-logo" href="../../">SUPER <i>NEON</i> Nº1</a>
+  <a href="#editorial">Editorial</a>
+  <a href="#plantao">Plantão</a>
+  <a href="#analises">Análises</a>
+  <a href="#dicas">Dicas</a>
+  <a href="#detonado">Detonado</a>
+  <a href="#cartas">Cartas</a>
+  <a href="#classificados">Classificados</a>
+  <a href="#cdrom">CD-ROM</a>
+</nav>
+
+<main class="revista">
+
+  <!-- EDITORIAL + SUMÁRIO -->
+  <article class="pagina surge" id="editorial">
+    <span class="chapeu">Editorial</span>
+    <h1 class="titulo">Liga o PC, aperta o Start!</h1>
+    <p class="linha-fina">Chegou a revista que não fica só no papo: cada edição vem com um CD-ROM cheio de jogo de verdade.</p>
+    <div class="colunas">
+      <p>Lembra da emoção de abrir o plástico da revista na banca, pegar o CD-ROM encartado e correr para o computador da sala? Pois é. A <b>Super Neon</b> nasceu dessa saudade. Aqui você lê a análise, aprende o código secreto e, no minuto seguinte, já está jogando. Sem instalar nada, sem disquete, sem pedir para a mãe desligar o telefone para liberar a internet.</p>
+      <p>Neste número de estreia o destaque é o <b>Quadrix</b>, um jogo de blocos tão viciante que a nossa redação parou de trabalhar por três dias (o editor diz que foi "pesquisa"). E o CD-ROM ainda traz <b>Snake</b>, <b>Fruit Ninja</b> e <b>Flappy Bird</b>, três clássicos de bolso que ganharam um banho de neon.</p>
+      <h3>Novidade: Hall da Fama</h3>
+      <p>Toda partida agora pode ir para o ranking. Fez um placar animal? No fim do jogo é só gravar suas três iniciais, igualzinho ao fliperama da esquina. O <a href="../../#hall">Hall da Fama</a> mostra os cinco melhores de cada jogo, de todo o Brasil.</p>
+      <p>E não deixe de conferir as <a href="#dicas">Dicas &amp; Macetes</a>: tem código para cobra arco-íris, pássaro dourado e até para chover melancia. Só não vale reclamar se o recorde não salvar: com código ligado, é só diversão.</p>
+      <p>Boa leitura e bom jogo!</p>
+      <p class="assinatura">A Redação</p>
+    </div>
+
+    <h2 class="titulo" style="font-size:34px;margin-top:30px">Nesta edição</h2>
+    <ul class="sumario">
+      <li><a href="#plantao"><span>04</span><div><b>Plantão Neon</b><small>As notícias mais quentes do mundo dos games</small></div></a></li>
+      <li><a href="#quadrix"><span>06</span><div><b>Quadrix</b><small>Capa! O vício em blocos analisado peça por peça</small></div></a></li>
+      <li><a href="#snake"><span>10</span><div><b>Snake</b><small>A cobrinha mais famosa do mundo, agora em neon</small></div></a></li>
+      <li><a href="#fruit-ninja"><span>12</span><div><b>Fruit Ninja</b><small>Três modos e muita salada de fruta</small></div></a></li>
+      <li><a href="#flappy-bird"><span>14</span><div><b>Flappy Bird</b><small>O passarinho que testa a sua paciência</small></div></a></li>
+      <li><a href="#dicas"><span>16</span><div><b>Dicas &amp; Macetes</b><small>Todos os 12 códigos secretos do CD-ROM</small></div></a></li>
+      <li><a href="#detonado"><span>20</span><div><b>Detonado</b><small>Flappy Bird: como passar dos 40 canos</small></div></a></li>
+      <li><a href="#cartas"><span>24</span><div><b>Cartas</b><small>Você pergunta, a gente responde (ou tenta)</small></div></a></li>
+      <li><a href="#classificados"><span>26</span><div><b>Classificados</b><small>Troca-troca de cartucho e outras pechinchas</small></div></a></li>
+      <li><a href="#cdrom"><span>28</span><div><b>CD-ROM</b><small>Os 4 jogos completos desta edição</small></div></a></li>
+    </ul>
+    <div class="folio"><span>Super Neon Nº 1</span><span>3</span></div>
+  </article>
+
+  <!-- PLANTÃO -->
+  <section class="pagina surge" id="plantao" style="--cor: var(--ciano)">
+    <span class="chapeu">Plantão Neon</span>
+    <h2 class="titulo">Aconteceu, virou notícia</h2>
+    <div class="noticias">
+      <div class="noticia" style="--c: var(--ciano)">
+        <h3>Quadrix causa onda de atrasos no trabalho</h3>
+        <p>Pesquisa feita com três estagiários da redação concluiu que "só mais uma partida" dura, em média, 47 minutos. O chefe não achou graça.</p>
+      </div>
+      <div class="noticia" style="--c: var(--amarelo)">
+        <h3>Hall da Fama inaugurado</h3>
+        <p>Agora os placares de todos os leitores vão para um ranking nacional. As iniciais AAA já foram proibidas por falta de criatividade. Brincadeira, pode usar.</p>
+      </div>
+      <div class="noticia" style="--c: var(--verde)">
+        <h3>Cobra arco-íris avistada em São Paulo</h3>
+        <p>Testemunhas juram ter visto uma cobrinha mudando de cor numa tela de computador. Fontes extraoficiais indicam um código secreto. Detalhes na página 16.</p>
+      </div>
+      <div class="noticia" style="--c: var(--vermelho)">
+        <h3>Próximo número: invasão alienígena!</h3>
+        <p>A Super Neon Nº 2 traz Invasores, Paredão e Pong no CD-ROM. Prepare o dedo do gatilho e a raquete.</p>
+      </div>
+    </div>
+    <div class="folio"><span>Plantão</span><span>4</span></div>
+  </section>
+
+  <!-- ANÁLISES -->
+  <section class="pagina surge" id="analises" style="--cor: var(--roxo)">
+    <span class="chapeu">Análises</span>
+    <h2 class="titulo">Testamos tudo</h2>
+    <p class="linha-fina">Notas de 0 a 5 em Gráfico, Som, Jogabilidade e Diversão. A nota final é a média arredondada, com uma pitada de opinião da redação.</p>
+
+    <article class="analise" id="quadrix" style="--c:#00a8c8">
+      <div class="analise-topo"><h3>Quadrix</h3><span>Quebra-cabeça · 1 jogador · ★ Capa</span></div>
+      <div class="analise-corpo">
+        <div class="prints">
+          <figure class="print" style="--r:-1.5deg"><img src="prints/quadrix-1.jpg" alt="Tela do Quadrix com peças coloridas caindo no poço" loading="lazy" width="640" height="480"><figcaption>A peça fantasma mostra onde o bloco vai cair. Salva-vidas!</figcaption></figure>
+        </div>
+        <div>
+          <div class="texto">
+            <p>Peças de quatro blocos despencam do céu e você tem que encaixar tudo para formar linhas completas. Parece simples, e é exatamente aí que mora o perigo: o Quadrix é aquele jogo que você abre "só para testar" e quando olha pela janela já é noite.</p>
+            <p>A versão do CD-ROM é caprichada. Tem <b>peça fantasma</b>, <b>HOLD</b> para guardar uma peça na manga, fila com as próximas três e rotação com aquele "empurrãozinho" na parede que deixa você girar a peça mesmo encostada. O modo <b>Maratona</b> não acaba nunca e acelera a cada 10 linhas. O <b>Ultra</b> dá dois minutos cravados para fazer o máximo de pontos.</p>
+            <p>Fazer quatro linhas de uma vez, o famoso <b>QUADRIX</b>, faz a tela tremer e vale 800 pontos vezes o nível. Não existe som mais bonito.</p>
+          </div>
+          <div class="ficha"><dl><dt>Gênero</dt><dd>Quebra-cabeça</dd><dt>Modos</dt><dd>Maratona e Ultra (2 min)</dd><dt>Controles</dt><dd>Teclado, toque e controle</dd><dt>Dificuldade</dt><dd>Fácil de aprender, impossível de largar</dd></dl></div>
+          <div class="notas">
+            <div class="nota-final"><div><small>NOTA</small><b>4,9</b></div></div>
+            <h4>Notas</h4>
+            <div class="nota" style="--v:4.5">Gráfico<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:4.5">Som<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:5">Jogabilidade<i></i><b>5,0</b></div>
+            <div class="nota" style="--v:5">Diversão<i></i><b>5,0</b></div>
+          </div>
+          <p class="veredito">Veredito: obrigatório. Se você só for jogar um jogo deste CD-ROM, que seja este. Mentira: jogue todos.</p>
+          <p class="jogar-agora"><a class="botao" href="../../jogos/quadrix/">▶ Jogar Quadrix</a></p>
+        </div>
+      </div>
+    </article>
+
+    <article class="analise" id="snake" style="--c:#16a34a">
+      <div class="analise-topo"><h3>Snake</h3><span>Ação · 1 jogador</span></div>
+      <div class="analise-corpo">
+        <div class="prints">
+          <figure class="print" style="--r:1deg"><img src="prints/snake-1.jpg" alt="Cobra verde neon no tabuleiro quadriculado indo atrás de uma maçã" loading="lazy" width="640" height="480"><figcaption>A estrela dourada vale até 90 pontos. Corra!</figcaption></figure>
+        </div>
+        <div>
+          <div class="texto">
+            <p>Se você teve um celular de tijolinho, você jogou Snake. A regra continua a mesma: coma as maçãs, cresça e não bata em nada, nem no próprio rabo. A diferença é o visual: a cobra agora brilha em verde neon, desliza suave entre as casas e solta faísca quando come.</p>
+            <p>Dá para escolher três velocidades e duas regras de borda. No modo <b>PAREDE</b> encostou, morreu. No modo <b>ATRAVESSA</b> a cobra sai de um lado e aparece do outro, e aí o desafio vira não se enrolar. De tempos em tempos aparece uma <b>estrela dourada</b> que some em seis segundos: quanto mais rápido você pegar, mais pontos.</p>
+            <p>No celular, é só deslizar o dedo sobre a tela. Tem joystick na tela também, para quem prefere.</p>
+          </div>
+          <div class="ficha"><dl><dt>Gênero</dt><dd>Ação / reflexo</dd><dt>Opções</dt><dd>3 velocidades, bordas com parede ou atravessáveis</dd><dt>Controles</dt><dd>Setas, WASD, deslizar e controle</dd><dt>Dificuldade</dt><dd>Média, e sobe com o tamanho da cobra</dd></dl></div>
+          <div class="notas">
+            <div class="nota-final"><div><small>NOTA</small><b>4,3</b></div></div>
+            <h4>Notas</h4>
+            <div class="nota" style="--v:4.5">Gráfico<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:3.5">Som<i></i><b>3,5</b></div>
+            <div class="nota" style="--v:4.5">Jogabilidade<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:4.5">Diversão<i></i><b>4,5</b></div>
+          </div>
+          <p class="veredito">Veredito: o clássico de sempre, só que bonito. Perfeito para uma partidinha rápida.</p>
+          <p class="jogar-agora"><a class="botao" href="../../jogos/snake/">▶ Jogar Snake</a></p>
+        </div>
+      </div>
+    </article>
+
+    <article class="analise" id="fruit-ninja" style="--c:#e11d48">
+      <div class="analise-topo"><h3>Fruit Ninja</h3><span>Ação · 1 jogador</span></div>
+      <div class="analise-corpo">
+        <div class="prints">
+          <figure class="print" style="--r:-1deg"><img src="prints/fruit-ninja-1.jpg" alt="Frutas voando sobre uma tábua de madeira, uma delas cortada ao meio" loading="lazy" width="640" height="480"><figcaption>Corte três de uma vez e ganhe COMBO.</figcaption></figure>
+        </div>
+        <div>
+          <div class="texto">
+            <p>Melancia, laranja, maçã, limão, kiwi e pêssego voam pela tela e a sua missão é fatiar tudo com um golpe de lâmina. No celular é com o dedo. No computador, segure o botão do mouse e passe por cima das frutas. A fruta se parte em duas metades, espirra suco e deixa mancha na tábua, um capricho que a gente adorou.</p>
+            <p>São três modos. No <b>Clássico</b> cada fruta que cai sem ser cortada custa uma vida, e cortar uma bomba é fim de jogo. O <b>Arcade</b> dá 60 segundos e a bomba só tira 10 pontos. O <b>Zen</b> é para relaxar: 90 segundos, sem bomba nenhuma.</p>
+            <p>Cortar três ou mais frutas no mesmo golpe vale <b>COMBO</b>, que dá pontos extras.</p>
+          </div>
+          <div class="ficha"><dl><dt>Gênero</dt><dd>Ação / reflexo</dd><dt>Modos</dt><dd>Clássico, Arcade e Zen</dd><dt>Controles</dt><dd>Toque, mouse e controle</dd><dt>Dificuldade</dt><dd>Fácil no Zen, nervoso no Clássico</dd></dl></div>
+          <div class="notas">
+            <div class="nota-final"><div><small>NOTA</small><b>4,6</b></div></div>
+            <h4>Notas</h4>
+            <div class="nota" style="--v:5">Gráfico<i></i><b>5,0</b></div>
+            <div class="nota" style="--v:4">Som<i></i><b>4,0</b></div>
+            <div class="nota" style="--v:4.5">Jogabilidade<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:5">Diversão<i></i><b>5,0</b></div>
+          </div>
+          <p class="veredito">Veredito: o melhor jogo do CD-ROM para jogar no celular. Salada de fruta nunca foi tão divertida.</p>
+          <p class="jogar-agora"><a class="botao" href="../../jogos/fruit-ninja/">▶ Jogar Fruit Ninja</a></p>
+        </div>
+      </div>
+    </article>
+
+    <article class="analise" id="flappy-bird" style="--c:#ca8a04">
+      <div class="analise-topo"><h3>Flappy Bird</h3><span>Ação · 1 jogador</span></div>
+      <div class="analise-corpo">
+        <div class="prints">
+          <figure class="print" style="--r:1.5deg"><img src="prints/flappy-bird-1.jpg" alt="Passarinho amarelo voando entre canos verdes" loading="lazy" width="640" height="480"><figcaption>Um botão, mil palavrões.</figcaption></figure>
+        </div>
+        <div>
+          <div class="texto">
+            <p>Um passarinho, uns canos verdes e um único botão. Cada toque é uma batida de asa, e a gravidade cuida do resto. Passou pelo vão, ganhou um ponto. Encostou em qualquer coisa, game over. É o jogo mais simples do CD-ROM e, de longe, o que mais fez a redação gritar.</p>
+            <p>A nossa versão tem cenário de <b>dia</b> ou de <b>noite</b> (com cidade iluminada e lua), três cores de pássaro e três dificuldades que mudam o tamanho do vão e a velocidade dos canos. No fim da partida, as medalhas: bronze aos 10 pontos, prata aos 20, ouro aos 30 e platina aos 40.</p>
+          </div>
+          <div class="ficha"><dl><dt>Gênero</dt><dd>Ação / um botão</dd><dt>Opções</dt><dd>3 pássaros, dia/noite, 3 dificuldades</dd><dt>Controles</dt><dd>Espaço, clique, toque ou botão A</dd><dt>Dificuldade</dt><dd>Fácil de entender, difícil de dominar</dd></dl></div>
+          <div class="notas">
+            <div class="nota-final"><div><small>NOTA</small><b>4,2</b></div></div>
+            <h4>Notas</h4>
+            <div class="nota" style="--v:4.5">Gráfico<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:3.5">Som<i></i><b>3,5</b></div>
+            <div class="nota" style="--v:4">Jogabilidade<i></i><b>4,0</b></div>
+            <div class="nota" style="--v:4.5">Diversão<i></i><b>4,5</b></div>
+          </div>
+          <p class="veredito">Veredito: viciante de um jeito quase injusto. Leia o detonado antes de jogar o controle na parede.</p>
+          <p class="jogar-agora"><a class="botao" href="../../jogos/flappy-bird/">▶ Jogar Flappy Bird</a></p>
+        </div>
+      </div>
+    </article>
+    <div class="folio"><span>Análises</span><span>6–15</span></div>
+  </section>
+
+  <!-- DICAS & MACETES -->
+  <section class="pagina surge" id="dicas" style="--cor: var(--verde)">
+    <span class="chapeu">Dicas &amp; Macetes</span>
+    <h2 class="titulo">Códigos secretos</h2>
+    <p class="linha-fina">Todos os 12 códigos do CD-ROM. Para usar, abra o jogo e digite o código na caixa <b>CÓDIGO SECRETO</b> do menu. O KONAMI também vale pela sequência <span class="setas">↑ ↑ ↓ ↓ ← → ← → B A</span> no teclado, com o menu aberto. No celular, escreva KONAMI na caixa.</p>
+    <div class="dicas">
+      <div class="dica" style="--c:#00a8c8">
+        <h3>Quadrix</h3>
+        <div class="dica-corpo">
+          <div class="senha"><code>KONAMI</code><p>Peças arco-íris piscantes. Puro estilo.</p></div>
+          <div class="senha"><code>PALITO</code><p>Só vem a peça reta. O sonho de todo jogador!</p></div>
+          <div class="senha"><code>ZEN</code><p>A velocidade nunca aumenta.</p></div>
+        </div>
+      </div>
+      <div class="dica" style="--c:#16a34a">
+        <h3>Snake</h3>
+        <div class="dica-corpo">
+          <div class="senha"><code>KONAMI</code><p>Cobra arco-íris.</p></div>
+          <div class="senha"><code>GULOSO</code><p>Cada maçã vale 30 pontos em vez de 10.</p></div>
+          <div class="senha"><code>FANTASMA</code><p>A cobra atravessa o próprio corpo. Só a parede mata.</p></div>
+        </div>
+      </div>
+      <div class="dica" style="--c:#e11d48">
+        <h3>Fruit Ninja</h3>
+        <div class="dica-corpo">
+          <div class="senha"><code>KONAMI</code><p>Lâmina com rastro arco-íris.</p></div>
+          <div class="senha"><code>MELANCIA</code><p>Chuva de melancia! Só caem melancias, e cada uma vale 2.</p></div>
+          <div class="senha"><code>SEMBOMBA</code><p>Nenhuma bomba aparece, em nenhum modo.</p></div>
+        </div>
+      </div>
+      <div class="dica" style="--c:#ca8a04">
+        <h3>Flappy Bird</h3>
+        <div class="dica-corpo">
+          <div class="senha"><code>KONAMI</code><p>Pássaro dourado.</p></div>
+          <div class="senha"><code>LUA</code><p>Gravidade da Lua: o pássaro cai bem devagar.</p></div>
+          <div class="senha"><code>CANOLARGO</code><p>O vão entre os canos fica bem maior.</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="box-aviso">⚠ Regra da casa: com qualquer código ligado, o recorde não é salvo e o placar não entra no Hall da Fama. Para desligar um código, clique nele no menu do jogo ou digite de novo.</p>
+
+    <h2 class="titulo" style="font-size:34px;margin-top:34px">Macetes dos profissionais</h2>
+    <div class="colunas">
+      <h3>Quadrix</h3>
+      <p>Deixe uma coluna livre na beirada e guarde a peça reta no HOLD. Quando o poço tiver quatro linhas prontas, solte a reta e corra para o abraço: QUADRIX! Use a queda rápida (Espaço) só quando tiver certeza. A peça fantasma mostra onde ela vai parar.</p>
+      <h3>Snake</h3>
+      <p>Ande em "zigue-zague" pelas bordas quando a cobra ficar grande: assim sobra espaço no meio para manobrar. Na velocidade RÁPIDA, planeje a curva seguinte antes de chegar na maçã. Dá para apertar duas direções em sequência e a cobra obedece as duas.</p>
+      <h3>Fruit Ninja</h3>
+      <p>Espere as frutas chegarem no ponto mais alto, onde elas quase param, e corte várias de uma vez para fazer combo. Bomba piscando no meio da fruta? Corte por cima ou por baixo, nunca no meio.</p>
+      <h3>Flappy Bird</h3>
+      <p>Mire na parte de baixo do vão, e não no meio. Toque quando o pássaro estiver quase encostando no cano de baixo: a batida de asa sobe o suficiente para passar com folga.</p>
+    </div>
+    <div class="folio"><span>Dicas &amp; Macetes</span><span>16–19</span></div>
+  </section>
+
+  <!-- DETONADO -->
+  <section class="pagina surge" id="detonado" style="--cor: var(--laranja)">
+    <span class="chapeu">Detonado</span>
+    <h2 class="titulo">Flappy Bird: passe dos 40 canos</h2>
+    <p class="linha-fina">A medalha de platina parece impossível? Com estes passos, a nossa redação saiu de 3 para 52 pontos em uma tarde.</p>
+    <ol class="passos">
+      <li><h4>Comece no FÁCIL</h4>O vão é bem maior e os canos andam mais devagar. Treine o ritmo antes de subir a dificuldade. Não tem vergonha nenhuma nisso.</li>
+      <li><h4>Escute o ritmo</h4>Cada batida de asa sobe o pássaro uns 50 pixels. Em linha reta, a cadência ideal é de um toque a cada meio segundo, mais ou menos. Conte "um, dois, um, dois" na cabeça.</li>
+      <li><h4>Mire embaixo</h4>Assim que o próximo vão aparecer, deixe o pássaro descer até a altura da boca do cano de baixo. É mais fácil subir um pouquinho do que descer rápido.</li>
+      <li><h4>Toques curtos na troca de altura</h4>Quando o próximo vão estiver bem mais alto, dê dois ou três toques seguidos assim que passar do cano atual. Se estiver mais baixo, só pare de tocar e deixe cair, mas volte a tocar cedo. A queda acelera!</li>
+      <li><h4>Olhe para a frente</h4>Não fique olhando para o pássaro. Ele fica sempre no mesmo lugar da tela. Olhe para o próximo cano: o seu dedo aprende sozinho.</li>
+      <li><h4>Respire a cada 10</h4>Toda vez que passar de 10, 20, 30… relaxe os ombros. A maioria das mortes acontece logo depois de comemorar.</li>
+      <li><h4>A recompensa</h4>Aos 40 pontos vem a medalha de <b>platina</b>. Grave suas iniciais no Hall da Fama e mande um print para a redação!</li>
+    </ol>
+    <div class="folio"><span>Detonado</span><span>20–23</span></div>
+  </section>
+
+  <!-- CARTAS -->
+  <section class="pagina surge" id="cartas" style="--cor: var(--vermelho)">
+    <span class="chapeu">Cartas</span>
+    <h2 class="titulo">Fala, leitor!</h2>
+    <p class="linha-fina">Escreva para a redação. As melhores cartas são publicadas, e as piores também, se forem engraçadas.</p>
+    <div class="cartas">
+      <div class="carta" style="--r:-0.8deg">
+        <p class="msg">Queridos amigos da Super Neon, fiz 300 pontos no Snake e minha irmã disse que é mentira. Vocês podem publicar que é verdade?</p>
+        <p class="de">Rafael, 11 anos, Belo Horizonte (MG)</p>
+        <p class="resp"><b>SN:</b> Rafael, está publicado: é verdade! Agora grave as iniciais no Hall da Fama, que aí ninguém duvida mais.</p>
+      </div>
+      <div class="carta" style="--r:0.7deg">
+        <p class="msg">O código da cobra arco-íris não funciona! Já digitei mil vezes!!!</p>
+        <p class="de">Juliana, Recife (PE)</p>
+        <p class="resp"><b>SN:</b> Calma, Juliana! O KONAMI é uma sequência de setas, ↑ ↑ ↓ ↓ ← → ← →, e depois as letras B e A, tudo com o menu do jogo aberto. Ou escreva a palavra KONAMI na caixa de código do menu, que funciona até no celular.</p>
+      </div>
+      <div class="carta" style="--r:-0.4deg">
+        <p class="msg">Por que no Flappy Bird o passarinho não pode simplesmente voar por cima dos canos? Ia ser muito mais fácil.</p>
+        <p class="de">Seu Antônio, 63 anos, Curitiba (PR)</p>
+        <p class="resp"><b>SN:</b> Seu Antônio, o senhor acabou de descobrir por que o jogo é tão difícil. Fica a dica: o código CANOLARGO ajuda bastante.</p>
+      </div>
+      <div class="carta" style="--r:0.9deg">
+        <p class="msg">Vocês vão colocar Pac-Man no CD-ROM? Por favor, por favor, por favor!</p>
+        <p class="de">Bruno "Mestre dos Games", Manaus (AM)</p>
+        <p class="resp"><b>SN:</b> Bruno, segura essa ansiedade até a edição Nº 3. Não podemos falar mais nada. Só que vai ter fantasma. E vai ter labirinto. E vai ter muita bolinha. Ops.</p>
+      </div>
+    </div>
+    <div class="folio"><span>Cartas</span><span>24–25</span></div>
+  </section>
+
+  <!-- CLASSIFICADOS -->
+  <section class="pagina surge" id="classificados" style="--cor: var(--tinta)">
+    <span class="chapeu">Classificados</span>
+    <h2 class="titulo">Troca-troca</h2>
+    <div class="classificados">
+      <div class="classificado"><b>Troco</b>Cartucho de corrida com a etiqueta meio rasgada por qualquer jogo de luta. Funciona se soprar.<span class="tel">TEL (11) 5555-0101</span></div>
+      <div class="classificado"><b>Vendo</b>Joystick com turbo e auto-fire. O botão B está meio duro mas pega. Aceito figurinhas.<span class="tel">TEL (21) 5555-0199</span></div>
+      <div class="classificado"><b>Procuro</b>Alguém que tenha zerado o Quadrix no nível 15. Quero saber se acaba. Pago com coxinha.<span class="tel">CX. POSTAL 1234</span></div>
+      <div class="classificado"><b>Compro</b>Memory card de 1 bloco. Sim, de 1 bloco. Não pergunte.<span class="tel">TEL (31) 5555-0142</span></div>
+      <div class="classificado"><b>Aulas</b>Professor particular de Flappy Bird. Método próprio, garantia de medalha de bronze ou o seu dinheiro de volta.<span class="tel">TEL (41) 5555-0177</span></div>
+      <div class="classificado"><b>Fliperama do Zé</b>Ficha a 50 centavos às quartas. Proibido apoiar refrigerante na máquina.<span class="tel">RUA DAS FICHAS, 99</span></div>
+    </div>
+    <div class="anuncio">
+      <h3>Joystick Turbo Neon 3000</h3>
+      <p>Com botão TURBO, luzes que piscam sozinhas e um fio de 1,5 metro para você jogar longe da TV como mandou a sua mãe.</p>
+      <span class="preco">só 12x de R$ 9,90</span>
+      <small>Produto imaginário. Nenhum joystick foi ferido na produção deste anúncio.</small>
+    </div>
+    <div class="folio"><span>Classificados</span><span>26–27</span></div>
+  </section>
+
+  <!-- CD-ROM -->
+  <section class="cdrom-mesa" id="cdrom" aria-label="CD-ROM da edição">
+    <div data-cdrom="1"></div>
+  </section>
+
+  <section class="pagina surge" style="--cor: var(--magenta)">
+    <span class="chapeu">Na próxima edição</span>
+    <h2 class="titulo">Eles chegaram!</h2>
+    <p class="linha-fina">A Super Neon Nº 2 traz <b>Invasores</b> na capa, o quebra-tijolos <b>Paredão</b> com o detonado das 8 fases e o lendário <b>Pong</b> para jogar com um amigo.</p>
+    <p><a class="botao escuro" href="../02/">Ler a Nº 2 ►</a></p>
+    <h3 style="font-family:var(--f-grito);font-size:24px;margin-top:26px;font-weight:normal">Expediente</h3>
+    <div class="expediente">
+      <p><b>Super Neon</b>, a revista de games que vem com jogo. Número 1, Ano 1.</p>
+      <p><b>Redação:</b> uma equipe de jogadores profissionais de sofá. <b>Arte:</b> neon, muito neon. <b>CD-ROM:</b> jogos feitos só com HTML, CSS e JavaScript.</p>
+      <p>Fan games não oficiais e sem fins lucrativos. Fruit Ninja (Halfbrick), Flappy Bird e os clássicos que inspiraram nossos jogos são marcas de seus respectivos donos.</p>
+    </div>
+    <div class="folio"><span>Super Neon Nº 1</span><span>30</span></div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <a href="../../">◄ Voltar para a banca</a> · <a href="../02/">Próxima edição ►</a>
+</footer>
+
+<script src="../../shared/common.js"></script>
+<script src="../../revista/edicoes.js"></script>
+<script src="../../revista/revista.js"></script>
+<script src="../../revista/musica.js"></script>
+</body>
+</html>

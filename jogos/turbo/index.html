@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Turbo Neon</title>
+<meta name="description" content="Corrida pseudo-3D estilo anos 90: três pistas brasileiras, sete adversários, nitro e muita velocidade.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23120420'/%3E%3Cpath d='M13 4H19L28 30H4Z' fill='%23332c40'/%3E%3Cpath d='M15.5 8H16.5L17 14H15ZM15 18H17L17.6 26H14.4Z' fill='%23ffd400'/%3E%3Cpath d='M13 4L4 30M19 4L28 30' stroke='%23ff2bd6' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/style.css">
+<style>
+  /* Botões grandes de toque (volante, acelerador, freio e nitro) */
+  .tbtn {
+    width: 76px; height: 76px; border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font); font-weight: 900; font-size: 12px; letter-spacing: 0.02em; color: #fff;
+    border: 2px solid var(--accent);
+    background: radial-gradient(circle at 50% 35%, color-mix(in srgb, var(--accent) 30%, transparent), rgba(0, 0, 0, 0.55) 75%);
+    box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 35%, transparent), inset 0 0 14px color-mix(in srgb, var(--accent) 22%, transparent);
+    touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+  }
+  .tbtn.arrow { font-size: 30px; }
+  .tbtn.on { background: var(--accent); color: #12001a; box-shadow: 0 0 24px var(--accent); }
+  .tbtn.gas { border-color: var(--green); --accent: var(--green); font-size: 11px; }
+  .tbtn.brake { border-color: var(--red); --accent: var(--red); }
+  .tbtn.nitro { border-color: var(--cyan); --accent: var(--cyan); height: 46px; }
+  .tbtn.nitro.empty { opacity: 0.35; }
+  .steer-row { display: flex; gap: 12px; }
+  .drive-grid { display: grid; gap: 10px; grid-template-columns: 76px; grid-template-areas: "nitro" "gas" "brake"; }
+  .drive-grid .nitro { grid-area: nitro; width: auto; }
+  .drive-grid .gas { grid-area: gas; height: 92px; }
+  .drive-grid .brake { grid-area: brake; height: 60px; }
+  @media (orientation: portrait) {
+    .drive-grid { grid-template-columns: 70px 76px; grid-template-areas: "nitro nitro" "brake gas"; }
+    .drive-grid .gas, .drive-grid .brake { height: 76px; }
+    .drive-grid .brake { width: 70px; }
+    .drive-grid .nitro { height: 40px; }
+    .steer-row { gap: 10px; }
+    .steer-row .tbtn { width: 70px; }
+  }
+  @media (max-height: 520px) and (orientation: landscape) {
+    .tbtn { width: 68px; height: 68px; }
+    .drive-grid { grid-template-columns: 68px; gap: 7px; }
+    .drive-grid .gas { height: 78px; }
+    .drive-grid .brake { height: 52px; }
+    .drive-grid .nitro { height: 40px; }
+  }
+  /* Classificação final */
+  .results {
+    list-style: none; margin: 12px auto 0; max-width: 340px; display: grid; gap: 2px;
+    font-family: var(--mono); font-size: 14px; text-align: left;
+  }
+  .results li { display: grid; grid-template-columns: 2.4em 1em 1fr auto; gap: 8px; align-items: center; padding: 2px 8px; border-radius: 3px; }
+  .results li:nth-child(odd) { background: rgba(255, 255, 255, 0.04); }
+  .results li.me { background: color-mix(in srgb, var(--accent) 28%, transparent); color: #fff; }
+  .results .dot { width: 0.9em; height: 0.9em; border-radius: 50%; box-shadow: 0 0 6px currentColor; }
+  .results .t { color: var(--muted); }
+</style>
+</head>
+<body class="game-page" style="--accent:#ff2bd6">
+<header class="topbar">
+  <a class="back" href="../../edicoes/04/#cdrom">◄ REVISTA</a>
+  <h1>TURBO NEON</h1>
+  <div class="hud">
+    <span>POSIÇÃO<b id="hPos">8º</b></span>
+    <span>VOLTA<b id="hLap">1/3</b></span>
+    <span>TEMPO<b id="hTime">0:00.0</b></span>
+    <span>RECORDE<b id="hHi">0</b></span>
+  </div>
+  <button class="icon-btn" id="padBtn" type="button" aria-label="Controles na tela">🎮</button>
+  <button class="icon-btn" id="muteBtn" type="button">🔊</button>
+</header>
+
+<main class="stage" id="stage">
+  <div class="pad pad-left">
+    <div class="steer-row">
+      <button class="tbtn arrow" type="button" id="tLeft" aria-label="Virar para a esquerda">◄</button>
+      <button class="tbtn arrow" type="button" id="tRight" aria-label="Virar para a direita">►</button>
+    </div>
+    <span class="pad-label">VOLANTE</span>
+  </div>
+  <div class="game-wrap" id="gameWrap">
+    <div class="screen" id="screen">
+      <canvas id="game" aria-label="Pista do Turbo Neon"></canvas>
+    </div>
+  </div>
+  <div class="pad pad-right">
+    <div class="drive-grid">
+      <button class="tbtn nitro" type="button" id="tNitro" aria-label="Nitro">NITRO</button>
+      <button class="tbtn brake" type="button" id="tBrake" aria-label="Freio">FREIO</button>
+      <button class="tbtn gas" type="button" id="tGas" aria-label="Acelerar">ACELERA</button>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <section class="panel" id="menuPanel">
+      <h2>TURBO NEON</h2>
+      <p class="sub">Três voltas, oito carros, três cargas de nitro. Largue no fim do grid e chegue em primeiro!</p>
+      <div class="opt">
+        <span class="opt-label">PISTA</span>
+        <div class="seg" data-setting="pista">
+          <button type="button" data-value="rio">RIO</button>
+          <button type="button" data-value="sp">SÃO PAULO</button>
+          <button type="button" data-value="deserto">DESERTO</button>
+        </div>
+      </div>
+      <p class="sub" id="trackInfo"></p>
+      <div class="opt">
+        <span class="opt-label">ACELERAÇÃO</span>
+        <div class="seg" data-setting="acel">
+          <button type="button" data-value="manual">MANUAL</button>
+          <button type="button" data-value="auto">AUTO</button>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">CORRER</button>
+      </div>
+      <div id="codeMount"></div>
+      <div class="keys">
+        <div class="no-touch"><kbd>←</kbd><kbd>→</kbd> volante · <kbd>↑</kbd>/<kbd>Z</kbd> acelera · <kbd>↓</kbd>/<kbd>X</kbd> freia</div>
+        <div class="no-touch"><kbd>Espaço</kbd>/<kbd>N</kbd> nitro · <kbd>P</kbd>/<kbd>Esc</kbd> pausa · <kbd>M</kbd> som</div>
+        <div>Na tela: ◄ ► à esquerda; ACELERA, FREIO e NITRO à direita (🎮 mostra/esconde). No modo AUTO o carro acelera sozinho.</div>
+        <div>Controle de videogame: analógico vira, <kbd>RT</kbd>/<kbd>A</kbd> acelera, <kbd>LT</kbd>/<kbd>B</kbd> freia, <kbd>X</kbd>/<kbd>Y</kbd> nitro, <kbd>Start</kbd> pausa.</div>
+        <div>Macete: aperte o acelerador no finalzinho da 3ª luz vermelha, logo antes do verde, para ganhar a LARGADA PERFEITA.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="pausePanel" hidden>
+      <h2>PAUSADO</h2>
+      <p class="sub">Pit stop rápido. Os adversários também esperam.</p>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="resume">CONTINUAR</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+
+    <section class="panel" id="overPanel" hidden>
+      <h2 id="overTitle">CHEGADA!</h2>
+      <div class="big-score" id="overScore">1º LUGAR</div>
+      <p class="sub" id="overInfo"></p>
+      <p class="record" id="overRecord" hidden>NOVO RECORDE!</p>
+      <ol class="results" id="overResults"></ol>
+      <div class="rank" id="rankBox" hidden></div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">CORRER DE NOVO</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="../../shared/common.js"></script>
+<script src="../../shared/firebase-config.js"></script>
+<script src="../../shared/ranking.js"></script>
+<script src="turbo.js"></script>
+</body>
+</html>

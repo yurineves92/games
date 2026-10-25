@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="pt-BR" data-base="../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Super Neon Nº 3</title>
+<meta name="description" content="Super Neon Nº 3: Come-Come na capa com o dossiê dos 4 fantasmas, Travessia, Campo Minado e todos os códigos secretos.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ff2bd6'/%3E%3Ctext x='16' y='24' font-family='Arial Black' font-size='20' text-anchor='middle' fill='%23ffd400' stroke='%23000' stroke-width='1.5'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee&family=Caveat:wght@600&family=Press+Start+2P&family=Roboto+Condensed:ital,wght@0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../revista/revista.css">
+<style>
+  .fantasmas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 18px; margin-bottom: 28px; }
+  .fantasma { background: #03031a; color: #fff; border: 3px solid #000; padding: 14px; box-shadow: 5px 5px 0 var(--c); text-align: center; }
+  .fantasma svg { width: 84px; height: 88px; display: block; margin: 0 auto 8px; filter: drop-shadow(0 0 10px var(--c)); }
+  .fantasma h3 { font-family: var(--f-logo); font-weight: normal; font-size: 24px; color: var(--c); }
+  .fantasma .apelido { font-family: var(--f-pixel); font-size: 10px; color: #aaa; margin: 4px 0 8px; }
+  .fantasma p { font-size: 15px; line-height: 1.4; text-align: left; }
+</style>
+</head>
+<body style="--cor: #2f5bff">
+
+<section class="mesa" aria-label="Capa">
+  <div data-capa="3"></div>
+  <div class="mesa-acoes">
+    <a class="botao" href="#editorial">Abrir a revista ▼</a>
+    <a class="botao escuro" href="#cdrom">💿 Direto pro CD-ROM</a>
+    <a class="botao alt" href="../../">◄ Banca</a>
+  </div>
+</section>
+
+<nav class="nav" aria-label="Seções da revista">
+  <a class="nav-logo" href="../../">SUPER <i>NEON</i> Nº3</a>
+  <a href="#editorial">Editorial</a>
+  <a href="#plantao">Plantão</a>
+  <a href="#analises">Análises</a>
+  <a href="#dicas">Dicas</a>
+  <a href="#detonado">Dossiê</a>
+  <a href="#cartas">Cartas</a>
+  <a href="#classificados">Classificados</a>
+  <a href="#cdrom">CD-ROM</a>
+</nav>
+
+<main class="revista">
+
+  <article class="pagina surge" id="editorial">
+    <span class="chapeu">Editorial</span>
+    <h1 class="titulo">Waka waka waka!</h1>
+    <p class="linha-fina">Ano novo, revista nova e um labirinto inteiro de bolinhas para comer. Feliz Ano 2, leitor!</p>
+    <div class="colunas">
+      <p>No Brasil dos anos 80 ninguém falava o nome gringo: era <b>Come-Come</b> e pronto. Para a terceira edição, a redação decidiu prestar homenagem ao bichinho amarelo mais faminto da história, com um labirinto novinho em folha, desenhado por nós, e quatro fantasmas com personalidade própria.</p>
+      <p>E que personalidades! O Brasa não desgruda de você, a Chiclete tenta adivinhar para onde você vai, o Gelado arma emboscadas em dupla e o Molenga… bom, o Molenga é o Molenga. O dossiê completo está na página 20, com o pôster da quadrilha.</p>
+      <p>O CD-ROM ainda traz a <b>Travessia</b>, um sapo corajoso que precisa atravessar a avenida e o rio para chegar em casa, e o <b>Campo Minado</b>, aquele que vinha no computador do escritório e que todo mundo jogava escondido do chefe.</p>
+      <h3>Uma mudança nos códigos</h3>
+      <p>Muitos leitores escreveram dizendo que, ao digitar um código no teclado, o jogo pausava ou o som desligava. Culpa das letras P e M! A partir de agora, os códigos com letras vão só na caixa <b>CÓDIGO SECRETO</b> do menu. O KONAMI continua valendo pelas setas no teclado, com o menu aberto.</p>
+      <p class="assinatura">A Redação</p>
+    </div>
+
+    <h2 class="titulo" style="font-size:34px;margin-top:30px">Nesta edição</h2>
+    <ul class="sumario">
+      <li><a href="#plantao"><span>04</span><div><b>Plantão Neon</b><small>As notícias do labirinto</small></div></a></li>
+      <li><a href="#come-come"><span>06</span><div><b>Come-Come</b><small>Capa! Os fantasmas estão soltos</small></div></a></li>
+      <li><a href="#travessia"><span>10</span><div><b>Travessia</b><small>Atravesse sem virar panqueca</small></div></a></li>
+      <li><a href="#campo-minado"><span>13</span><div><b>Campo Minado</b><small>O clássico do escritório</small></div></a></li>
+      <li><a href="#dicas"><span>16</span><div><b>Dicas &amp; Macetes</b><small>Os 9 códigos e as manhas de cada jogo</small></div></a></li>
+      <li><a href="#detonado"><span>20</span><div><b>Dossiê dos fantasmas</b><small>Conheça o inimigo e o pôster da quadrilha</small></div></a></li>
+      <li><a href="#cartas"><span>24</span><div><b>Cartas</b><small>O correio da galera</small></div></a></li>
+      <li><a href="#classificados"><span>26</span><div><b>Classificados</b><small>Compra, vende, troca e procura</small></div></a></li>
+      <li><a href="#cdrom"><span>28</span><div><b>CD-ROM</b><small>Os 3 jogos completos desta edição</small></div></a></li>
+    </ul>
+    <div class="folio"><span>Super Neon Nº 3</span><span>3</span></div>
+  </article>
+
+  <section class="pagina surge" id="plantao" style="--cor: var(--ciano)">
+    <span class="chapeu">Plantão Neon</span>
+    <h2 class="titulo">Saiu no jornal</h2>
+    <div class="noticias">
+      <div class="noticia" style="--c: var(--amarelo)">
+        <h3>Fantasma laranja é visto fugindo</h3>
+        <p>Testemunhas afirmam que o Molenga sai correndo para o canto sempre que chega perto do Come-Come. "Ele é medroso", disse uma pastilha que pediu para não ser identificada.</p>
+      </div>
+      <div class="noticia" style="--c: var(--verde)">
+        <h3>Sapo é multado por atravessar fora da faixa</h3>
+        <p>O infrator alegou que não existe faixa de pedestre no rio. A defesa pediu o código NADADOR como prova. O caso segue em andamento.</p>
+      </div>
+      <div class="noticia" style="--c: #8aa0ff">
+        <h3>Carinha do Campo Minado ganha óculos escuros</h3>
+        <p>Ela só usa os óculos quando você vence. Fontes próximas dizem que é a carinha mais exigente da informática.</p>
+      </div>
+      <div class="noticia" style="--c: var(--magenta)">
+        <h3>Próximo número: edição especial!</h3>
+        <p>A Super Neon Nº 4 chega com corrida em 3D de mentirinha, o <b>Turbo Neon</b>, e o herói de plataforma <b>Super Pixel</b>. Aperte o cinto.</p>
+      </div>
+    </div>
+    <div class="folio"><span>Plantão</span><span>4</span></div>
+  </section>
+
+  <section class="pagina surge" id="analises" style="--cor: var(--roxo)">
+    <span class="chapeu">Análises</span>
+    <h2 class="titulo">Testamos tudo</h2>
+    <p class="linha-fina">Notas de 0 a 5 em Gráfico, Som, Jogabilidade e Diversão.</p>
+
+    <article class="analise" id="come-come" style="--c:#ca8a04">
+      <div class="analise-topo"><h3>Come-Come</h3><span>Labirinto · 1 jogador · ★ Capa</span></div>
+      <div class="analise-corpo">
+        <div class="prints">
+          <figure class="print" style="--r:-1.5deg"><img src="prints/come-come-1.jpg" alt="Come-Come amarelo no labirinto azul neon, perseguido por fantasmas" loading="lazy" width="640" height="480"><figcaption>Comeu a pastilha de energia? Hora do troco!</figcaption></figure>
+        </div>
+        <div>
+          <div class="texto">
+            <p>Você é uma bolinha amarela com fome. O labirinto tem 266 pastilhas, e é preciso comer todas para passar de fase. O problema são os quatro fantasmas que não gostam nada disso. Encostou em um, perdeu uma vida.</p>
+            <p>Nos cantos ficam as quatro <b>pastilhas de energia</b>. Comeu uma, os fantasmas ficam azuis e fogem, e aí é você quem caça. Comer fantasmas em sequência vale 200, 400, 800 e 1.600 pontos, e pegar os quatro com a mesma pastilha mostra um "BANQUETE!" na tela. Comidos, os fantasmas viram só olhos e voltam correndo para casa.</p>
+            <p>O labirinto é original, com túnel lateral e paredes neon. A curva é guardada antes da esquina, como nos fliperamas, e entre as fases tem intervalos divertidos. A cada fase o Come-Come e os fantasmas ficam mais rápidos e o tempo do fantasma azul vai encurtando.</p>
+          </div>
+          <div class="ficha"><dl><dt>Gênero</dt><dd>Labirinto</dd><dt>Vidas</dt><dd>3, mais uma aos 10.000 pontos</dd><dt>Controles</dt><dd>Setas/WASD, deslizar e controle</dd><dt>Dificuldade</dt><dd>Média, e sobe a cada fase</dd></dl></div>
+          <div class="notas">
+            <div class="nota-final"><div><small>NOTA</small><b>4,8</b></div></div>
+            <h4>Notas</h4>
+            <div class="nota" style="--v:4.5">Gráfico<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:4.5">Som<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:5">Jogabilidade<i></i><b>5,0</b></div>
+            <div class="nota" style="--v:5">Diversão<i></i><b>5,0</b></div>
+          </div>
+          <p class="veredito">Veredito: a estrela da edição. Cada fantasma pensa de um jeito, e entender cada um é metade da diversão.</p>
+          <p class="jogar-agora"><a class="botao" href="../../jogos/come-come/">▶ Jogar Come-Come</a></p>
+        </div>
+      </div>
+    </article>
+
+    <article class="analise" id="travessia" style="--c:#16a34a">
+      <div class="analise-topo"><h3>Travessia</h3><span>Ação · 1 jogador</span></div>
+      <div class="analise-corpo">
+        <div class="prints">
+          <figure class="print" style="--r:1deg"><img src="prints/travessia-1.jpg" alt="Sapo verde atravessando uma avenida com carros e um rio com troncos" loading="lazy" width="640" height="480"><figcaption>O canteiro do meio é o único lugar seguro.</figcaption></figure>
+        </div>
+        <div>
+          <div class="texto">
+            <p>Um sapo precisa chegar em casa, e no caminho tem uma avenida movimentada e um rio cheio de correnteza. Na parte de baixo, cinco faixas de carros, caminhões e motos em velocidades e sentidos diferentes. No meio, um canteiro para respirar. Em cima, o rio: dá para pular nos troncos e nas tartarugas, mas cair na água é fim de vida.</p>
+            <p>Lá no alto ficam as <b>cinco tocas</b>. Encha todas para passar de fase. Às vezes aparece uma mosca valendo 200 pontos, e a partir da fase 2 um jacaré pode estar escondido em alguma toca. Cuidado com as tartarugas que mergulham! Cada vida tem 30 segundos, e o tempo que sobra vira pontos.</p>
+          </div>
+          <div class="ficha"><dl><dt>Gênero</dt><dd>Ação / reflexo</dd><dt>Vidas</dt><dd>3, com 30 s cada</dd><dt>Controles</dt><dd>Setas/WASD, toque, deslizar e controle</dd><dt>Dificuldade</dt><dd>Média, e tudo fica 13% mais rápido por fase</dd></dl></div>
+          <div class="notas">
+            <div class="nota-final"><div><small>NOTA</small><b>4,4</b></div></div>
+            <h4>Notas</h4>
+            <div class="nota" style="--v:4.5">Gráfico<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:4">Som<i></i><b>4,0</b></div>
+            <div class="nota" style="--v:4.5">Jogabilidade<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:4.5">Diversão<i></i><b>4,5</b></div>
+          </div>
+          <p class="veredito">Veredito: tenso e viciante. Você nunca mais vai olhar para uma faixa de pedestre do mesmo jeito.</p>
+          <p class="jogar-agora"><a class="botao" href="../../jogos/travessia/">▶ Jogar Travessia</a></p>
+        </div>
+      </div>
+    </article>
+
+    <article class="analise" id="campo-minado" style="--c:#4f63d6">
+      <div class="analise-topo"><h3>Campo Minado</h3><span>Raciocínio · 1 jogador</span></div>
+      <div class="analise-corpo">
+        <div class="prints">
+          <figure class="print" style="--r:-1deg"><img src="prints/campo-minado-1.jpg" alt="Tabuleiro do Campo Minado com números coloridos e bandeiras" loading="lazy" width="640" height="480"><figcaption>Cada número diz quantas minas tocam aquela casa.</figcaption></figure>
+        </div>
+        <div>
+          <div class="texto">
+            <p>O jogo que vinha no computador do escritório, agora com cara de Windows 95 e um banho de neon. Cada casa aberta mostra quantas minas existem em volta. Com lógica, você descobre onde estão as bombas e marca com bandeira. Abriu uma mina, BUM.</p>
+            <p>São três tamanhos: <b>Iniciante</b> (9×9, 10 minas), <b>Intermediário</b> (16×16, 40 minas) e <b>Expert</b> (16×30, 99 minas, que no celular em pé vira 30×16 para caber). O primeiro clique é sempre seguro, e clicar num número com todas as bandeiras em volta abre os vizinhos de uma vez.</p>
+            <p>No celular, segure o dedo para marcar bandeira, ou use o botão ⛏/🚩. E a carinha no topo continua lá, de óculos escuros quando você vence.</p>
+          </div>
+          <div class="ficha"><dl><dt>Gênero</dt><dd>Raciocínio / lógica</dd><dt>Níveis</dt><dd>Iniciante, Intermediário e Expert</dd><dt>Controles</dt><dd>Mouse, toque, teclado e controle</dd><dt>Dificuldade</dt><dd>Do café com leite ao desespero</dd></dl></div>
+          <div class="notas">
+            <div class="nota-final"><div><small>NOTA</small><b>4,3</b></div></div>
+            <h4>Notas</h4>
+            <div class="nota" style="--v:4">Gráfico<i></i><b>4,0</b></div>
+            <div class="nota" style="--v:3.5">Som<i></i><b>3,5</b></div>
+            <div class="nota" style="--v:5">Jogabilidade<i></i><b>5,0</b></div>
+            <div class="nota" style="--v:4.5">Diversão<i></i><b>4,5</b></div>
+          </div>
+          <p class="veredito">Veredito: perfeito para treinar a cabeça. Não jogue no trabalho (mas a gente sabe que você vai).</p>
+          <p class="jogar-agora"><a class="botao" href="../../jogos/campo-minado/">▶ Jogar Campo Minado</a></p>
+        </div>
+      </div>
+    </article>
+    <div class="folio"><span>Análises</span><span>6–15</span></div>
+  </section>
+
+  <section class="pagina surge" id="dicas" style="--cor: var(--verde)">
+    <span class="chapeu">Dicas &amp; Macetes</span>
+    <h2 class="titulo">Códigos secretos</h2>
+    <p class="linha-fina">Digite o código na caixa <b>CÓDIGO SECRETO</b> do menu do jogo. O KONAMI também vale pela sequência <span class="setas">↑ ↑ ↓ ↓ ← → ← → B A</span> no teclado, com o menu aberto. No celular, escreva KONAMI na caixa.</p>
+    <div class="dicas">
+      <div class="dica" style="--c:#ca8a04">
+        <h3>Come-Come</h3>
+        <div class="dica-corpo">
+          <div class="senha"><code>KONAMI</code><p>Vidas infinitas.</p></div>
+          <div class="senha"><code>TURBO</code><p>Come-Come 30% mais rápido.</p></div>
+          <div class="senha"><code>CEGO</code><p>Os fantasmas andam sem rumo, escolhendo caminhos aleatórios.</p></div>
+        </div>
+      </div>
+      <div class="dica" style="--c:#16a34a">
+        <h3>Travessia</h3>
+        <div class="dica-corpo">
+          <div class="senha"><code>KONAMI</code><p>Vidas infinitas.</p></div>
+          <div class="senha"><code>PARADO</code><p>Os carros andam em câmera lenta (o rio continua igual).</p></div>
+          <div class="senha"><code>NADADOR</code><p>O sapo fica azul e nada! Só não deixe a correnteza levá-lo para fora da tela.</p></div>
+        </div>
+      </div>
+      <div class="dica" style="--c:#4f63d6">
+        <h3>Campo Minado</h3>
+        <div class="dica-corpo">
+          <div class="senha"><code>KONAMI</code><p>O primeiro clique abre uma área enorme, sem nenhuma mina perto.</p></div>
+          <div class="senha"><code>RAIOX</code><p>Mostra as minas por 2 segundos, uma vez por partida (tecla X ou botão 👁).</p></div>
+          <div class="senha"><code>SORTE</code><p>A primeira mina que você pisar vira bandeira. "UFA! SORTE!"</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="box-aviso">⚠ Com qualquer código ligado, o recorde não é salvo e o placar fica fora do Hall da Fama.</p>
+
+    <h2 class="titulo" style="font-size:34px;margin-top:34px">Macetes dos profissionais</h2>
+    <div class="colunas">
+      <h3>Come-Come: o túnel salva</h3>
+      <p>Os fantasmas ficam lentos dentro do túnel lateral. Está encurralado? Corra para o túnel. E nos primeiros 7 segundos de cada vida os fantasmas se espalham para os cantos, ótimo momento para limpar o meio do labirinto.</p>
+      <h3>Come-Come: frutas de ouro</h3>
+      <p>A fruta aparece quando você come 70 pastilhas e de novo aos 170. Vale de 100 (cereja) até 5.000 (estrela), conforme a fase. Guarde as pastilhas de energia para quando os quatro fantasmas estiverem perto: o banquete vale 3.000 pontos.</p>
+      <h3>Travessia</h3>
+      <p>As tartarugas com brilho rosa vão mergulhar: elas ficam só uns 4 segundos na superfície. Prefira os troncos. Se só os olhos do jacaré aparecem na toca, ainda dá para entrar. Com a boca aberta, nem pensar. Cada toca vale 50 pontos mais 10 por segundo que sobrou, então ande rápido.</p>
+      <h3>Campo Minado</h3>
+      <p>Procure os padrões: um "1" encostado num canto fechado só pode ter a mina naquele canto. Uma fileira "1-2-1" na beirada tem minas embaixo dos dois "1". Use o chording (clique no número) para abrir rápido, que no ranking quanto mais rápido, mais pontos: são minas × 1.000 ÷ segundos.</p>
+    </div>
+    <div class="folio"><span>Dicas &amp; Macetes</span><span>16–19</span></div>
+  </section>
+
+  <section class="pagina surge" id="detonado" style="--cor: #ff2a2a">
+    <span class="chapeu">Dossiê</span>
+    <h2 class="titulo">Os 4 fantasmas</h2>
+    <p class="linha-fina">Conheça o inimigo. Cada fantasma tem um jeito de pensar. Recorte e cole na parede do quarto!</p>
+    <div class="fantasmas">
+      <div class="fantasma" style="--c:#ff2a2a">
+        <svg viewBox="0 0 40 42" aria-hidden="true"><path d="M0 20A20 20 0 0 1 40 20V42L33 36 27 42 20 36 13 42 7 36 0 42Z" fill="#ff2a2a"/><ellipse cx="13" cy="18" rx="6" ry="7.5" fill="#fff"/><ellipse cx="28" cy="18" rx="6" ry="7.5" fill="#fff"/><circle cx="15" cy="20" r="3.2" fill="#1a3cff"/><circle cx="30" cy="20" r="3.2" fill="#1a3cff"/></svg>
+        <h3>Brasa</h3><p class="apelido">"O ESQUENTADO"</p>
+        <p>Vai direto atrás de você, sempre pelo caminho mais curto. Perto do fim da fase fica ainda mais rápido e para de dispersar. É o mais perigoso, e o que você mais vai ver no retrovisor.</p>
+      </div>
+      <div class="fantasma" style="--c:#ff9ad5">
+        <svg viewBox="0 0 40 42" aria-hidden="true"><path d="M0 20A20 20 0 0 1 40 20V42L33 36 27 42 20 36 13 42 7 36 0 42Z" fill="#ff9ad5"/><ellipse cx="13" cy="18" rx="6" ry="7.5" fill="#fff"/><ellipse cx="28" cy="18" rx="6" ry="7.5" fill="#fff"/><circle cx="11" cy="16" r="3.2" fill="#1a3cff"/><circle cx="26" cy="16" r="3.2" fill="#1a3cff"/></svg>
+        <h3>Chiclete</h3><p class="apelido">"A ADIVINHA"</p>
+        <p>Não vem atrás: mira 4 casas na sua frente, tentando cortar o caminho. Manha: vire de repente na direção dela e ela erra o bote.</p>
+      </div>
+      <div class="fantasma" style="--c:#00e5ff">
+        <svg viewBox="0 0 40 42" aria-hidden="true"><path d="M0 20A20 20 0 0 1 40 20V42L33 36 27 42 20 36 13 42 7 36 0 42Z" fill="#00e5ff"/><ellipse cx="13" cy="18" rx="6" ry="7.5" fill="#fff"/><ellipse cx="28" cy="18" rx="6" ry="7.5" fill="#fff"/><circle cx="16" cy="21" r="3.2" fill="#1a3cff"/><circle cx="31" cy="21" r="3.2" fill="#1a3cff"/></svg>
+        <h3>Gelado</h3><p class="apelido">"O ESTRATEGISTA"</p>
+        <p>Usa a posição do Brasa para fechar o cerco. Os dois juntos formam uma pinça. Quando o Brasa estiver atrás de você, desconfie de qualquer corredor à frente.</p>
+      </div>
+      <div class="fantasma" style="--c:#ff9a1a">
+        <svg viewBox="0 0 40 42" aria-hidden="true"><path d="M0 20A20 20 0 0 1 40 20V42L33 36 27 42 20 36 13 42 7 36 0 42Z" fill="#ff9a1a"/><ellipse cx="13" cy="18" rx="6" ry="7.5" fill="#fff"/><ellipse cx="28" cy="18" rx="6" ry="7.5" fill="#fff"/><circle cx="13" cy="22" r="3.2" fill="#1a3cff"/><circle cx="28" cy="22" r="3.2" fill="#1a3cff"/></svg>
+        <h3>Molenga</h3><p class="apelido">"O MEDROSO"</p>
+        <p>Persegue de longe, mas quando chega a menos de 8 casas perde a coragem e foge para o canto dele. Parece inofensivo, até aparecer na hora errada.</p>
+      </div>
+    </div>
+    <ol class="passos">
+      <li><h4>Comece pelo meio</h4>Nos primeiros 7 segundos os fantasmas se espalham para os cantos. Use esse tempo para limpar os corredores centrais, os mais perigosos depois.</li>
+      <li><h4>Guarde a energia</h4>Não coma a pastilha de energia assim que passar por ela. Espere os fantasmas chegarem perto: o relógio de perseguir para enquanto eles estão azuis, e quatro de uma vez valem 3.000 pontos.</li>
+      <li><h4>Use o túnel</h4>Fantasma dentro do túnel anda devagar. Com o Brasa colado em você, atravesse o túnel e ganhe distância.</li>
+      <li><h4>Vire antes da esquina</h4>Aperte a direção antes de chegar no cruzamento: o Come-Come guarda a curva e vira mais rápido que os fantasmas.</li>
+      <li><h4>Fases avançadas</h4>O tempo do fantasma azul cai de uns 6,5 segundos até 1,5. Nas fases altas, a pastilha de energia serve mais para fugir do que para caçar.</li>
+    </ol>
+    <div class="folio"><span>Dossiê</span><span>20–23</span></div>
+  </section>
+
+  <section class="pagina surge" id="cartas" style="--cor: var(--vermelho)">
+    <span class="chapeu">Cartas</span>
+    <h2 class="titulo">Fala, leitor!</h2>
+    <div class="cartas">
+      <div class="carta" style="--r:-0.8deg">
+        <p class="msg">Eu digitei MULTIBOLA no teclado e o som do Paredão sumiu! O que aconteceu?</p>
+        <p class="de">Pedro Henrique, Belém (PA)</p>
+        <p class="resp"><b>SN:</b> Pedro, a letra M liga e desliga o som! Por isso agora os códigos com letras vão só na caixa CÓDIGO SECRETO do menu. Aperte M de novo que o som volta.</p>
+      </div>
+      <div class="carta" style="--r:0.6deg">
+        <p class="msg">Acertei o disco voador no 23º tiro e ganhei 300 pontos, igualzinho vocês falaram!!! Vocês são demais!</p>
+        <p class="de">Camila, 13 anos, Natal (RN)</p>
+        <p class="resp"><b>SN:</b> Camila, a redação comemorou junto! Agora tente o 38º.</p>
+      </div>
+      <div class="carta" style="--r:-0.3deg">
+        <p class="msg">Qual o recorde da redação no Paredão? Aposto que eu ganho.</p>
+        <p class="de">Thiago "Tijolinho", Campinas (SP)</p>
+        <p class="resp"><b>SN:</b> Thiago, a gente prefere não falar. Digamos que a Muralha Final ainda está de pé. Mostre o seu no Hall da Fama!</p>
+      </div>
+      <div class="carta" style="--r:0.9deg">
+        <p class="msg">Minha avó joga Campo Minado desde 1992 e quer saber se vocês aceitam desafio no Expert.</p>
+        <p class="de">Beatriz, Vitória (ES)</p>
+        <p class="resp"><b>SN:</b> Beatriz, com todo o respeito à sua avó: não. Ela ia ganhar, e a gente tem uma reputação a zelar.</p>
+      </div>
+    </div>
+    <div class="folio"><span>Cartas</span><span>24–25</span></div>
+  </section>
+
+  <section class="pagina surge" id="classificados" style="--cor: var(--tinta)">
+    <span class="chapeu">Classificados</span>
+    <h2 class="titulo">Troca-troca</h2>
+    <div class="classificados">
+      <div class="classificado"><b>Alugo</b>Toca no alto do rio, vista para a avenida. Vizinhança tranquila, exceto pelo jacaré.<span class="tel">TOCA Nº 3</span></div>
+      <div class="classificado"><b>Procuro</b>Fantasma laranja desaparecido. Atende por Molenga. Foi visto pela última vez fugindo para o canto.<span class="tel">TEL (11) 5555-0303</span></div>
+      <div class="classificado"><b>Vendo</b>Bandeirinhas vermelhas, quase sem uso. Ideal para Campo Minado e festa junina.<span class="tel">TEL (81) 5555-0161</span></div>
+      <div class="classificado"><b>Serviços</b>Desminagem profissional de tabuleiros. Atendo Iniciante e Intermediário. Expert só com hora marcada.<span class="tel">TEL (62) 5555-0119</span></div>
+      <div class="classificado"><b>Troco</b>Cereja por morango. Morango por laranja. Aceito estrela, mas aí eu volto troco.<span class="tel">LABIRINTO, CORREDOR B</span></div>
+      <div class="classificado"><b>Curso</b>Aprenda a pular de tartaruga em tartaruga sem molhar o pé. Turmas aos sábados.<span class="tel">TEL (27) 5555-0108</span></div>
+    </div>
+    <div class="anuncio" style="--anuncio: linear-gradient(135deg, #000018, #0a1460 50%, #ffe600)">
+      <h3>Pastilha de Energia em Lata</h3>
+      <p>Cansado de fugir? Uma lata e os fantasmas ficam azuis de medo! Sabor tutti-frutti, com cereja, morango e um toque de abacaxi.</p>
+      <span class="preco">só R$ 2,50</span>
+      <small>Produto imaginário. Não coma fantasmas de verdade.</small>
+    </div>
+    <div class="folio"><span>Classificados</span><span>26–27</span></div>
+  </section>
+
+  <section class="cdrom-mesa" id="cdrom" aria-label="CD-ROM da edição">
+    <div data-cdrom="3"></div>
+  </section>
+
+  <section class="pagina surge" style="--cor: var(--magenta)">
+    <span class="chapeu">Na próxima edição</span>
+    <h2 class="titulo">Edição especial!</h2>
+    <p class="linha-fina">A Super Neon Nº 4 vem turbinada: a corrida <b>Turbo Neon</b>, do Rio ao deserto, e o herói de plataforma <b>Super Pixel</b>, com os mapas das três fases.</p>
+    <p><a class="botao escuro" href="../04/">Ler a Nº 4 ►</a></p>
+    <h3 style="font-family:var(--f-grito);font-size:24px;margin-top:26px;font-weight:normal">Expediente</h3>
+    <div class="expediente">
+      <p><b>Super Neon</b>, a revista de games que vem com jogo. Número 3, Ano 2.</p>
+      <p><b>Redação:</b> perdida em algum lugar do labirinto. <b>CD-ROM:</b> jogos feitos só com HTML, CSS e JavaScript.</p>
+      <p>Fan games não oficiais e sem fins lucrativos. Os clássicos que inspiraram nossos jogos são marcas de seus respectivos donos.</p>
+    </div>
+    <div class="folio"><span>Super Neon Nº 3</span><span>30</span></div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <a href="../02/">◄ Edição anterior</a> · <a href="../../">Banca</a> · <a href="../04/">Próxima edição ►</a>
+</footer>
+
+<script src="../../shared/common.js"></script>
+<script src="../../revista/edicoes.js"></script>
+<script src="../../revista/revista.js"></script>
+<script src="../../revista/musica.js"></script>
+</body>
+</html>
