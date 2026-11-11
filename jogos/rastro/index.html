@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rastro de Luz</title>
+<meta name="description" content="Rastro de Luz: duelo de motos de luz numa arena neon. Quatro motos, muros de luz, turbo, arena que encolhe e quem vencer 5 rodadas leva a partida.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23020a10'/%3E%3Cpath d='M4 28V10h14v8' fill='none' stroke='%2300e5ff' stroke-width='3'/%3E%3Cpath d='M28 4v16h-6' fill='none' stroke='%23ff2bd6' stroke-width='3'/%3E%3Crect x='16' y='17' width='4' height='6' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/style.css">
+<style>
+  /* placar de rodadas: uma bolinha por rodada vencida, na cor de cada moto */
+  .rd i { font-style: normal; }
+  .rd b { letter-spacing: 2px; text-shadow: 0 0 8px currentColor; }
+  /* botões de toque: ◄ ► giram a moto, TURBO acelera */
+  .pbtn {
+    --size: 78px;
+    width: var(--size); height: var(--size); border-radius: 50%; flex: none;
+    font-family: var(--font); font-weight: 900; font-size: 28px; color: var(--accent);
+    background: radial-gradient(circle, color-mix(in srgb, var(--accent) 16%, transparent), rgba(0, 0, 0, 0.55) 70%);
+    border: 2px solid var(--accent); touch-action: none; user-select: none; -webkit-user-select: none;
+    box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 35%, transparent), inset 0 0 18px color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+  .pbtn.turbo { --size: 96px; font-size: 15px; letter-spacing: 0.1em; color: #fff; border-color: #ffd400; box-shadow: 0 0 18px rgba(255, 212, 0, 0.45), inset 0 0 18px rgba(255, 212, 0, 0.3); }
+  .pbtn.down { background: var(--accent); color: #021014; box-shadow: 0 0 26px var(--accent); }
+  .pbtn.turbo.down { background: #ffd400; color: #1a1400; box-shadow: 0 0 26px #ffd400; }
+  .pad-left .pad-row { display: flex; gap: 14px; }
+  @media (orientation: landscape) { .pad-left .pad-row { flex-direction: column; } }
+  @media (max-height: 520px) { .pbtn { --size: 64px; } .pbtn.turbo { --size: 78px; } }
+  @media (max-width: 520px) {
+    .topbar { gap: 4px 10px; padding: 6px 12px; }
+    .topbar h1 { font-size: 12px; letter-spacing: 0.06em; }
+    .hud { order: 3; flex-basis: 100%; gap: 2px 12px; font-size: 14px; }
+    .rd i { display: none; }
+  }
+  /* celular deitado: só as bolinhas, para sobrar altura para a arena */
+  @media (max-height: 520px) { .rd i { display: none; } .hud { gap: 2px 12px; } }
+  .vs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 18px; margin-top: 10px; font-family: var(--mono); color: var(--muted); letter-spacing: 0.1em; font-size: 13px; }
+  .vs div { color: var(--c); }
+  .vs b { display: block; font-family: var(--font); font-size: 34px; color: #fff; text-shadow: 0 0 14px var(--c); }
+  .rivals span { font-family: var(--font); font-weight: 700; font-size: 12px; letter-spacing: 0.08em; }
+</style>
+</head>
+<body class="game-page rastro" style="--accent:#00e5ff">
+<header class="topbar">
+  <a class="back" href="../../edicoes/06/#cdrom">◄ REVISTA</a>
+  <h1>RASTRO DE LUZ</h1>
+  <div class="hud">
+    <span class="rd" id="hR0"><i id="hN0">VOCÊ</i><b id="hD0">○○○○○</b></span>
+    <span class="rd" id="hR1"><i id="hN1">NAVALHA</i><b id="hD1">○○○○○</b></span>
+    <span class="rd" id="hR2"><i id="hN2">TATU</i><b id="hD2">○○○○○</b></span>
+    <span class="rd" id="hR3"><i id="hN3">PIRADA</i><b id="hD3">○○○○○</b></span>
+    <span id="hScoreWrap">PONTOS<b id="hScore">0</b></span>
+    <span id="hHiWrap">RECORDE<b id="hHi">0</b></span>
+    <span class="hud-status" id="hStatus"></span>
+  </div>
+  <button class="icon-btn" id="padBtn" type="button" aria-label="Controles na tela">🎮</button>
+  <button class="icon-btn" id="muteBtn" type="button">🔊</button>
+</header>
+
+<main class="stage" id="stage">
+  <div class="pad pad-left">
+    <div class="pad-row">
+      <button class="pbtn" id="btnLeft" type="button" aria-label="Virar para a esquerda">◄</button>
+      <button class="pbtn" id="btnRight" type="button" aria-label="Virar para a direita">►</button>
+    </div>
+    <span class="pad-label">VIRAR</span>
+  </div>
+  <div class="game-wrap" id="gameWrap">
+    <div class="screen" id="screen">
+      <canvas id="game" aria-label="Arena do Rastro de Luz"></canvas>
+    </div>
+  </div>
+  <div class="pad pad-right">
+    <button class="pbtn turbo" id="btnTurbo" type="button" aria-label="Turbo">TURBO</button>
+    <span class="pad-label">SEGURE</span>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <section class="panel" id="menuPanel">
+      <h2>RASTRO DE LUZ</h2>
+      <p class="sub">Quatro motos de luz, uma grade e nenhum freio. Cada moto deixa um muro de luz para trás: bateu, explodiu. O último vivo vence a rodada e quem vencer 5 rodadas leva a partida. Demorou demais? A arena começa a encolher!</p>
+      <div class="opt">
+        <span class="opt-label">MODO</span>
+        <div class="seg" data-setting="mode">
+          <button type="button" data-value="1p">1 JOGADOR</button>
+          <button type="button" data-value="2p">2 JOGADORES</button>
+        </div>
+      </div>
+      <div class="opt" id="diffOpt">
+        <span class="opt-label">DIFICULDADE DA CPU</span>
+        <div class="seg" data-setting="diff">
+          <button type="button" data-value="facil">FÁCIL</button>
+          <button type="button" data-value="normal">NORMAL</button>
+          <button type="button" data-value="dificil">DIFÍCIL</button>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">INICIAR</button>
+      </div>
+      <div id="codeMount"></div>
+      <div class="keys">
+        <div class="rivals">Rivais: <span style="color:#ff2bd6">NAVALHA</span> corta a sua frente · <span style="color:#ffd400">TATU</span> foge para o espaço aberto · <span style="color:#39ff14">PIRADA</span> ninguém sabe para onde vai.</div>
+        <div>Itens na grade: <b style="color:#ffd400">⚡ CARGA</b> enche o turbo · <b style="color:#fff">✦ PULSO</b> apaga os rastros em volta. Moto explodida tem o rastro desfeito.</div>
+        <div class="no-touch">1 jogador: <kbd>←</kbd><kbd>↑</kbd><kbd>→</kbd><kbd>↓</kbd> ou <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> apontam a moto · <kbd>Espaço</kbd> (ou <kbd>Shift</kbd>) turbo</div>
+        <div class="no-touch">2 jogadores: J1 <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> + <kbd>Shift</kbd> esquerdo turbo · J2 setas + <kbd>Enter</kbd> ou <kbd>/</kbd> turbo</div>
+        <div class="no-touch"><kbd>P</kbd>/<kbd>Esc</kbd> pausa · <kbd>M</kbd> som</div>
+        <div>Na tela: ◄ ► viram a moto para a esquerda/direita de quem pilota e TURBO acelera enquanto segurar (🎮 mostra/esconde). Ou deslize o dedo na direção para onde quer ir. No 2 jogadores, cada um desliza na sua metade da tela (os botões são do J1).</div>
+        <div>Controle de videogame: 1º controle = J1, 2º = J2. Direcional ou analógico aponta a moto, <kbd>LB</kbd>/<kbd>RB</kbd> viram, <kbd>A</kbd> turbo, <kbd>Start</kbd> pausa.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="pausePanel" hidden>
+      <h2>PAUSADO</h2>
+      <p class="sub">As motos estão paradas no ar. A grade espera.</p>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="resume">CONTINUAR</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+
+    <section class="panel" id="overPanel" hidden>
+      <h2 id="overTitle">FIM DE JOGO</h2>
+      <div class="vs" id="overVs"></div>
+      <div class="big-score" id="overScore">0</div>
+      <p class="sub" id="overInfo"></p>
+      <p class="record" id="overRecord" hidden>NOVO RECORDE!</p>
+      <div class="rank" id="rankBox" hidden></div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">JOGAR DE NOVO</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="../../shared/common.js"></script>
+<script src="../../shared/firebase-config.js"></script>
+<script src="../../shared/ranking.js"></script>
+<script src="../../shared/presenca.js"></script>
+<script src="rastro.js"></script>
+</body>
+</html>

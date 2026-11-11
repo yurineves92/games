@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Defesa Total</title>
+<meta name="description" content="Defesa Total: meteoros, mísseis tridente, bombardeiros e cometas blindados caem sobre seis cidades neon. Toque no céu, dispare das três bases e faça explosões em cadeia.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2307030f'/%3E%3Cpath d='M4 2L13 12M26 1L19 11' stroke='%23ff9a2e' stroke-width='1.5'/%3E%3Ccircle cx='16' cy='13' r='7' fill='%23ff3b5c' opacity='.85'/%3E%3Ccircle cx='16' cy='13' r='3' fill='%23fff'/%3E%3Cpath d='M16 28V21' stroke='%23fff' stroke-width='1' stroke-dasharray='1.5 1.5'/%3E%3Cpath fill='%234dd2ff' d='M1 32v-5h3v-3h3v8zM10 32v-6h2v-2h3v8zM19 32v-7h3v3h2v4zM26 32v-4h2v-3h3v7z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/style.css">
+<style>
+  .defesa-total #game { cursor: none; }
+  .defesa-total .pts { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; }
+  .defesa-total .pts i { font-style: normal; font-weight: bold; }
+  @media (max-width: 520px) {
+    .topbar { gap: 4px 10px; padding: 6px 12px; }
+    .topbar h1 { font-size: 14px; letter-spacing: 0.12em; }
+    .hud { order: 3; flex-basis: 100%; gap: 2px 14px; font-size: 14px; }
+  }
+</style>
+</head>
+<body class="game-page defesa-total" style="--accent:#ff3b5c">
+<header class="topbar">
+  <a class="back" href="../../edicoes/05/#cdrom">◄ REVISTA</a>
+  <h1>DEFESA TOTAL</h1>
+  <div class="hud">
+    <span>PONTOS<b id="hScore">0</b></span>
+    <span>RECORDE<b id="hHi">0</b></span>
+    <span>ONDA<b id="hWave">1</b></span>
+    <span>MULTI<b id="hMult">×1</b></span>
+    <span class="hud-status" id="hStatus"></span>
+  </div>
+  <button class="icon-btn" id="muteBtn" type="button">🔊</button>
+</header>
+
+<main class="stage no-pads" id="stage">
+  <div class="game-wrap" id="gameWrap">
+    <div class="screen" id="screen">
+      <canvas id="game" aria-label="Céu de Defesa Total"></canvas>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <section class="panel" id="menuPanel">
+      <h2>DEFESA TOTAL</h2>
+      <p class="sub">Chove fogo sobre as seis cidades neon! Escolha um ponto no céu e a base mais perto dispara um interceptor que explode ali. Tudo que encosta na explosão explode junto, e cada elo da reação em cadeia vale mais.</p>
+      <div class="opt">
+        <span class="opt-label">VELOCIDADE</span>
+        <div class="seg" data-setting="speed">
+          <button type="button" data-value="normal">NORMAL</button>
+          <button type="button" data-value="rapida">RÁPIDA</button>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">INICIAR</button>
+      </div>
+      <div id="codeMount"></div>
+      <div class="keys">
+        <div class="pts">
+          <i style="color:#ff9a2e">METEORO</i><span>25 pontos</span>
+          <i style="color:#ff2bd6">TRIDENTE</i><span>50 (se divide em 3 no meio do caminho)</span>
+          <i style="color:#39ff14">BOMBARDEIRO</i><span>150 · cada bomba 25</span>
+          <i style="color:#7df9ff">COMETA BLINDADO</i><span>100 (precisa de 2 explosões)</span>
+        </div>
+        <div>Reação em cadeia: o 2º elo vale ×2, o 3º ×3… até ×5. Cidade bônus a cada 10.000 pontos.</div>
+        <div class="no-touch">Mouse: a mira segue o mouse e o clique dispara da base mais próxima.</div>
+        <div class="no-touch">Teclado: <kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> ou <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> mira · <kbd>Z</kbd> <kbd>X</kbd> <kbd>C</kbd> (ou <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd>) disparam da base esquerda, central e direita · <kbd>Espaço</kbd> da mais próxima</div>
+        <div class="no-touch"><kbd>P</kbd>/<kbd>Esc</kbd> pausa · <kbd>M</kbd> som</div>
+        <div>Na tela: toque no céu e o interceptor explode exatamente onde o dedo tocou (vários dedos valem).</div>
+        <div>Controle de videogame: analógico ou direcional mira, <kbd>X</kbd> <kbd>A</kbd> <kbd>B</kbd> disparam da base esquerda, central e direita, <kbd>RB</kbd>/<kbd>RT</kbd> da mais próxima, <kbd>Start</kbd> pausa.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="pausePanel" hidden>
+      <h2>PAUSADO</h2>
+      <p class="sub">Os meteoros congelaram no ar. Aproveite para respirar (e contar a munição).</p>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="resume">CONTINUAR</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+
+    <section class="panel" id="overPanel" hidden>
+      <h2 id="overTitle">FIM DE JOGO</h2>
+      <div class="big-score" id="overScore">0</div>
+      <p class="sub" id="overInfo"></p>
+      <p class="record" id="overRecord" hidden>NOVO RECORDE!</p>
+      <div class="rank" id="rankBox" hidden></div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">JOGAR DE NOVO</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="../../shared/common.js"></script>
+<script src="../../shared/firebase-config.js"></script>
+<script src="../../shared/ranking.js"></script>
+<script src="../../shared/presenca.js"></script>
+<script src="defesa.js"></script>
+</body>
+</html>

@@ -14,6 +14,8 @@ Tudo é HTML, CSS e JavaScript puro, sem build e sem dependências, publicado no
 | 2 | Invasores | Invasores, Paredão, Pong |
 | 3 | Come-Come | Come-Come, Travessia, Campo Minado |
 | 4 (especial) | Turbo Neon | Turbo Neon, Super Pixel |
+| 5 | Meteoros | Meteoros, Pouso Lunar, Defesa Total |
+| 6 | Rastro de Luz | Rastro de Luz, Bolhas, Joias |
 
 ## Códigos secretos
 
@@ -68,7 +70,7 @@ Os placares ficam em `ranking/{jogo-modo}/scores`. O plano gratuito permite 50 m
 ## Estrutura
 
 ```
-index.html                 banca: as 4 capas e o Hall da Fama
+index.html                 banca: as 6 capas e o Hall da Fama
 edicoes/NN/index.html      a revista (capa, análises, dicas, detonado, cartas, classificados, CD-ROM)
 edicoes/NN/arte.svg        arte da capa
 edicoes/NN/prints/         capturas de tela usadas nas análises

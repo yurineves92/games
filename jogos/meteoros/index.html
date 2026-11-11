@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Meteoros</title>
+<meta name="description" content="Meteoros: tiro espacial em vetores neon. Parta os meteoros, fuja do Caçador, pegue as cápsulas dos cristais e arrisque o hiperespaço.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23060310'/%3E%3Cpath d='M17 4l7 3 4 7-2 8-6 5-8-1-5-6 1-9z' fill='none' stroke='%23ff8a00' stroke-width='2' stroke-linejoin='round'/%3E%3Cpath d='M6 27l4-9 3 7-3-2z' fill='none' stroke='%237df9ff' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/style.css">
+<style>
+  /* botões de toque: FOGO (grande) e HIPER (pequeno) à direita */
+  .pbtn {
+    --size: 92px;
+    width: var(--size); height: var(--size); border-radius: 50%; flex: none;
+    font-family: var(--font); font-weight: 900; font-size: 16px; letter-spacing: 0.1em; color: #fff;
+    background: radial-gradient(circle, rgba(255, 59, 92, 0.18), rgba(0, 0, 0, 0.55) 70%);
+    border: 2px solid #ff3b5c; touch-action: none; user-select: none; -webkit-user-select: none;
+    box-shadow: 0 0 18px rgba(255, 59, 92, 0.45), inset 0 0 18px rgba(255, 59, 92, 0.3);
+  }
+  .pbtn.hyper {
+    --size: 62px; font-size: 11px; color: var(--accent); border-color: var(--accent);
+    background: radial-gradient(circle, color-mix(in srgb, var(--accent) 16%, transparent), rgba(0, 0, 0, 0.55) 70%);
+    box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 35%, transparent), inset 0 0 14px color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+  .pbtn.down { background: #ff3b5c; box-shadow: 0 0 26px #ff3b5c; }
+  .pbtn.hyper.down { background: var(--accent); color: #0d0518; box-shadow: 0 0 26px var(--accent); }
+  .pad-right .pad-row { display: flex; align-items: center; gap: 14px; }
+  @media (orientation: landscape) { .pad-right .pad-row { flex-direction: column; } }
+  @media (max-height: 520px) { .pbtn { --size: 76px; } .pbtn.hyper { --size: 54px; } }
+  @media (max-width: 520px) {
+    .topbar { gap: 4px 10px; padding: 6px 12px; }
+    .topbar h1 { font-size: 14px; letter-spacing: 0.12em; }
+    .hud { order: 3; flex-basis: 100%; gap: 2px 14px; font-size: 14px; }
+  }
+  .meteoros #game { cursor: crosshair; }
+  .legend { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 14px; margin: 12px 0 4px; text-align: left; font-family: var(--mono); font-size: 13px; color: #cbbfe0; }
+  .legend b { font-family: var(--font); font-weight: 900; font-size: 12px; letter-spacing: 0.06em; }
+  .legend i { font-style: normal; display: inline-grid; place-items: center; width: 18px; height: 18px; margin-right: 6px; border-radius: 50%; border: 2px solid currentColor; font-family: var(--font); font-weight: 900; font-size: 10px; box-shadow: 0 0 8px currentColor; vertical-align: -4px; }
+  @media (max-width: 420px) { .legend { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body class="game-page meteoros" style="--accent:#ff8a00">
+<header class="topbar">
+  <a class="back" href="../../edicoes/05/#cdrom">◄ REVISTA</a>
+  <h1>METEOROS</h1>
+  <div class="hud">
+    <span>PONTOS<b id="hScore">0</b></span>
+    <span>RECORDE<b id="hHi">0</b></span>
+    <span>VIDAS<b id="hLives">3</b></span>
+    <span>ONDA<b id="hWave">1</b></span>
+    <span class="hud-status" id="hStatus"></span>
+  </div>
+  <button class="icon-btn" id="padBtn" type="button" aria-label="Controles na tela">🎮</button>
+  <button class="icon-btn" id="muteBtn" type="button">🔊</button>
+</header>
+
+<main class="stage" id="stage">
+  <div class="pad pad-left">
+    <div class="vjoy" id="joy" aria-label="Joystick: aponta a nave, na borda acelera"><div class="vjoy-knob"></div></div>
+    <span class="pad-label">MIRA · BORDA ACELERA</span>
+  </div>
+  <div class="game-wrap" id="gameWrap">
+    <div class="screen" id="screen">
+      <canvas id="game" aria-label="Campo de meteoros"></canvas>
+    </div>
+  </div>
+  <div class="pad pad-right">
+    <div class="pad-row">
+      <button class="pbtn hyper" id="btnHyper" type="button" aria-label="Hiperespaço">HIPER</button>
+      <button class="pbtn fire" id="btnFire" type="button" aria-label="Atirar">FOGO</button>
+    </div>
+    <span class="pad-label">SEGURE = RAJADA</span>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <section class="panel" id="menuPanel">
+      <h2>METEOROS</h2>
+      <p class="sub">Uma chuva de pedras no meio do nada e só a sua navinha para segurar. Cada tiro parte os meteoros em pedaços menores, e as bordas dão a volta: o que sai de um lado entra pelo outro. Cuidado com o Caçador!</p>
+      <div class="legend">
+        <div><b style="color:#ff8a00">METEOROS</b> grande 20 · médio 50 · pequeno 100</div>
+        <div><b style="color:#ff2bd6">CAÇADOR</b> atira em você · 1000</div>
+        <div><b style="color:#c58bff">CRISTAL</b> raro, solta cápsula · 250</div>
+        <div><b style="color:#7df9ff">VIDA EXTRA</b> a cada 10.000 pontos</div>
+        <div><i style="color:#39ff14">E</i>escudo por 8 s</div>
+        <div><i style="color:#ffd400">D</i>tiro duplo por 12 s</div>
+        <div><i style="color:#ff3b5c">B</i>bomba que limpa a tela</div>
+        <div><b style="color:#ffd400">SEM ARRANHÃO</b> onda sem morrer · +1000</div>
+      </div>
+      <div class="opt">
+        <span class="opt-label">DIFICULDADE</span>
+        <div class="seg" data-setting="diff">
+          <button type="button" data-value="cadete">CADETE</button>
+          <button type="button" data-value="piloto">PILOTO</button>
+          <button type="button" data-value="as">ÁS</button>
+        </div>
+      </div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">INICIAR</button>
+      </div>
+      <div id="codeMount"></div>
+      <div class="keys">
+        <div class="no-touch"><kbd>←</kbd><kbd>→</kbd> ou <kbd>A</kbd><kbd>D</kbd> giram · <kbd>↑</kbd>/<kbd>W</kbd> acelera · <kbd>Espaço</kbd> atira (segure para rajada) · <kbd>Shift</kbd> ou <kbd>↓</kbd>/<kbd>S</kbd> hiperespaço</div>
+        <div class="no-touch"><kbd>P</kbd>/<kbd>Esc</kbd> pausa · <kbd>M</kbd> som</div>
+        <div>Na tela: o joystick aponta a nave e, empurrado até a borda, acelera. FOGO atira (segure para rajada) e HIPER teletransporta. 🎮 mostra/esconde os controles.</div>
+        <div>Controle de videogame: analógico esquerdo aponta (na ponta acelera), <kbd>A</kbd> atira, <kbd>B</kbd> hiperespaço, <kbd>Start</kbd> pausa.</div>
+        <div>Hiperespaço é roleta: a nave some e reaparece num ponto qualquer, e às vezes o motor dá pane.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="pausePanel" hidden>
+      <h2>PAUSADO</h2>
+      <p class="sub">Os meteoros esperam. Pedra tem paciência infinita.</p>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="resume">CONTINUAR</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+
+    <section class="panel" id="overPanel" hidden>
+      <h2 id="overTitle">FIM DE JOGO</h2>
+      <div class="big-score" id="overScore">0</div>
+      <p class="sub" id="overInfo"></p>
+      <p class="record" id="overRecord" hidden>NOVO RECORDE!</p>
+      <div class="rank" id="rankBox" hidden></div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">JOGAR DE NOVO</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="../../shared/common.js"></script>
+<script src="../../shared/firebase-config.js"></script>
+<script src="../../shared/ranking.js"></script>
+<script src="../../shared/presenca.js"></script>
+<script src="meteoros.js"></script>
+</body>
+</html>

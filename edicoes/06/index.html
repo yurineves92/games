@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="pt-BR" data-base="../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Super Neon Nº 6</title>
+<meta name="description" content="Super Neon Nº 6: Rastro de Luz na capa com duelo para 2 jogadores, Bolhas com o detonado das 10 fases, Joias e todos os códigos secretos.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ff2bd6'/%3E%3Ctext x='16' y='24' font-family='Arial Black' font-size='20' text-anchor='middle' fill='%23ffd400' stroke='%23000' stroke-width='1.5'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee&family=Caveat:wght@600&family=Press+Start+2P&family=Roboto+Condensed:ital,wght@0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../revista/revista.css">
+<style>
+  .pilotos { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 16px; margin: 6px 0 26px; }
+  .piloto { border: 3px solid #000; background: #0a0f1a; color: #fff; padding: 14px; box-shadow: 5px 5px 0 var(--c); }
+  .piloto h3 { font-family: var(--f-logo); font-weight: normal; font-size: 21px; color: var(--c); text-shadow: 2px 2px 0 #000; }
+  .piloto p { font-size: 15px; line-height: 1.4; margin-top: 6px; }
+</style>
+</head>
+<body style="--cor: var(--ciano)">
+
+<section class="mesa" aria-label="Capa">
+  <div data-capa="6"></div>
+  <div class="mesa-acoes">
+    <a class="botao" href="#editorial">Abrir a revista ▼</a>
+    <a class="botao escuro" href="#cdrom">💿 Direto pro CD-ROM</a>
+    <a class="botao alt" href="../../">◄ Banca</a>
+  </div>
+</section>
+
+<nav class="nav" aria-label="Seções da revista">
+  <a class="nav-logo" href="../../">SUPER <i>NEON</i> Nº6</a>
+  <a href="#editorial">Editorial</a>
+  <a href="#plantao">Plantão</a>
+  <a href="#analises">Análises</a>
+  <a href="#dicas">Dicas</a>
+  <a href="#duelo">Duelo</a>
+  <a href="#detonado">Detonado</a>
+  <a href="#cartas">Cartas</a>
+  <a href="#classificados">Classificados</a>
+  <a href="#cdrom">CD-ROM</a>
+</nav>
+
+<main class="revista">
+
+  <article class="pagina surge" id="editorial">
+    <span class="chapeu">Editorial</span>
+    <h1 class="titulo">Chame o seu irmão!</h1>
+    <p class="linha-fina">Uma edição para jogar junto, brigar pelo controle e fazer as pazes na hora do lanche.</p>
+    <div class="colunas">
+      <p>A pergunta mais repetida nas cartas dos últimos meses foi: "quando vem outro jogo para dois?". O Pong reinou sozinho por muito tempo. Chegou a hora de ele ganhar companhia.</p>
+      <p>Na capa, <b>Rastro de Luz</b>: quatro motos numa arena escura, cada uma deixando um muro de luz para trás. Quem bate, explode. Quem sobra, vence. Dá para jogar sozinho contra três pilotos da CPU com personalidades bem diferentes ou chamar alguém para dividir o teclado.</p>
+      <p>Para quem prefere pensar antes de agir, o CD-ROM traz dois quebra-cabeças de respeito: <b>Bolhas</b>, com mira que rebate na parede e dez fases desenhadas, e <b>Joias</b>, o combina-3 que fez a redação perder o horário do almoço três dias seguidos.</p>
+      <h3>Seis edições!</h3>
+      <p>Com esta, já são seis números e dezoito jogos no CD-ROM. O <a href="../../#hall">Hall da Fama</a> continua aberto para quem quiser deixar as iniciais na história.</p>
+      <p class="assinatura">A Redação</p>
+    </div>
+
+    <h2 class="titulo" style="font-size:34px;margin-top:30px">Nesta edição</h2>
+    <ul class="sumario">
+      <li><a href="#plantao"><span>04</span><div><b>Plantão Neon</b><small>Notícias em alta voltagem</small></div></a></li>
+      <li><a href="#rastro"><span>06</span><div><b>Rastro de Luz</b><small>Capa! Quatro motos e nenhum freio</small></div></a></li>
+      <li><a href="#bolhas"><span>10</span><div><b>Bolhas</b><small>Mire, rebata e estoure</small></div></a></li>
+      <li><a href="#joias"><span>13</span><div><b>Joias</b><small>Combine 3 e não pare nunca mais</small></div></a></li>
+      <li><a href="#dicas"><span>16</span><div><b>Dicas &amp; Macetes</b><small>Os 9 códigos secretos</small></div></a></li>
+      <li><a href="#duelo"><span>19</span><div><b>Duelo</b><small>Conheça os pilotos da CPU</small></div></a></li>
+      <li><a href="#detonado"><span>21</span><div><b>Detonado</b><small>Bolhas: as 10 fases</small></div></a></li>
+      <li><a href="#cartas"><span>24</span><div><b>Cartas</b><small>O correio da galera</small></div></a></li>
+      <li><a href="#classificados"><span>26</span><div><b>Classificados</b><small>Compra, vende, troca e procura</small></div></a></li>
+      <li><a href="#cdrom"><span>28</span><div><b>CD-ROM</b><small>Os 3 jogos completos desta edição</small></div></a></li>
+    </ul>
+    <div class="folio"><span>Super Neon Nº 6</span><span>3</span></div>
+  </article>
+
+  <section class="pagina surge" id="plantao" style="--cor: var(--magenta)">
+    <span class="chapeu">Plantão Neon</span>
+    <h2 class="titulo">Alta voltagem</h2>
+    <div class="noticias">
+      <div class="noticia" style="--c: var(--ciano)">
+        <h3>Conta de luz da redação triplica</h3>
+        <p>A culpa, segundo o departamento financeiro, é das motos do Rastro de Luz, que deixam muros acesos por toda a arena. A redação nega tudo.</p>
+      </div>
+      <div class="noticia" style="--c: var(--magenta)">
+        <h3>Falta plástico-bolha no país</h3>
+        <p>Depois que a equipe conheceu o Bolhas, ninguém mais consegue ver um plástico-bolha sem estourar. Os Correios pedem calma.</p>
+      </div>
+      <div class="noticia" style="--c: var(--amarelo)">
+        <h3>Joalheria pede para sair do CD-ROM</h3>
+        <p>Uma joalheria do centro reclamou que os leitores estão tentando trocar joias de lugar nas vitrines. "Só vale se formar três iguais", explicou um cliente.</p>
+      </div>
+      <div class="noticia" style="--c: var(--verde)">
+        <h3>Recorde de cartas: 2 jogadores</h3>
+        <p>Foram tantos pedidos de jogo para dois que o carteiro da redação pediu férias. Esta edição é dedicada a ele.</p>
+      </div>
+    </div>
+    <div class="folio"><span>Plantão</span><span>4</span></div>
+  </section>
+
+  <section class="pagina surge" id="analises" style="--cor: var(--ciano)">
+    <span class="chapeu">Análises</span>
+    <h2 class="titulo">Testamos tudo</h2>
+    <p class="linha-fina">Notas de 0 a 5 em Gráfico, Som, Jogabilidade e Diversão.</p>
+
+    <article class="analise" id="rastro" style="--c:#0891b2">
+      <div class="analise-topo"><h3>Rastro de Luz</h3><span>Ação · 1 ou 2 jogadores · ★ Capa</span></div>
+      <div class="analise-corpo">
+        <div class="prints">
+          <figure class="print" style="--r:-1.5deg"><img src="prints/rastro-1.jpg" alt="Arena em grade escura com muros de luz ciano, magenta, amarelo e verde formando labirintos" loading="lazy" width="640" height="480"><figcaption>A magenta se enrolou toda. Não vai durar muito.</figcaption></figure>
+        </div>
+        <div>
+          <div class="texto">
+            <p>Quatro motos numa arena escura. Cada uma anda sempre para a frente, vira em ângulo reto e deixa para trás um muro de luz. Bateu em muro, rastro ou parede? Explode. O último que sobrar vence a rodada, e quem vencer <b>5 rodadas</b> leva a partida.</p>
+            <p>No <b>1 jogador</b>, você enfrenta três pilotos da CPU, cada um com seu jeito de pilotar (conheça todos no <a href="#duelo">Duelo</a>), em três dificuldades. No <b>2 jogadores</b>, um fica com o WASD, o outro com as setas, e as motos que sobram ficam com a CPU. Cada moto tem uma barra de <b>turbo</b> que dura uns 2 segundos e leva uns 10 para encher.</p>
+            <p>Dois detalhes deixam tudo mais emocionante. Se a rodada passar de 30 segundos, as paredes da arena começam a avançar. E de vez em quando aparecem itens na grade: <b>⚡ CARGA</b> enche o turbo e <b>✦ PULSO</b> apaga todos os rastros em volta.</p>
+          </div>
+          <div class="ficha"><dl><dt>Gênero</dt><dd>Duelo de motos de luz</dd><dt>Modos</dt><dd>1 jogador (3 dificuldades) ou 2 jogadores</dd><dt>Controles</dt><dd>Teclado, toque, deslize e 2 controles</dd><dt>Partida</dt><dd>Melhor de 5 rodadas</dd></dl></div>
+          <div class="notas">
+            <div class="nota-final"><div><small>NOTA</small><b>4,9</b></div></div>
+            <h4>Notas</h4>
+            <div class="nota" style="--v:4.5">Gráfico<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:4.5">Som<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:5">Jogabilidade<i></i><b>5,0</b></div>
+            <div class="nota" style="--v:5">Diversão<i></i><b>5,0</b></div>
+          </div>
+          <p class="veredito">Veredito: a redação parou de trabalhar por uma tarde inteira para um campeonato. Sozinho é ótimo, com alguém do lado é o melhor jogo do CD-ROM até hoje.</p>
+          <p class="jogar-agora"><a class="botao" href="../../jogos/rastro/">▶ Jogar Rastro de Luz</a></p>
+        </div>
+      </div>
+    </article>
+
+    <article class="analise" id="bolhas" style="--c:#c026d3">
+      <div class="analise-topo"><h3>Bolhas</h3><span>Quebra-cabeça · 1 jogador</span></div>
+      <div class="analise-corpo">
+        <div class="prints">
+          <figure class="print" style="--r:1deg"><img src="prints/bolhas-1.jpg" alt="Bolhas vermelhas e laranja formando um coração, com bolhas despencando e o texto QUEDA +2540" loading="lazy" width="640" height="480"><figcaption>Fase 2, Coração Neon: corte o fio certo e tudo despenca.</figcaption></figure>
+        </div>
+        <div>
+          <div class="texto">
+            <p>Lá em cima, uma grade de bolhas coloridas presa num teto que desce. Lá embaixo, o seu canhão. Mire com a linha pontilhada, que rebate nas paredes, e grude a bolha onde quiser. Juntou <b>3 ou mais</b> da mesma cor? Estouram. E tudo o que ficar sem ligação com o teto despenca, valendo cada vez mais: 20, 40, 80… até 1.280 por bolha.</p>
+            <p>Cada cor tem um símbolo próprio (▲ ◆ ★ ■ ◎ ✚), ótimo para quem confunde cores. Dá para ver a próxima bolha e trocar. A cada tiro que não estoura nada, o teto chega mais perto, e se uma bolha passar da linha do canhão, acabou.</p>
+            <p>São <b>10 fases</b> desenhadas a mão, com coração, invasor, carinha sorridente e uma espiral chefona (veja o <a href="#detonado">detonado</a>), depois fases-surpresa sem fim. A partir da fase 6 aparecem bolhas especiais: bomba, coringa arco-íris e o raio, que atravessa tudo. No modo <b>Infinito</b>, o teto desce sozinho.</p>
+          </div>
+          <div class="ficha"><dl><dt>Gênero</dt><dd>Atirador de bolhas</dd><dt>Fases</dt><dd>10 desenhadas + surpresas sem fim</dd><dt>Controles</dt><dd>Mouse, toque, teclado e controle</dd><dt>Modos</dt><dd>Fases ou Infinito</dd></dl></div>
+          <div class="notas">
+            <div class="nota-final"><div><small>NOTA</small><b>4,7</b></div></div>
+            <h4>Notas</h4>
+            <div class="nota" style="--v:5">Gráfico<i></i><b>5,0</b></div>
+            <div class="nota" style="--v:4.5">Som<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:4.5">Jogabilidade<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:5">Diversão<i></i><b>5,0</b></div>
+          </div>
+          <p class="veredito">Veredito: no celular em pé é perfeito, arrastar e soltar. O "pop" que vai subindo de tom no combo devia ser vendido em farmácia como calmante.</p>
+          <p class="jogar-agora"><a class="botao" href="../../jogos/bolhas/">▶ Jogar Bolhas</a></p>
+        </div>
+      </div>
+    </article>
+
+    <article class="analise" id="joias" style="--c:#ca8a04">
+      <div class="analise-topo"><h3>Joias</h3><span>Quebra-cabeça · 1 jogador</span></div>
+      <div class="analise-corpo">
+        <div class="prints">
+          <figure class="print" style="--r:-1deg"><img src="prints/joias-1.jpg" alt="Tabuleiro de joias coloridas de vários formatos, com joias novas caindo numa coluna" loading="lazy" width="640" height="480"><figcaption>Cascata! Cada passo aumenta o combo.</figcaption></figure>
+        </div>
+        <div>
+          <div class="texto">
+            <p>Um tabuleiro 8×8 com sete joias, cada uma com cor <b>e</b> formato próprios: Brasa, Safira, Esmeralda, Citrino, Ametista, Quartzo-Rosa e Água-Marinha. Troque duas vizinhas para alinhar três iguais. Elas estouram, as de cima caem, as novas entram, e cada cascata aumenta o combo (×2, ×3…). No ×5, a tela grita "SUPER NEON!".</p>
+            <p>Alinhe 4 e ganhe um <b>RAIO</b>, que limpa a linha ou a coluna. Um L ou um T vira <b>BOMBA</b>, que estoura 3×3. Cinco em linha viram <b>ESTRELA</b>, que apaga todas as joias de uma cor. E tem mais: troque duas especiais entre si e saem combinações como a MEGABOMBA (5×5) e a SUPER NEON, que limpa o tabuleiro inteiro.</p>
+            <p>No modo <b>Clássico</b> você tem 20 jogadas para bater a meta de cada nível, passando por oito cenários, da Caverna de Quartzo ao Núcleo Neon. No <b>Contra o Relógio</b> são 90 segundos, e cada cascata devolve tempo.</p>
+          </div>
+          <div class="ficha"><dl><dt>Gênero</dt><dd>Combinar 3</dd><dt>Modos</dt><dd>Clássico ou Contra o Relógio</dd><dt>Controles</dt><dd>Arrastar, tocar, teclado e controle</dd><dt>Dificuldade</dt><dd>Fácil de aprender, difícil de largar</dd></dl></div>
+          <div class="notas">
+            <div class="nota-final"><div><small>NOTA</small><b>4,6</b></div></div>
+            <h4>Notas</h4>
+            <div class="nota" style="--v:5">Gráfico<i></i><b>5,0</b></div>
+            <div class="nota" style="--v:4">Som<i></i><b>4,0</b></div>
+            <div class="nota" style="--v:4.5">Jogabilidade<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:5">Diversão<i></i><b>5,0</b></div>
+          </div>
+          <p class="veredito">Veredito: "só mais uma partida" virou a frase oficial da redação. Cuidado com o horário do almoço.</p>
+          <p class="jogar-agora"><a class="botao" href="../../jogos/joias/">▶ Jogar Joias</a></p>
+        </div>
+      </div>
+    </article>
+    <div class="folio"><span>Análises</span><span>6–15</span></div>
+  </section>
+
+  <section class="pagina surge" id="dicas" style="--cor: var(--verde)">
+    <span class="chapeu">Dicas &amp; Macetes</span>
+    <h2 class="titulo">Códigos secretos</h2>
+    <p class="linha-fina">Digite o código na caixa <b>CÓDIGO SECRETO</b> do menu do jogo. O KONAMI também vale pela sequência <span class="setas">↑ ↑ ↓ ↓ ← → ← → B A</span> no teclado, com o menu aberto. No celular, escreva KONAMI na caixa.</p>
+    <div class="dicas">
+      <div class="dica" style="--c:#0891b2">
+        <h3>Rastro de Luz</h3>
+        <div class="dica-corpo">
+          <div class="senha"><code>KONAMI</code><p>As bordas da arena dão a volta para você: sai de um lado, entra pelo outro.</p></div>
+          <div class="senha"><code>TURBO</code><p>Turbo infinito.</p></div>
+          <div class="senha"><code>FANTASMA</code><p>Você atravessa o próprio rastro.</p></div>
+        </div>
+      </div>
+      <div class="dica" style="--c:#c026d3">
+        <h3>Bolhas</h3>
+        <div class="dica-corpo">
+          <div class="senha"><code>KONAMI</code><p>Mira completa, com todos os rebotes e uma bolha-fantasma onde a sua vai grudar.</p></div>
+          <div class="senha"><code>ARCOIRIS</code><p>A cada 5 bolhas, vem um coringa arco-íris.</p></div>
+          <div class="senha"><code>BOMBA</code><p>3 bombas guardadas por fase. Aperte B (X no controle) ou toque no ícone ao lado do canhão.</p></div>
+        </div>
+      </div>
+      <div class="dica" style="--c:#ca8a04">
+        <h3>Joias</h3>
+        <div class="dica-corpo">
+          <div class="senha"><code>KONAMI</code><p>Do combo ×3 em diante, cada cascata cria uma joia especial.</p></div>
+          <div class="senha"><code>DICA</code><p>A dica aparece na hora, sempre.</p></div>
+          <div class="senha"><code>TEMPO</code><p>180 segundos no relógio, 30 jogadas por nível no clássico.</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="box-aviso">⚠ Com qualquer código ligado, o recorde não é salvo e o placar fica fora do Hall da Fama.</p>
+
+    <h2 class="titulo" style="font-size:34px;margin-top:34px">Macetes dos profissionais</h2>
+    <div class="colunas">
+      <h3>Rastro de Luz: dispute o meio</h3>
+      <p>Depois de 30 segundos, a arena encolhe pelas bordas, uma volta a cada 1,5 segundo. Quem fica colado na parede externa é o primeiro a sumir. Quando uma moto explode, o rastro dela desaparece em menos de um segundo: um corredor fechado pode se abrir de repente. E o ✦ PULSO apaga todos os rastros num raio de 5 casas, inclusive o seu. É a saída de emergência de um cerco.</p>
+      <h3>Rastro de Luz: o "U" relâmpago</h3>
+      <p>Dois toques rápidos no mesmo lado fazem a moto dar meia-volta: a segunda virada entra na fila e acontece na casa seguinte. Economize o turbo para fugir ou para fechar alguém, porque ele acaba em uns 2 segundos e leva 10 para recarregar. A ⚡ CARGA enche a barra na hora.</p>
+      <h3>Bolhas: derrubar vale mais que estourar</h3>
+      <p>Estourar dá 10 pontos por bolha. Derrubar começa em 20 e dobra a cada bolha que cai, até 1.280 cada. Procure a bolha que segura um cacho grande e mire nela. Só os tiros que <b>não</b> estouram nada fazem o teto descer. Na dúvida, troque a bolha antes de chutar. Limpar a fase com menos de 40 tiros dá +20 por tiro economizado.</p>
+      <h3>Bolhas: o coringa decide sozinho</h3>
+      <p>Jogue o coringa arco-íris entre duas cores: ele vira a cor que formar o maior grupo. E o canhão só sorteia cores que ainda existem na tela. Quando uma cor some de vez, as bolhas dela no canhão trocam de cor sozinhas.</p>
+      <h3>Joias: jogue por baixo</h3>
+      <p>Estourar lá embaixo faz o tabuleiro inteiro cair e gera mais cascatas, e o combo multiplica tudo, inclusive os bônus das especiais. A especial nasce na casa onde você soltou a joia, então arraste a peça para o meio do tabuleiro, onde o raio ou a bomba pega mais coisa.</p>
+      <h3>Joias: case as especiais</h3>
+      <p>Guarde duas especiais lado a lado e troque uma com a outra. ESTRELA + BOMBA vira a CHUVA DE BOMBAS: toda joia daquela cor vira bomba e explode, rendendo de 3.000 a 5.000 pontos de uma vez. No Clássico, troca que não forma nada não gasta jogada, e cada jogada que sobra ao bater a meta vale 50 × nível. No Relógio, um combo ×4 devolve 6 segundos.</p>
+    </div>
+    <div class="folio"><span>Dicas &amp; Macetes</span><span>16–18</span></div>
+  </section>
+
+  <section class="pagina surge" id="duelo" style="--cor: var(--magenta)">
+    <span class="chapeu">Duelo</span>
+    <h2 class="titulo">Conheça os pilotos</h2>
+    <p class="linha-fina">No Rastro de Luz, cada moto da CPU tem personalidade própria. Saber quem é quem vale mais que turbo.</p>
+    <div class="pilotos">
+      <div class="piloto" style="--c:#00e5ff">
+        <h3>Você</h3>
+        <p>A moto ciano. Setas ou WASD apontam a direção, Espaço é turbo. No celular, os botões ◄ ► viram e o deslize aponta. Na demonstração do menu, ela se chama RAIO.</p>
+      </div>
+      <div class="piloto" style="--c:#ff2bd6">
+        <h3>Navalha</h3>
+        <p>A agressiva. Mira um ponto de 2 a 7 casas à frente da moto mais próxima, de preferência você, e acelera para fechar. Faça uma curva fechada e ela costuma bater no seu rastro: cada abate vale 150 × dificuldade.</p>
+      </div>
+      <div class="piloto" style="--c:#ffd400">
+        <h3>Tatu</h3>
+        <p>A cautelosa. Sempre escolhe o caminho com mais espaço livre e só usa turbo em reta longa. Difícil de pegar, mas não ataca ninguém. No 2 jogadores, ela e a Pirada fazem o papel de obstáculo.</p>
+      </div>
+      <div class="piloto" style="--c:#39ff14">
+        <h3>Pirada</h3>
+        <p>A maluca. Faz curvas sem motivo e dá turbo quando dá na telha. Erra a metade do que as outras erram, então não subestime: às vezes ela fecha você sem querer.</p>
+      </div>
+    </div>
+    <div class="colunas">
+      <h3>As dificuldades</h3>
+      <p><b>Fácil:</b> a CPU enxerga pouco à frente e não vê o muro em 30% das vezes. Pontos ×1. <b>Normal:</b> enxerga bem mais longe, erra só 8% das vezes e já evita encostar na cabeça das outras motos. Pontos ×2. <b>Difícil:</b> pensa longe e quase nunca erra (1,5%). Pontos ×3.</p>
+      <h3>Como pontuar no 1 jogador</h3>
+      <p>10 pontos por segundo vivo, 150 por abate (CPU que bate no seu rastro), 50 por item, 500 por rodada vencida e 2.000 por vencer a partida, tudo multiplicado pela dificuldade. Ficar vivo até o fim de cada rodada rende tanto quanto vencer. Se você cair, a rodada acelera 2,5× até o fim para ninguém ficar esperando.</p>
+    </div>
+    <div class="folio"><span>Duelo</span><span>19–20</span></div>
+  </section>
+
+  <section class="pagina surge" id="detonado" style="--cor: var(--laranja)">
+    <span class="chapeu">Detonado</span>
+    <h2 class="titulo">Bolhas: as 10 fases</h2>
+    <p class="linha-fina">Fase por fase, bolha por bolha. Lembre: o teto desce quando a contagem do TETO EM chega a zero, e a contagem fica mais curta conforme você avança (8 tiros nas fases 1 e 2, 5 tiros nas fases 8 a 10).</p>
+    <ol class="passos">
+      <li><h4>Fase 1 · Primeiro Sopro</h4>Três cores em faixas encaixadas, para esquentar o dedo. Treine o rebote na parede: mirar no vidro lateral é o jeito de alcançar os cantos.</li>
+      <li><h4>Fase 2 · Coração Neon</h4>Um coração vermelho de contorno laranja, com um brilho amarelo. O coração inteiro fica pendurado no teto só pelos dois arcos laranja do alto. Estoure os arcos e ele despenca de uma vez.</li>
+      <li><h4>Fase 3 · Onda de Choque</h4>Faixas onduladas de ciano, violeta e verde. As ondas deixam bolsões escondidos. Use a parede para chegar neles antes que o teto desça.</li>
+      <li><h4>Fase 4 · Xadrez Maluco</h4>Blocos em xadrez: amarelo e violeta em cima, ciano e vermelho embaixo. Cada bloco já tem quatro bolhas iguais, então qualquer acerto da cor certa estoura. Comece pela metade de baixo: os blocos de cima ficam mais perto do teto e caem por último.</li>
+      <li><h4>Fase 5 · Pirâmide Pendurada</h4>O macete da edição: a pirâmide inteira está presa ao teto só pela ponta amarela. Grude uma amarela ao lado da ponta e tudo despenca. Nos nossos testes, isso rendeu quase 63 mil pontos num tiro só!</li>
+      <li><h4>Fase 6 · Invasor de Gelatina</h4>Um alienígena roxo de olhos verdes, pendurado pelas antenas numa faixa ciano e laranja. Corte as antenas e o bicho cai. A partir daqui começam a aparecer bolhas especiais no canhão.</li>
+      <li><h4>Fase 7 · Arco-Íris</h4>As seis cores em arcos, uma dentro da outra. Comece pelo arco de baixo: cada camada que some deixa a de cima pendurada por menos bolhas.</li>
+      <li><h4>Fase 8 · Sorriso Amarelo</h4>Uma carinha feliz de olhos ciano e boca vermelha, com franja violeta. O teto agora desce a cada 5 tiros perdidos. Derrube a boca primeiro, porque ela fica perto da linha do canhão.</li>
+      <li><h4>Fase 9 · Jardim de Cristal</h4>Oito flores hexagonais (miolo e pétalas) sobre um fundo violeta e verde. Os miolos são bolhas soltas no meio das pétalas, difíceis de casar. Guarde o coringa para cá e não chute: o teto desce a cada 5 tiros perdidos.</li>
+      <li><h4>Fase 10 · Olho do Furacão</h4>O chefão: uma espiral com as seis cores em 11 fileiras. Tenha paciência e trabalhe de fora para dentro. Venceu? Começam as fases-surpresa, da Zona Surpresa à Espuma Radioativa, cada vez com mais fileiras e mais cores.</li>
+    </ol>
+    <div class="folio"><span>Detonado</span><span>21–23</span></div>
+  </section>
+
+  <section class="pagina surge" id="cartas" style="--cor: var(--vermelho)">
+    <span class="chapeu">Cartas</span>
+    <h2 class="titulo">Fala, leitor!</h2>
+    <div class="cartas">
+      <div class="carta" style="--r:-0.8deg">
+        <p class="msg">Pousei em Marte, na Lua e em todos os outros astros do Pouso Lunar. Vocês deveriam me contratar para a NASA.</p>
+        <p class="de">Henrique, 14 anos, São José dos Campos (SP)</p>
+        <p class="resp"><b>SN:</b> Henrique, a gente não tem contato na NASA, mas tem uma vaga de testador de pouso na redação. Paga em balas de goma.</p>
+      </div>
+      <div class="carta" style="--r:0.6deg">
+        <p class="msg">No Defesa Total, eu salvei as seis cidades até a onda 12 e aí a minha irmã desligou o computador para usar o telefone. Isso vale como recorde?</p>
+        <p class="de">Camila, Manaus (AM)</p>
+        <p class="resp"><b>SN:</b> Camila, no nosso coração vale. No Hall da Fama, infelizmente, não. Combine um horário com a sua irmã e tente de novo!</p>
+      </div>
+      <div class="carta" style="--r:-0.3deg">
+        <p class="msg">Por que no Meteoros a nave continua andando quando eu solto o botão? Está quebrado?</p>
+        <p class="de">Pedro, 10 anos, Salvador (BA)</p>
+        <p class="resp"><b>SN:</b> Não está quebrado, Pedro: é o espaço! Lá não tem ar para frear a nave. Para parar, vire a nave ao contrário e acelere um pouquinho.</p>
+      </div>
+      <div class="carta" style="--r:0.9deg">
+        <p class="msg">Minha avó joga Campo Minado no Expert de olhos fechados. Vocês têm algum jogo em que ela perca?</p>
+        <p class="de">Luísa, 12 anos, Belo Horizonte (MG)</p>
+        <p class="resp"><b>SN:</b> Luísa, desafie a sua avó no Rastro de Luz, modo 2 jogadores. Mas cuidado: avó que ganha no Expert de olhos fechados provavelmente ganha nisso também.</p>
+      </div>
+    </div>
+    <div class="folio"><span>Cartas</span><span>24–25</span></div>
+  </section>
+
+  <section class="pagina surge" id="classificados" style="--cor: var(--tinta)">
+    <span class="chapeu">Classificados</span>
+    <h2 class="titulo">Troca-troca</h2>
+    <div class="classificados">
+      <div class="classificado"><b>Vendo</b>Moto de luz seminova. Rastro em perfeito estado, só uma batida leve na parede leste.<span class="tel">TEL (21) 5555-0606</span></div>
+      <div class="classificado"><b>Procuro</b>Parceiro para o modo 2 jogadores. Exijo que use o lado das setas. Eu fico com o WASD.<span class="tel">TEL (11) 5555-0161</span></div>
+      <div class="classificado"><b>Troco</b>Coleção de bolhas raras (todas as cores) por uma bolha bomba. Só uma.<span class="tel">CX. POSTAL 3333</span></div>
+      <div class="classificado"><b>Ofereço</b>Aulas de combina-3. Método próprio: olhar para baixo do tabuleiro primeiro.<span class="tel">TEL (84) 5555-0192</span></div>
+      <div class="classificado"><b>Perdi</b>Uma joia amarela em forma de estrela. Recompensa: outra joia amarela em forma de estrela.<span class="tel">TEL (27) 5555-0130</span></div>
+      <div class="classificado"><b>Clube</b>Clube do Muro de Luz. Reuniões na arena às sextas. Proibido virar sem dar seta.<span class="tel">ARENA NEON, QUADRA 6</span></div>
+    </div>
+    <div class="anuncio" style="--anuncio: linear-gradient(135deg, #000, #003a5a 50%, #00e5ff)">
+      <h3>Luvas de Piloto de Luz</h3>
+      <p>Com faixas neon que acendem quando você vira à esquerda. E quando vira à direita também. Dedos livres para o turbo.</p>
+      <span class="preco">só R$ 17,90</span>
+      <small>Produto imaginário. Não acende. Nem existe. Mas que seria legal, seria.</small>
+    </div>
+    <div class="folio"><span>Classificados</span><span>26–27</span></div>
+  </section>
+
+  <section class="cdrom-mesa" id="cdrom" aria-label="CD-ROM da edição">
+    <div data-cdrom="6"></div>
+  </section>
+
+  <section class="pagina surge" style="--cor: var(--magenta)">
+    <span class="chapeu">Até a próxima</span>
+    <h2 class="titulo">Continue jogando!</h2>
+    <p class="linha-fina">Seis edições e dezoito jogos depois, a redação vai recarregar o turbo. Os CD-ROMs continuam aqui, o Hall da Fama continua aberto e a próxima edição chega quando o carteiro voltar das férias.</p>
+    <p><a class="botao escuro" href="../../">◄ Voltar para a banca</a> <a class="botao alt" href="../../#hall">Ver o Hall da Fama</a></p>
+    <h3 style="font-family:var(--f-grito);font-size:24px;margin-top:26px;font-weight:normal">Expediente</h3>
+    <div class="expediente">
+      <p><b>Super Neon</b>, a revista de games que vem com jogo. Número 6, Ano 2.</p>
+      <p><b>Redação:</b> dividindo o teclado em dois. <b>CD-ROM:</b> jogos feitos só com HTML, CSS e JavaScript.</p>
+      <p>Fan games não oficiais e sem fins lucrativos. Os clássicos que inspiraram nossos jogos são marcas de seus respectivos donos.</p>
+    </div>
+    <div class="folio"><span>Super Neon Nº 6</span><span>30</span></div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <a href="../05/">◄ Edição anterior</a> · <a href="../../">Banca</a>
+</footer>
+
+<script src="../../shared/common.js"></script>
+<script src="../../shared/firebase-config.js"></script>
+<script src="../../shared/ranking.js"></script>
+<script src="../../shared/presenca.js"></script>
+<script src="../../revista/edicoes.js"></script>
+<script src="../../revista/revista.js"></script>
+<script src="../../revista/musica.js"></script>
+</body>
+</html>

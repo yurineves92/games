@@ -436,7 +436,7 @@ img, svg { max-width: 100%; }
 .prateleira { max-width: 1180px; margin: 30px auto 0; padding: 0 16px; }
 .prateleira-titulo { font-family: var(--f-grito); font-size: 30px; color: var(--amarelo); letter-spacing: 0.06em; text-shadow: 2px 2px 0 #000; margin-bottom: 14px; }
 .capas {
-  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px; align-items: end;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; align-items: end;
   padding: 18px 18px 26px; position: relative;
   background: linear-gradient(transparent calc(100% - 18px), #5a3a1d calc(100% - 18px), #3d2712);
   border-radius: 4px;

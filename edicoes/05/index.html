@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="pt-BR" data-base="../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Super Neon Nº 5</title>
+<meta name="description" content="Super Neon Nº 5: Meteoros na capa, Pouso Lunar com o guia dos 5 astros, Defesa Total contra a chuva de mísseis e todos os códigos secretos.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ff2bd6'/%3E%3Ctext x='16' y='24' font-family='Arial Black' font-size='20' text-anchor='middle' fill='%23ffd400' stroke='%23000' stroke-width='1.5'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee&family=Caveat:wght@600&family=Press+Start+2P&family=Roboto+Condensed:ital,wght@0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../revista/revista.css">
+<style>
+  .astros { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 16px; margin: 6px 0 26px; }
+  .astro { border: 3px solid #000; background: var(--bg); color: #fff; padding: 14px; box-shadow: 5px 5px 0 #000; }
+  .astro h3 { font-family: var(--f-logo); font-weight: normal; font-size: 22px; text-shadow: 2px 2px 0 #000; }
+  .astro dl { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; font-size: 15px; margin: 6px 0; }
+  .astro dt { font-weight: 900; text-transform: uppercase; font-size: 12px; letter-spacing: 0.08em; padding-top: 2px; opacity: 0.85; }
+  .astro p { font-size: 15px; line-height: 1.4; }
+</style>
+</head>
+<body style="--cor: var(--laranja)">
+
+<section class="mesa" aria-label="Capa">
+  <div data-capa="5"></div>
+  <div class="mesa-acoes">
+    <a class="botao" href="#editorial">Abrir a revista ▼</a>
+    <a class="botao escuro" href="#cdrom">💿 Direto pro CD-ROM</a>
+    <a class="botao alt" href="../../">◄ Banca</a>
+  </div>
+</section>
+
+<nav class="nav" aria-label="Seções da revista">
+  <a class="nav-logo" href="../../">SUPER <i>NEON</i> Nº5</a>
+  <a href="#editorial">Editorial</a>
+  <a href="#plantao">Plantão</a>
+  <a href="#analises">Análises</a>
+  <a href="#dicas">Dicas</a>
+  <a href="#guia">Guia</a>
+  <a href="#cartas">Cartas</a>
+  <a href="#classificados">Classificados</a>
+  <a href="#cdrom">CD-ROM</a>
+</nav>
+
+<main class="revista">
+
+  <article class="pagina surge" id="editorial">
+    <span class="chapeu">Editorial</span>
+    <h1 class="titulo">Houston, voltamos!</h1>
+    <p class="linha-fina">A redação tirou um mês de férias e voltou com a cabeça nas estrelas. Literalmente: esta edição inteira se passa no espaço.</p>
+    <div class="colunas">
+      <p>Prometemos que voltaríamos quando menos se esperasse, e cá estamos. Durante as férias, metade da redação ficou olhando o céu e a outra metade ficou jogando. Juntamos as duas coisas e saiu a edição mais espacial da história da Super Neon.</p>
+      <p>Na capa, <b>Meteoros</b>: uma navezinha de vetores neon no meio de uma chuva de pedras que se partem em pedaços cada vez menores e mais rápidos. Tem nave caçadora, meteoro de cristal com cápsula de poder e um botão de hiperespaço para quando a coisa ficar feia de verdade.</p>
+      <p>Depois, o <b>Pouso Lunar</b>, para quem gosta de física e de suar frio: gire, acelere, economize combustível e pouse suave em cinco astros diferentes. E, para fechar, a <b>Defesa Total</b>: seis cidades, três bases e o céu inteiro caindo na sua cabeça.</p>
+      <h3>Novidade: o Guia do Sistema Solar</h3>
+      <p>Em vez do detonado de sempre, preparamos um <a href="#guia">guia</a> com cada astro do Pouso Lunar: gravidade, vento, relevo e onde ficam as plataformas que valem mais. Recorte e cole do lado do monitor.</p>
+      <p class="assinatura">A Redação</p>
+    </div>
+
+    <h2 class="titulo" style="font-size:34px;margin-top:30px">Nesta edição</h2>
+    <ul class="sumario">
+      <li><a href="#plantao"><span>04</span><div><b>Plantão Neon</b><small>Notícias direto da órbita</small></div></a></li>
+      <li><a href="#meteoros"><span>06</span><div><b>Meteoros</b><small>Capa! Chuva de pedra no espaço</small></div></a></li>
+      <li><a href="#pouso-lunar"><span>10</span><div><b>Pouso Lunar</b><small>Devagar e sempre, piloto</small></div></a></li>
+      <li><a href="#defesa-total"><span>13</span><div><b>Defesa Total</b><small>O céu está caindo</small></div></a></li>
+      <li><a href="#dicas"><span>16</span><div><b>Dicas &amp; Macetes</b><small>Os 9 códigos secretos</small></div></a></li>
+      <li><a href="#guia"><span>20</span><div><b>Guia do Sistema Solar</b><small>Os 5 astros do Pouso Lunar</small></div></a></li>
+      <li><a href="#cartas"><span>24</span><div><b>Cartas</b><small>O correio da galera</small></div></a></li>
+      <li><a href="#classificados"><span>26</span><div><b>Classificados</b><small>Compra, vende, troca e procura</small></div></a></li>
+      <li><a href="#cdrom"><span>28</span><div><b>CD-ROM</b><small>Os 3 jogos completos desta edição</small></div></a></li>
+    </ul>
+    <div class="folio"><span>Super Neon Nº 5</span><span>3</span></div>
+  </article>
+
+  <section class="pagina surge" id="plantao" style="--cor: var(--ciano)">
+    <span class="chapeu">Plantão Neon</span>
+    <h2 class="titulo">Notícias da órbita</h2>
+    <div class="noticias">
+      <div class="noticia" style="--c: var(--laranja)">
+        <h3>Chuva de meteoros vista em vários monitores</h3>
+        <p>Leitores de todo o país relatam pedras laranja atravessando a tela. Os astrônomos da redação garantem: é só abrir o CD-ROM desta edição.</p>
+      </div>
+      <div class="noticia" style="--c: var(--ciano)">
+        <h3>Piloto pousa com zero de combustível</h3>
+        <p>Um leitor de Belém jura que pousou na plataforma ×5 com o tanque vazio. A redação pediu provas. Ele mandou uma foto do monitor tremida.</p>
+      </div>
+      <div class="noticia" style="--c: var(--vermelho)">
+        <h3>Prefeito agradece Defesa Total</h3>
+        <p>As seis cidades neon seguem de pé depois de uma noite agitada. Ao ser perguntado sobre o segredo, o prefeito respondeu: "reação em cadeia".</p>
+      </div>
+      <div class="noticia" style="--c: var(--amarelo)">
+        <h3>Próximo número: motos de luz!</h3>
+        <p>A Super Neon Nº 6 traz o Rastro de Luz na capa, com duelo para 2 jogadores, e ainda Bolhas e Joias no CD-ROM. Treine os reflexos.</p>
+      </div>
+    </div>
+    <div class="folio"><span>Plantão</span><span>4</span></div>
+  </section>
+
+  <section class="pagina surge" id="analises" style="--cor: var(--laranja)">
+    <span class="chapeu">Análises</span>
+    <h2 class="titulo">Testamos tudo</h2>
+    <p class="linha-fina">Notas de 0 a 5 em Gráfico, Som, Jogabilidade e Diversão.</p>
+
+    <article class="analise" id="meteoros" style="--c:#ea580c">
+      <div class="analise-topo"><h3>Meteoros</h3><span>Tiro espacial · 1 jogador · ★ Capa</span></div>
+      <div class="analise-corpo">
+        <div class="prints">
+          <figure class="print" style="--r:-1.5deg"><img src="prints/meteoros-1.jpg" alt="Nave neon azul atirando em meteoros laranja, com uma cápsula de poder amarela flutuando" loading="lazy" width="640" height="480"><figcaption>Cápsula à vista! Pegue antes que ela suma.</figcaption></figure>
+        </div>
+        <div>
+          <div class="texto">
+            <p>Uma navinha de linhas neon, um céu cheio de estrelas e pedras para todo lado. Você gira, acelera e atira. Só que no espaço não tem freio: solte o botão e a nave continua deslizando. Saiu por um lado da tela? Entra pelo outro.</p>
+            <p>Cada meteoro grande se parte em dois médios, e cada médio em dois pequenos, cada vez mais rápidos (e valendo mais: 20, 50 e 100 pontos). A cada onda vem uma pedra grande a mais. De vez em quando aparece o <b>Caçador</b>, uma nave-arraia magenta que mira em você e vale <b>1.000</b>. E fique de olho nos raros <b>meteoros de cristal</b>: eles soltam cápsulas de escudo (<b>E</b>), tiro duplo (<b>D</b>) ou a temida bomba (<b>B</b>).</p>
+            <p>Encurralado? Tem o <b>hiperespaço</b>, que joga você num ponto qualquer da tela. Mas atenção: uma vez em cada oito o motor dá pane. São três vidas, mais uma a cada 10.000 pontos, e três dificuldades: Cadete, Piloto e Ás.</p>
+          </div>
+          <div class="ficha"><dl><dt>Gênero</dt><dd>Tiro espacial</dd><dt>Vidas</dt><dd>3, mais 1 a cada 10.000 pontos</dd><dt>Controles</dt><dd>Teclado, joystick na tela e controle</dd><dt>Dificuldade</dt><dd>Cadete, Piloto ou Ás</dd></dl></div>
+          <div class="notas">
+            <div class="nota-final"><div><small>NOTA</small><b>4,8</b></div></div>
+            <h4>Notas</h4>
+            <div class="nota" style="--v:5">Gráfico<i></i><b>5,0</b></div>
+            <div class="nota" style="--v:4.5">Som<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:4.5">Jogabilidade<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:5">Diversão<i></i><b>5,0</b></div>
+          </div>
+          <p class="veredito">Veredito: a inércia leva umas três partidas para entrar na mão. Depois disso, é impossível largar. Capa merecida.</p>
+          <p class="jogar-agora"><a class="botao" href="../../jogos/meteoros/">▶ Jogar Meteoros</a></p>
+        </div>
+      </div>
+    </article>
+
+    <article class="analise" id="pouso-lunar" style="--c:#2563eb">
+      <div class="analise-topo"><h3>Pouso Lunar</h3><span>Simulação · 1 jogador</span></div>
+      <div class="analise-corpo">
+        <div class="prints">
+          <figure class="print" style="--r:1deg"><img src="prints/pouso-lunar-1.jpg" alt="Módulo lunar com o motor aceso descendo sobre uma plataforma verde marcada com ×2, com instrumentos de velocidade no alto" loading="lazy" width="640" height="480"><figcaption>Instrumentos com estrelinha? Então pode descer.</figcaption></figure>
+        </div>
+        <div>
+          <div class="texto">
+            <p>Aqui não tem tiro nem inimigo. O adversário é a gravidade. Você pilota um módulo de pouso que gira e liga o motor para onde o bico aponta, com inércia de verdade. A câmera acompanha o módulo e dá zoom quando ele chega perto do chão.</p>
+            <p>O objetivo é pousar numa das plataformas planas: as largas valem <b>×2</b>, as médias <b>×3</b> e as estreitinhas, escondidas entre paredões, <b>×5</b>. Os instrumentos no alto ficam verdes, amarelos ou vermelhos para a velocidade de descida, a velocidade lateral e o ângulo. Com os três bem baixinhos, é <b>POUSO PERFEITO</b> e os pontos dobram.</p>
+            <p>Não existem vidas: o tanque é a sua vida. Bateu, perde combustível e tenta de novo. Pousou, metade do combustível que sobrou vira pontos, a plataforma reabastece e você parte para o próximo astro: Lua, Marte, Io, Titã e Neônia. Depois a rota recomeça mais pesada.</p>
+          </div>
+          <div class="ficha"><dl><dt>Gênero</dt><dd>Simulação de pouso</dd><dt>Astros</dt><dd>5, depois recomeça mais difícil</dd><dt>Controles</dt><dd>Teclado, toque e controle</dd><dt>Dificuldade</dt><dd>Treino, Missão ou Heroico</dd></dl></div>
+          <div class="notas">
+            <div class="nota-final"><div><small>NOTA</small><b>4,5</b></div></div>
+            <h4>Notas</h4>
+            <div class="nota" style="--v:4.5">Gráfico<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:4">Som<i></i><b>4,0</b></div>
+            <div class="nota" style="--v:4.5">Jogabilidade<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:5">Diversão<i></i><b>5,0</b></div>
+          </div>
+          <p class="veredito">Veredito: o jogo mais calmo do CD-ROM, mas o coração dispara nos últimos 10 metros. Encostar na ×5 com tudo verde é melhor que gol em final.</p>
+          <p class="jogar-agora"><a class="botao" href="../../jogos/pouso-lunar/">▶ Jogar Pouso Lunar</a></p>
+        </div>
+      </div>
+    </article>
+
+    <article class="analise" id="defesa-total" style="--c:#e11d48">
+      <div class="analise-topo"><h3>Defesa Total</h3><span>Estratégia · 1 jogador</span></div>
+      <div class="analise-corpo">
+        <div class="prints">
+          <figure class="print" style="--r:-1deg"><img src="prints/defesa-total-1.jpg" alt="Explosões coloridas no céu escuro sobre seis cidades neon, com um interceptor subindo da base central" loading="lazy" width="640" height="480"><figcaption>Duas explosões, dois meteoros a menos. Faltam só uns trinta.</figcaption></figure>
+        </div>
+        <div>
+          <div class="texto">
+            <p>Seis cidades neon dormem tranquilas lá embaixo. Lá em cima, o céu começa a cair. Você toca num ponto do céu e a base mais próxima dispara um interceptor que explode ali, numa bola de luz que cresce e some. Tudo que encostar nela vai junto.</p>
+            <p>O segredo é a <b>reação em cadeia</b>: cada ameaça destruída também explode, e cada elo da corrente multiplica os pontos (×2, ×3, até ×5). São três bases com 10 interceptores cada por onda. A base central atira 50% mais rápido. No fim da onda, cada cidade de pé e cada tiro guardado viram bônus, e o multiplicador sobe a cada duas ondas, até ×6.</p>
+            <p>A partir da onda 3 chega o <b>Tridente</b>, que se divide em três no meio do caminho. Na 5, o <b>Bombardeiro</b> atravessa o céu soltando bombas. Na 7, o <b>Cometa Blindado</b>, que precisa de duas explosões para cair. A cada 10.000 pontos você ganha uma cidade de reserva.</p>
+          </div>
+          <div class="ficha"><dl><dt>Gênero</dt><dd>Defesa antimíssil</dd><dt>Cidades</dt><dd>6, mais reservas a cada 10.000</dd><dt>Controles</dt><dd>Mouse, toque, teclado e controle</dd><dt>Dificuldade</dt><dd>Normal ou Rápida</dd></dl></div>
+          <div class="notas">
+            <div class="nota-final"><div><small>NOTA</small><b>4,6</b></div></div>
+            <h4>Notas</h4>
+            <div class="nota" style="--v:4.5">Gráfico<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:4">Som<i></i><b>4,0</b></div>
+            <div class="nota" style="--v:5">Jogabilidade<i></i><b>5,0</b></div>
+            <div class="nota" style="--v:5">Diversão<i></i><b>5,0</b></div>
+          </div>
+          <p class="veredito">Veredito: no celular é perfeito, é só tocar no céu. Acertar uma corrente de cinco explosões é a sensação mais gostosa desta edição.</p>
+          <p class="jogar-agora"><a class="botao" href="../../jogos/defesa-total/">▶ Jogar Defesa Total</a></p>
+        </div>
+      </div>
+    </article>
+    <div class="folio"><span>Análises</span><span>6–15</span></div>
+  </section>
+
+  <section class="pagina surge" id="dicas" style="--cor: var(--verde)">
+    <span class="chapeu">Dicas &amp; Macetes</span>
+    <h2 class="titulo">Códigos secretos</h2>
+    <p class="linha-fina">Digite o código na caixa <b>CÓDIGO SECRETO</b> do menu do jogo. O KONAMI também vale pela sequência <span class="setas">↑ ↑ ↓ ↓ ← → ← → B A</span> no teclado, com o menu aberto. No celular, escreva KONAMI na caixa.</p>
+    <div class="dicas">
+      <div class="dica" style="--c:#ea580c">
+        <h3>Meteoros</h3>
+        <div class="dica-corpo">
+          <div class="senha"><code>KONAMI</code><p>Tiro em leque de 5. Ninguém escapa.</p></div>
+          <div class="senha"><code>BLINDADO</code><p>Escudo permanente. Só a pane do hiperespaço derruba você.</p></div>
+          <div class="senha"><code>LENTO</code><p>Meteoros em câmera lenta.</p></div>
+        </div>
+      </div>
+      <div class="dica" style="--c:#2563eb">
+        <h3>Pouso Lunar</h3>
+        <div class="dica-corpo">
+          <div class="senha"><code>KONAMI</code><p>Combustível infinito, e batida não custa nada.</p></div>
+          <div class="senha"><code>PENA</code><p>Gravidade pela metade, com o mesmo motor.</p></div>
+          <div class="senha"><code>RADAR</code><p>Mostra a trajetória dos próximos 4 segundos e onde você vai tocar o chão.</p></div>
+        </div>
+      </div>
+      <div class="dica" style="--c:#e11d48">
+        <h3>Defesa Total</h3>
+        <div class="dica-corpo">
+          <div class="senha"><code>KONAMI</code><p>Explosões gigantes, com o dobro do tamanho.</p></div>
+          <div class="senha"><code>MUNICAO</code><p>Munição infinita (mas sem bônus de munição).</p></div>
+          <div class="senha"><code>LENTO</code><p>O céu cai em câmera lenta.</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="box-aviso">⚠ Com qualquer código ligado, o recorde não é salvo e o placar fica fora do Hall da Fama.</p>
+
+    <h2 class="titulo" style="font-size:34px;margin-top:34px">Macetes dos profissionais</h2>
+    <div class="colunas">
+      <h3>Meteoros: guarde a bomba</h3>
+      <p>A cápsula <b>B</b> vaporiza tudo o que está na tela, e cada pedra vale como se você tivesse quebrado ela inteira: um meteoro grande vaporizado rende <b>520</b> pontos, contra 20 do tiro comum. Espere a tela encher de pedras grandes antes de pegar. A bomba também derruba o Caçador.</p>
+      <h3>Meteoros: toque, não segure</h3>
+      <p>Segurar o FOGO dispara a cada 0,16 s, mas toques rápidos chegam a 0,07 s. O limite de 5 tiros na tela continua, então mire bem. Com o escudo <b>E</b> ligado, jogue a nave contra as pedras: cada trombada parte o meteoro e conta pontos. E limpar uma onda sem perder vida vale <b>+1.000</b> (o bônus SEM ARRANHÃO).</p>
+      <h3>Meteoros: esconda-se atrás da pedra</h3>
+      <p>Os tiros do Caçador também quebram meteoros. Deixe uma pedra grande entre você e ele e use-a como escudo. O hiperespaço é a última saída: uma vez em cada oito o motor pifa, e nem o BLINDADO salva.</p>
+      <h3>Pouso Lunar: girar é de graça</h3>
+      <p>Só o motor gasta combustível (12 por segundo), girar não custa nada. Incline primeiro e dê o empuxo em pulsos curtos. E tem um estabilizador automático: abaixo de 7° de inclinação, solte o giro e o módulo se endireita sozinho. É o jeito mais fácil de ganhar a estrelinha do ângulo.</p>
+      <h3>Pouso Lunar: vá de ×5</h3>
+      <p>Parece arriscado, mas é o que segura a partida: a plataforma ×5 devolve 500 de combustível (600 no pouso perfeito), enquanto a ×2 devolve só 200. Quem vive de ×2 vê o tanque secar. E se o tanque zerar no ar, não desista: um pouso planado ainda reabastece e salva a partida.</p>
+      <h3>Defesa Total: mire no cruzamento</h3>
+      <p>Atire onde os rastros se cruzam ou no meio de uma rajada: uma explosão bem colocada derruba três, quatro, cinco ameaças, e cada elo da corrente vale mais. Pegue o Tridente <b>antes</b> de ele se dividir: inteiro, ele cai com uma explosão só. O Bombardeiro só solta bombas entre 8% e 92% da largura da tela. Mire à frente do nariz dele logo na entrada e ele vale 150 × multiplicador sem soltar nada.</p>
+      <h3>Defesa Total: o Cometa Blindado</h3>
+      <p>A primeira explosão só racha a casca, e o cometa ainda acelera 30%. Deixe um segundo tiro pronto ou pegue-o com uma explosão da reação em cadeia, que conta como outra explosão. E economize: cada cidade viva vale 100 × multiplicador no fim da onda (600 a partir da onda 11).</p>
+    </div>
+    <div class="folio"><span>Dicas &amp; Macetes</span><span>16–19</span></div>
+  </section>
+
+  <section class="pagina surge" id="guia" style="--cor: var(--ciano)">
+    <span class="chapeu">Guia</span>
+    <h2 class="titulo">O Sistema Solar da Super Neon</h2>
+    <p class="linha-fina">Os 5 astros do Pouso Lunar, na ordem da rota. Depois de Neônia a viagem recomeça, com gravidade 15% maior, vento mais forte, plataformas menores e tolerância de pouso mais apertada.</p>
+    <div class="astros">
+      <div class="astro" style="--bg:#11152e">
+        <h3>1 · Lua</h3>
+        <dl><dt>Gravidade</dt><dd>9</dd><dt>Vento</dt><dd>Calmo</dd></dl>
+        <p>Morros suaves e cheios de crateras, com a Terra azul pendurada no céu. É a aula de pilotagem: treine o pulso curto e o pouso perfeito aqui.</p>
+      </div>
+      <div class="astro" style="--bg:#3a1408">
+        <h3>2 · Marte</h3>
+        <dl><dt>Gravidade</dt><dd>13</dd><dt>Vento</dt><dd>Rajadas</dd></dl>
+        <p>Céu cor de ferrugem, a lua Fobos lá no alto e dois cânions fundos. O vento vem em rajadas que sobem e descem: espere o indicador VENTO ficar fraco para a descida final.</p>
+      </div>
+      <div class="astro" style="--bg:#3a3204">
+        <h3>3 · Io</h3>
+        <dl><dt>Gravidade</dt><dd>11</dd><dt>Vento</dt><dd>Calmo</dd></dl>
+        <p>Quatro vulcões cuspindo fagulhas de enxofre e Júpiter enorme no horizonte. Sem vento, mas com relevo traiçoeiro. Contorne os vulcões por cima.</p>
+      </div>
+      <div class="astro" style="--bg:#3a1e04">
+        <h3>4 · Titã</h3>
+        <dl><dt>Gravidade</dt><dd>6,5</dd><dt>Vento</dt><dd>Constante, de lado</dd></dl>
+        <p>Névoa laranja, Saturno ao fundo e um ar tão grosso que freia o módulo. Dá para cair mais tranquilo, mas compense o vento lateral inclinando contra ele.</p>
+      </div>
+      <div class="astro" style="--bg:#2a0638">
+        <h3>5 · Neônia</h3>
+        <dl><dt>Gravidade</dt><dd>3,5</dd><dt>Vento</dt><dd>Calmo</dd></dl>
+        <p>Um asteroide de cristal neon que só existe na Super Neon, cheio de espinhos e com duas plataformas ×5. A gravidade é mínima e o motor sobra: só toques rapidinhos.</p>
+      </div>
+    </div>
+    <h2 class="titulo" style="font-size:34px">Tabela de tolerância</h2>
+    <div class="colunas">
+      <p>Passou de qualquer um destes limites na hora de tocar o chão, é explosão. Abaixo de 35% dos três ao mesmo tempo, é <b>POUSO PERFEITO</b>.</p>
+      <p><b>Treino:</b> tanque 1.500, descida até 16 m/s, lateral até 10 m/s, inclinação até 14°. Batida custa 100.</p>
+      <p><b>Missão:</b> tanque 1.000, descida até 11 m/s, lateral até 7 m/s, inclinação até 9°. Batida custa 150.</p>
+      <p><b>Heroico:</b> tanque 750, descida até 7,5 m/s, lateral até 5 m/s, inclinação até 6°. Batida custa 200.</p>
+      <p>Na hora da explosão, a tela conta o que deu errado: FORA DA PLATAFORMA, DESCEU RÁPIDO DEMAIS, DERRAPOU DE LADO, POUSOU TORTO ou BATEU NO RELEVO. Leia e aprenda!</p>
+    </div>
+    <div class="folio"><span>Guia</span><span>20–23</span></div>
+  </section>
+
+  <section class="pagina surge" id="cartas" style="--cor: var(--vermelho)">
+    <span class="chapeu">Cartas</span>
+    <h2 class="titulo">Fala, leitor!</h2>
+    <div class="cartas">
+      <div class="carta" style="--r:-0.8deg">
+        <p class="msg">Vocês sumiram um mês inteiro! Achei que a revista tinha acabado e chorei no ônibus. Nunca mais façam isso.</p>
+        <p class="de">Bruna, 13 anos, Recife (PE)</p>
+        <p class="resp"><b>SN:</b> Desculpa, Bruna! A redação precisava descansar os dedões. Para compensar, esta edição tem três jogos e um guia inteiro de brinde.</p>
+      </div>
+      <div class="carta" style="--r:0.6deg">
+        <p class="msg">No Turbo Neon eu sempre bato no coqueiro da segunda curva do Rio. O coqueiro está lá de propósito?</p>
+        <p class="de">Rafael, Niterói (RJ)</p>
+        <p class="resp"><b>SN:</b> Rafael, todo coqueiro está lá de propósito. Tire o pé antes da curva e use o nitro só na reta. O coqueiro agradece.</p>
+      </div>
+      <div class="carta" style="--r:-0.3deg">
+        <p class="msg">Qual é o jogo mais difícil de todas as edições? Meu pai diz que é o Campo Minado no Expert.</p>
+        <p class="de">Joaquim, 11 anos, Campinas (SP)</p>
+        <p class="resp"><b>SN:</b> Seu pai tem bom gosto, Joaquim. Mas espere até tentar pousar no último astro do Pouso Lunar no modo Heroico. Depois conte pra gente quem ganhou a discussão.</p>
+      </div>
+      <div class="carta" style="--r:0.9deg">
+        <p class="msg">Fiz um desenho do Super Pixel enfrentando o MEGA GLITCH e colei na porta do meu quarto. Vocês podem fazer um pôster dele?</p>
+        <p class="de">Valentina, 9 anos, Curitiba (PR)</p>
+        <p class="resp"><b>SN:</b> Valentina, o pôster da Nº 4 já era dele! Mas o seu desenho parece ótimo. Manda uma cópia para a caixa postal que ele vai para o mural da redação.</p>
+      </div>
+    </div>
+    <div class="folio"><span>Cartas</span><span>24–25</span></div>
+  </section>
+
+  <section class="pagina surge" id="classificados" style="--cor: var(--tinta)">
+    <span class="chapeu">Classificados</span>
+    <h2 class="titulo">Troca-troca</h2>
+    <div class="classificados">
+      <div class="classificado"><b>Vendo</b>Terreno na Lua com vista para a Terra. Plataforma ×5 inclusa. Aceito combustível como entrada.<span class="tel">CX. POSTAL 1969</span></div>
+      <div class="classificado"><b>Procuro</b>Seguro para nave espacial. Já fui atingido por 47 meteoros pequenos e 1 grande.<span class="tel">TEL (11) 5555-0505</span></div>
+      <div class="classificado"><b>Troco</b>Botão de hiperespaço pouco usado por botão de hiperespaço que me leve para um lugar seguro.<span class="tel">TEL (31) 5555-0177</span></div>
+      <div class="classificado"><b>Aluga-se</b>Base antimíssil com vista panorâmica. Munição não inclusa.<span class="tel">TEL (62) 5555-0109</span></div>
+      <div class="classificado"><b>Clube</b>Associação dos Pilotos que Pousaram de Lado. Reuniões na cratera de sempre.<span class="tel">MAR DA TRANQUILIDADE, 5</span></div>
+      <div class="classificado"><b>Compro</b>Meteoro de cristal inteiro, sem rachadura. Pago bem.<span class="tel">TEL (92) 5555-0144</span></div>
+    </div>
+    <div class="anuncio" style="--anuncio: linear-gradient(135deg, #000, #3a0a5a 50%, #ff8a00)">
+      <h3>Capacete Espacial Neon</h3>
+      <p>Visor espelhado, antena com luzinha e um adesivo de "PILOTO CERTIFICADO". Ideal para jogar Meteoros de madrugada sem a sua mãe perceber que você está acordado.</p>
+      <span class="preco">só R$ 24,90</span>
+      <small>Produto imaginário. Não funciona no vácuo. Nem em lugar nenhum.</small>
+    </div>
+    <div class="folio"><span>Classificados</span><span>26–27</span></div>
+  </section>
+
+  <section class="cdrom-mesa" id="cdrom" aria-label="CD-ROM da edição">
+    <div data-cdrom="5"></div>
+  </section>
+
+  <section class="pagina surge" style="--cor: var(--ciano)">
+    <span class="chapeu">Na próxima edição</span>
+    <h2 class="titulo">Acelera, motoqueiro!</h2>
+    <p class="linha-fina">A Super Neon Nº 6 traz o <b>Rastro de Luz</b> na capa: quatro motos numa arena, muros de luz e duelo para 2 jogadores. E ainda <b>Bolhas</b> e <b>Joias</b> no CD-ROM.</p>
+    <p><a class="botao escuro" href="../06/">Ler a Nº 6 ►</a></p>
+    <h3 style="font-family:var(--f-grito);font-size:24px;margin-top:26px;font-weight:normal">Expediente</h3>
+    <div class="expediente">
+      <p><b>Super Neon</b>, a revista de games que vem com jogo. Número 5, Ano 2.</p>
+      <p><b>Redação:</b> de volta das férias e com a cabeça no espaço. <b>CD-ROM:</b> jogos feitos só com HTML, CSS e JavaScript.</p>
+      <p>Fan games não oficiais e sem fins lucrativos. Os clássicos que inspiraram nossos jogos são marcas de seus respectivos donos.</p>
+    </div>
+    <div class="folio"><span>Super Neon Nº 5</span><span>30</span></div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <a href="../04/">◄ Edição anterior</a> · <a href="../../">Banca</a> · <a href="../06/">Próxima edição ►</a>
+</footer>
+
+<script src="../../shared/common.js"></script>
+<script src="../../shared/firebase-config.js"></script>
+<script src="../../shared/ranking.js"></script>
+<script src="../../shared/presenca.js"></script>
+<script src="../../revista/edicoes.js"></script>
+<script src="../../revista/revista.js"></script>
+<script src="../../revista/musica.js"></script>
+</body>
+</html>

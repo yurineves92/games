@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Joias</title>
+<meta name="description" content="Joias: troque pedras vizinhas para alinhar 3 ou mais iguais. Raios, bombas e estrelas, cascatas com combo, modo clássico por níveis e contra o relógio.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230b0418'/%3E%3Cpath d='M16 3l11 9-11 17L5 12z' fill='%23ffd400'/%3E%3Cpath d='M16 3l5 9h-10z' fill='%23fff4a8'/%3E%3Cpath d='M5 12h22L16 29z' fill='%23d9a400'/%3E%3Cpath d='M11 12l5 17 5-17' fill='%23ffe14d'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/style.css">
+<style>
+  .joias #game { cursor: pointer; }
+  .mode-info { font-family: var(--mono); font-size: 13px; color: var(--muted); max-width: 420px; line-height: 1.45; }
+  .legend { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; text-align: left; margin: 12px auto 0; max-width: 420px; font-family: var(--mono); font-size: 14px; color: #c0b2d9; }
+  .legend b { color: var(--accent); font-family: var(--font); font-size: 12px; letter-spacing: 0.1em; align-self: center; }
+  @media (max-width: 520px) {
+    .topbar { gap: 4px 10px; padding: 6px 12px; }
+    .topbar h1 { font-size: 14px; letter-spacing: 0.12em; }
+    .hud { order: 3; flex-basis: 100%; gap: 2px 14px; font-size: 14px; }
+  }
+</style>
+</head>
+<body class="game-page joias" style="--accent:#ffd400">
+<header class="topbar">
+  <a class="back" href="../../edicoes/06/#cdrom">◄ REVISTA</a>
+  <h1>JOIAS</h1>
+  <div class="hud">
+    <span>PONTOS<b id="hScore">0</b></span>
+    <span>RECORDE<b id="hHi">0</b></span>
+    <span><span id="hLvlLabel">NÍVEL</span><b id="hLvl">1</b></span>
+    <span>COMBO<b id="hCombo">x1</b></span>
+    <span class="hud-status" id="hStatus"></span>
+  </div>
+  <button class="icon-btn" id="pauseBtn" type="button" aria-label="Pausar">⏸</button>
+  <button class="icon-btn" id="muteBtn" type="button">🔊</button>
+</header>
+
+<main class="stage no-pads" id="stage">
+  <div class="game-wrap" id="gameWrap">
+    <div class="screen" id="screen">
+      <canvas id="game" aria-label="Tabuleiro de joias 8 por 8"></canvas>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <section class="panel" id="menuPanel">
+      <h2>JOIAS</h2>
+      <p class="sub">Troque duas joias vizinhas para alinhar 3 ou mais iguais. Elas estouram, as de cima despencam e cada cascata aumenta o combo. Garimpe pedras especiais e faça o tabuleiro inteiro brilhar!</p>
+      <div class="opt">
+        <span class="opt-label">MODO</span>
+        <div class="seg" data-setting="mode">
+          <button type="button" data-value="classico">CLÁSSICO</button>
+          <button type="button" data-value="relogio">CONTRA O RELÓGIO</button>
+        </div>
+        <span class="mode-info" id="modeInfo"></span>
+      </div>
+      <div class="legend">
+        <b>RAIO</b><span>4 em linha: estoura a linha (ou a coluna) inteira.</span>
+        <b>BOMBA</b><span>Formato de L ou T: estoura tudo em volta (3×3).</span>
+        <b>ESTRELA</b><span>5 em linha: troque com uma joia e todas daquela cor somem.</span>
+      </div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">INICIAR</button>
+      </div>
+      <div id="codeMount"></div>
+      <div class="keys">
+        <div class="no-touch">Mouse: arraste uma joia para a vizinha, ou clique numa e depois na vizinha.</div>
+        <div class="no-touch">Teclado: setas (ou <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>) movem o cursor, <kbd>Espaço</kbd>/<kbd>Enter</kbd> pega a joia e a seta troca. <kbd>P</kbd>/<kbd>Esc</kbd> pausa · <kbd>M</kbd> som.</div>
+        <div>Toque: arraste a joia com o dedo para o lado da troca, ou toque numa e depois na vizinha. O botão ⏸ pausa.</div>
+        <div>Controle de videogame: direcional move o cursor, <kbd>A</kbd> pega e troca, <kbd>B</kbd> solta, <kbd>Start</kbd> pausa.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="pausePanel" hidden>
+      <h2>PAUSADO</h2>
+      <p class="sub">As joias esperam. Elas são pacientes, já têm milhões de anos.</p>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="resume">CONTINUAR</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+
+    <section class="panel" id="overPanel" hidden>
+      <h2 id="overTitle">FIM DE JOGO</h2>
+      <div class="big-score" id="overScore">0</div>
+      <p class="sub" id="overInfo"></p>
+      <p class="record" id="overRecord" hidden>NOVO RECORDE!</p>
+      <div class="rank" id="rankBox" hidden></div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">JOGAR DE NOVO</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="../../shared/common.js"></script>
+<script src="../../shared/firebase-config.js"></script>
+<script src="../../shared/ranking.js"></script>
+<script src="../../shared/presenca.js"></script>
+<script src="joias.js"></script>
+</body>
+</html>

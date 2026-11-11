@@ -22,7 +22,7 @@ const Revista = (() => {
       <div class="capa-num" aria-hidden="true"><small>Nº</small><b>${String(ed.n).padStart(2, '0')}</b></div>
       <ul class="capa-chamadas">${ed.chamadas.map(([t, s, c]) => `<li style="--c:${c}"><b>${esc(t)}</b><br>${esc(s)}</li>`).join('')}</ul>
       <div class="capa-selo">${esc(ed.selo)}</div>
-      <p class="capa-manchete"><span class="m1">${esc(ed.manchete)}</span><span class="m2">${esc(ed.manchete2)}</span></p>
+      <p class="capa-manchete"><span class="m1"${ed.mancheteTam ? ` style="font-size:${ed.mancheteTam}"` : ''}>${esc(ed.manchete)}</span><span class="m2">${esc(ed.manchete2)}</span></p>
       <div class="capa-rodape"><span>★ ${esc(ed.rodape)}</span><span class="capa-barras" data-cod="${ed.cod}"></span></div>
       <div class="capa-brilho"></div>`;
   }

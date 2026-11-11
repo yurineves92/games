@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pouso Lunar</title>
+<meta name="description" content="Pouso Lunar: gire o módulo, dose o motor e pouse suave em cinco astros com gravidade, vento e relevo diferentes. Plataformas ×2, ×3 e ×5.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23020814'/%3E%3Cpath d='M0 28l6-3 5 2h10l5-4 6 3' stroke='%239ad0ff' fill='none' stroke-width='1.5'/%3E%3Cpath d='M12 15h8l-1-6h-6z' fill='%239ad0ff'/%3E%3Cpath d='M13 15l-3 5M19 15l3 5M8.5 20h3M20.5 20h3' stroke='%239ad0ff' stroke-width='1.3'/%3E%3Cpath d='M14 16h4l-2 5z' fill='%23ffb347'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/style.css">
+<style>
+  /* botões de toque: ◄ ► (girar) à esquerda e MOTOR (segurar) à direita */
+  .pbtn {
+    --size: 76px;
+    width: var(--size); height: var(--size); border-radius: 50%; flex: none;
+    font-family: var(--font); font-weight: 900; font-size: 26px; color: var(--accent);
+    background: radial-gradient(circle, color-mix(in srgb, var(--accent) 16%, transparent), rgba(0, 0, 0, 0.55) 70%);
+    border: 2px solid var(--accent); touch-action: none; user-select: none; -webkit-user-select: none;
+    box-shadow: 0 0 16px color-mix(in srgb, var(--accent) 35%, transparent), inset 0 0 18px color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+  .pbtn.thrust { --size: 104px; font-size: 16px; letter-spacing: 0.1em; color: #fff; border-color: #ffb347; box-shadow: 0 0 18px rgba(255, 179, 71, 0.45), inset 0 0 18px rgba(255, 179, 71, 0.3); }
+  .pbtn.down { background: var(--accent); color: #04101c; box-shadow: 0 0 26px var(--accent); }
+  .pbtn.thrust.down { background: #ffb347; color: #1a0d00; box-shadow: 0 0 30px #ffb347; }
+  .pad-left .pad-row { display: flex; gap: 14px; }
+  @media (orientation: landscape) { .pad-left .pad-row { flex-direction: column; } }
+  @media (max-height: 520px) { .pbtn { --size: 62px; } .pbtn.thrust { --size: 84px; } }
+  @media (max-width: 520px) {
+    .topbar { gap: 4px 10px; padding: 6px 12px; }
+    .topbar h1 { font-size: 14px; letter-spacing: 0.12em; }
+    .hud { order: 3; flex-basis: 100%; gap: 2px 14px; font-size: 14px; }
+  }
+  .pouso-lunar #game { cursor: crosshair; }
+  .route { color: var(--accent); letter-spacing: 0.06em; }
+  .pmark { display: inline-block; min-width: 30px; text-align: center; border-radius: 3px; padding: 0 4px; color: #04101c; font-weight: bold; }
+</style>
+</head>
+<body class="game-page pouso-lunar" style="--accent:#9ad0ff">
+<header class="topbar">
+  <a class="back" href="../../edicoes/05/#cdrom">◄ REVISTA</a>
+  <h1>POUSO LUNAR</h1>
+  <div class="hud">
+    <span>PONTOS<b id="hScore">0</b></span>
+    <span>RECORDE<b id="hHi">0</b></span>
+    <span>COMBUSTÍVEL<b id="hFuel">0</b></span>
+    <span>ASTRO<b id="hAstro">—</b></span>
+    <span class="hud-status" id="hStatus"></span>
+  </div>
+  <button class="icon-btn" id="padBtn" type="button" aria-label="Controles na tela">🎮</button>
+  <button class="icon-btn" id="muteBtn" type="button">🔊</button>
+</header>
+
+<main class="stage" id="stage">
+  <div class="pad pad-left">
+    <div class="pad-row">
+      <button class="pbtn" id="btnLeft" type="button" aria-label="Girar para a esquerda">◄</button>
+      <button class="pbtn" id="btnRight" type="button" aria-label="Girar para a direita">►</button>
+    </div>
+    <span class="pad-label">GIRAR</span>
+  </div>
+  <div class="game-wrap" id="gameWrap">
+    <div class="screen" id="screen">
+      <canvas id="game" aria-label="Superfície do astro com o módulo de pouso"></canvas>
+    </div>
+  </div>
+  <div class="pad pad-right">
+    <button class="pbtn thrust" id="btnThrust" type="button" aria-label="Motor (segure)">MOTOR</button>
+    <span class="pad-label">SEGURE</span>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <section class="panel" id="menuPanel">
+      <h2>POUSO LUNAR</h2>
+      <p class="sub">Gire o módulo, dose o motor e desça de mansinho numa plataforma. Cada astro tem gravidade, vento e relevo próprios. O tanque de combustível é a sua vida: bateu, explodiu e perdeu um bocado dele.</p>
+      <div class="opt">
+        <span class="opt-label">DIFICULDADE</span>
+        <div class="seg" data-setting="diff">
+          <button type="button" data-value="treino">TREINO</button>
+          <button type="button" data-value="missao">MISSÃO</button>
+          <button type="button" data-value="heroico">HEROICO</button>
+        </div>
+      </div>
+      <p class="sub" id="diffInfo"></p>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">INICIAR</button>
+      </div>
+      <div id="codeMount"></div>
+      <div class="keys">
+        <div>Rota: <span class="route">LUA → MARTE → IO → TITÃ → NEÔNIA</span>, e depois tudo de novo, mais pesado.</div>
+        <div>Plataformas: <span class="pmark" style="background:#39ff14">×2</span> largas, <span class="pmark" style="background:#ffd400">×3</span> médias, <span class="pmark" style="background:#ff2bd6">×5</span> estreitinhas e escondidas no fundo de cânions.</div>
+        <div>Pouse com os velocímetros no verde ou no amarelo. Vermelho é explosão. Tudo com ★ = pouso perfeito, vale o dobro.</div>
+        <div class="no-touch"><kbd>←</kbd><kbd>→</kbd> ou <kbd>A</kbd><kbd>D</kbd> giram · <kbd>↑</kbd>, <kbd>W</kbd> ou <kbd>Espaço</kbd> ligam o motor (segure)</div>
+        <div class="no-touch"><kbd>P</kbd>/<kbd>Esc</kbd> pausa · <kbd>M</kbd> som</div>
+        <div>Na tela: botões ◄ ► giram e MOTOR acelera enquanto você segura (🎮 mostra/esconde). Ou segure o dedo no jogo para acelerar e arraste para os lados para inclinar.</div>
+        <div>Controle de videogame: analógico ou direcional gira, <kbd>A</kbd> ou <kbd>RT</kbd> liga o motor, <kbd>Start</kbd> pausa.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="pausePanel" hidden>
+      <h2>PAUSADO</h2>
+      <p class="sub">O módulo ficou congelado no vácuo. A gravidade espera você voltar.</p>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="resume">CONTINUAR</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+
+    <section class="panel" id="overPanel" hidden>
+      <h2 id="overTitle">FIM DA MISSÃO</h2>
+      <div class="big-score" id="overScore">0</div>
+      <p class="sub" id="overInfo"></p>
+      <p class="record" id="overRecord" hidden>NOVO RECORDE!</p>
+      <div class="rank" id="rankBox" hidden></div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">JOGAR DE NOVO</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="../../shared/common.js"></script>
+<script src="../../shared/firebase-config.js"></script>
+<script src="../../shared/ranking.js"></script>
+<script src="../../shared/presenca.js"></script>
+<script src="pouso.js"></script>
+</body>
+</html>

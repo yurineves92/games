@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+  <defs>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="forte" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="9" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="chao" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#00e5ff" stop-opacity="0"/><stop offset="1" stop-color="#00e5ff" stop-opacity=".22"/></linearGradient>
+    <symbol id="moto" viewBox="-30 -14 60 28">
+      <path d="M-26 6L-14-8H14L26 6 20 10H-20Z" fill="#05060f" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M-8-8L0-12 8-8" fill="none" stroke="#fff" stroke-width="2.5"/>
+      <circle cx="-17" cy="8" r="6" fill="#05060f" stroke="currentColor" stroke-width="3"/><circle cx="17" cy="8" r="6" fill="#05060f" stroke="currentColor" stroke-width="3"/>
+    </symbol>
+  </defs>
+  <!-- grade da arena em perspectiva -->
+  <rect y="330" width="600" height="470" fill="url(#chao)"/>
+  <g stroke="#00e5ff" stroke-width="1.5" opacity=".35">
+    <path d="M300 330L-300 800M300 330L-100 800M300 330L100 800M300 330L300 800M300 330L500 800M300 330L700 800M300 330L900 800"/>
+    <path d="M0 345H600M0 370H600M0 405H600M0 455H600M0 525H600M0 620H600M0 750H600"/>
+  </g>
+  <path d="M0 330H600" stroke="#ff2bd6" stroke-width="3" filter="url(#glow)"/>
+  <!-- horizonte: torres -->
+  <g fill="#001a2a" stroke="#00e5ff" stroke-width="1.5" opacity=".8">
+    <path d="M30 330V250h40v80M90 330V200h30v130M140 330V270h50v60M420 330V230h36v100M470 330V180h28v150M520 330V260h50v70"/>
+  </g>
+  <!-- rastros de luz -->
+  <g fill="none" stroke-linejoin="miter" filter="url(#forte)">
+    <path d="M-20 700H210V470H330" stroke="#00e5ff" stroke-width="12"/>
+    <path d="M620 600H430V420H360V380" stroke="#ff2bd6" stroke-width="10"/>
+    <path d="M90 360V420H170" stroke="#ffd400" stroke-width="5" opacity=".8"/>
+    <path d="M610 360H520V395" stroke="#39ff14" stroke-width="5" opacity=".8"/>
+  </g>
+  <!-- motos -->
+  <g filter="url(#glow)">
+    <use href="#moto" x="300" y="428" width="180" height="84" color="#00e5ff"/>
+    <use href="#moto" x="320" y="350" width="80" height="38" color="#ff2bd6" transform="rotate(-90 360 369)"/>
+    <use href="#moto" x="165" y="410" width="44" height="21" color="#ffd400"/>
+    <use href="#moto" x="500" y="392" width="40" height="19" color="#39ff14" transform="rotate(90 520 401)"/>
+  </g>
+  <!-- faíscas da quase-batida -->
+  <g stroke="#fff" stroke-width="3" stroke-linecap="round" filter="url(#glow)"><path d="M440 416l18-16M446 432l26-2M430 402l6-22"/></g>
+</svg>
