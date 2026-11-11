@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Calangada</title>
+<meta name="description" content="Calangada: artilharia por turnos com equipes de calangos de capacete neon. Terreno destrutível, vento, dez armas absurdas, CPU esperta e multijogador no mesmo aparelho.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23061008'/%3E%3Cpath d='M2 24q8-6 15-2' stroke='%235aa83a' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3Cellipse cx='17' cy='22' rx='7' ry='4' fill='%237cc94a'/%3E%3Cellipse cx='24' cy='17' rx='5' ry='4' fill='%237cc94a'/%3E%3Cpath d='M19 16a5 5 0 0 1 10 0z' fill='%237dff3a'/%3E%3Ccircle cx='26' cy='17.5' r='1.6' fill='%23fff'/%3E%3Ccircle cx='26.5' cy='17.5' r='.8' fill='%23000'/%3E%3Cpath d='M0 29h32' stroke='%2300e5ff' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/style.css">
+<style>
+  .calangada #game { cursor: crosshair; }
+  /* botões de toque: cruz (andar e mirar) à esquerda; ARMA, PULO e FOGO à direita */
+  .pbtn {
+    --size: 58px;
+    width: var(--size); height: var(--size); border-radius: 14px; flex: none;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font); font-weight: 900; font-size: 22px; color: var(--accent);
+    background: radial-gradient(circle, color-mix(in srgb, var(--accent) 16%, transparent), rgba(0, 0, 0, 0.55) 70%);
+    border: 2px solid var(--accent); touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+    box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 30%, transparent), inset 0 0 14px color-mix(in srgb, var(--accent) 20%, transparent);
+  }
+  .pbtn.txt { font-size: 12px; letter-spacing: 0.06em; color: #fff; }
+  .pbtn.fire { --size: 86px; border-radius: 50%; font-size: 16px; letter-spacing: 0.1em; color: #fff; border-color: #ff3b5c; box-shadow: 0 0 18px rgba(255, 59, 92, 0.45), inset 0 0 18px rgba(255, 59, 92, 0.3); }
+  .pbtn.hold { background: var(--accent); color: #061008; box-shadow: 0 0 22px var(--accent); }
+  .pbtn.fire.hold { background: #ff3b5c; box-shadow: 0 0 26px #ff3b5c; }
+  .dpad { display: grid; gap: 4px; grid-template-columns: repeat(3, var(--cell, 54px)); grid-template-rows: repeat(3, var(--cell, 54px)); grid-template-areas: ". up ." "left . right" ". down ."; }
+  .dpad .pbtn { --size: var(--cell, 54px); }
+  .dpad .up { grid-area: up; } .dpad .down { grid-area: down; } .dpad .left { grid-area: left; } .dpad .right { grid-area: right; }
+  .act { display: grid; gap: 8px; grid-template-columns: auto auto; grid-template-areas: "weapon fire" "jump fire"; align-items: center; }
+  .act #bWeapon { grid-area: weapon; } .act #bJump { grid-area: jump; } .act #bFire { grid-area: fire; }
+  @media (orientation: landscape) {
+    .act { grid-template-columns: auto; grid-template-areas: "weapon" "jump" "fire"; justify-items: center; }
+  }
+  @media (orientation: portrait) { .dpad { --cell: 50px; } .pbtn.fire { --size: 92px; } }
+  @media (max-height: 520px) and (orientation: landscape) { .dpad { --cell: 44px; } .pbtn { --size: 48px; } .pbtn.fire { --size: 66px; } .act { gap: 5px; } }
+  @media (max-width: 520px) {
+    .topbar { gap: 4px 10px; padding: 6px 12px; }
+    .topbar h1 { font-size: 14px; letter-spacing: 0.12em; }
+    .hud { order: 3; flex-basis: 100%; gap: 2px 14px; font-size: 13px; }
+  }
+  .hud b.team { text-shadow: 0 0 8px currentColor; }
+
+  /* menu de armas (por cima do canvas) */
+  .wmenu {
+    position: absolute; inset: 0; z-index: 3; line-height: 1.3;
+    display: flex; align-items: center; justify-content: center; padding: 8px;
+    background: rgba(3, 8, 4, 0.55);
+  }
+  .wmenu[hidden] { display: none; }
+  .wbox {
+    width: min(560px, 100%); max-height: 100%; overflow: auto; padding: 12px;
+    background: var(--panel); border: 1px solid var(--accent); border-radius: 8px;
+    box-shadow: 0 0 30px color-mix(in srgb, var(--accent) 30%, transparent);
+    font-family: var(--mono); text-align: center;
+  }
+  .wbox h3 { font-family: var(--font); font-size: 15px; letter-spacing: 0.2em; color: var(--accent); text-shadow: 0 0 10px var(--accent); }
+  .wgrid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; margin-top: 10px; }
+  .wgrid button {
+    position: relative; display: flex; flex-direction: column; align-items: center; gap: 2px;
+    padding: 6px 2px 4px; border-radius: 6px; background: rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--accent-dim); font-family: var(--mono); font-size: 10px; line-height: 1.15; color: var(--text);
+  }
+  .wgrid button canvas { width: 40px; height: 40px; }
+  .wgrid button .n { min-height: 2.3em; display: flex; align-items: center; }
+  .wgrid button .am { position: absolute; top: 2px; right: 4px; font-size: 11px; color: var(--yellow); }
+  .wgrid button.sel { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 22%, transparent); box-shadow: 0 0 12px var(--accent-dim); }
+  .wgrid button.cur { outline: 2px solid #fff; outline-offset: 1px; }
+  .wgrid button:disabled { opacity: 0.3; cursor: not-allowed; }
+  .wgrid button.legend { border-color: var(--yellow); }
+  .wfuse { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; margin-top: 10px; font-size: 13px; color: var(--muted); }
+  .wfuse[hidden] { display: none; }
+  .wfuse button { min-width: 38px; padding: 4px 8px; border-radius: 4px; background: transparent; border: 1px solid var(--accent-dim); font-family: var(--mono); }
+  .wfuse button.on { background: var(--accent); color: #061008; border-color: var(--accent); }
+  .wdesc { margin-top: 8px; font-size: 13px; color: #cbbfe0; min-height: 2.6em; }
+  @media (max-width: 420px) { .wgrid button canvas { width: 32px; height: 32px; } .wgrid button { font-size: 9px; } }
+
+  .stats { list-style: none; margin: 10px auto 0; max-width: 420px; display: grid; gap: 4px; font-family: var(--mono); font-size: 14px; text-align: left; color: #cbbfe0; }
+  .stats li { padding: 3px 8px; border-radius: 3px; background: rgba(255, 255, 255, 0.04); }
+  .stats b { color: var(--accent); font-weight: normal; }
+  .opt-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 22px; }
+</style>
+</head>
+<body class="game-page calangada" style="--accent:#7dff3a">
+<header class="topbar">
+  <a class="back" href="../../edicoes/07/#cdrom">◄ REVISTA</a>
+  <h1>CALANGADA</h1>
+  <div class="hud">
+    <span>VEZ<b id="hTurn" class="team">—</b></span>
+    <span>ARMA<b id="hWeapon">—</b></span>
+    <span id="hScoreWrap">PONTOS<b id="hScore">0</b></span>
+    <span id="hHiWrap">RECORDE<b id="hHi">0</b></span>
+    <span class="hud-status" id="hStatus"></span>
+  </div>
+  <button class="icon-btn" id="padBtn" type="button" aria-label="Controles na tela">🎮</button>
+  <button class="icon-btn" id="muteBtn" type="button">🔊</button>
+</header>
+
+<main class="stage" id="stage">
+  <div class="pad pad-left">
+    <div class="dpad">
+      <button class="pbtn up" id="bUp" type="button" aria-label="Mirar para cima">▲</button>
+      <button class="pbtn left" id="bLeft" type="button" aria-label="Andar para a esquerda">◄</button>
+      <button class="pbtn right" id="bRight" type="button" aria-label="Andar para a direita">►</button>
+      <button class="pbtn down" id="bDown" type="button" aria-label="Mirar para baixo">▼</button>
+    </div>
+    <span class="pad-label">ANDAR · MIRAR</span>
+  </div>
+  <div class="game-wrap" id="gameWrap">
+    <div class="screen" id="screen">
+      <canvas id="game" aria-label="Ilha da Calangada"></canvas>
+      <div class="wmenu" id="wMenu" hidden>
+        <div class="wbox">
+          <h3>ARSENAL DO CALANGO</h3>
+          <div class="wgrid" id="wGrid"></div>
+          <div class="wfuse" id="wFuse"></div>
+          <p class="wdesc" id="wDesc"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pad pad-right">
+    <div class="act">
+      <button class="pbtn txt" id="bWeapon" type="button" aria-label="Menu de armas">ARMA</button>
+      <button class="pbtn txt" id="bJump" type="button" aria-label="Pular (toque duas vezes para o pulo para trás)">PULO</button>
+      <button class="pbtn fire" id="bFire" type="button" aria-label="Segure para carregar e solte para atirar">FOGO</button>
+    </div>
+    <span class="pad-label">2× PULO = PARA TRÁS</span>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <section class="panel" id="menuPanel">
+      <h2>CALANGADA</h2>
+      <p class="sub">Equipes de calangos de capacete neon se enfrentam por turnos numa ilha que vai virando queijo suíço. Mire, sinta o vento, segure o FOGO e mande ver. Quem cair no mar vira história de pescador!</p>
+      <div class="opt">
+        <span class="opt-label">MODO</span>
+        <div class="seg" data-setting="mode">
+          <button type="button" data-value="1p">1 JOGADOR</button>
+          <button type="button" data-value="multi">MULTI</button>
+        </div>
+      </div>
+      <div class="opt-row">
+        <div class="opt">
+          <span class="opt-label">EQUIPES</span>
+          <div class="seg" data-setting="equipes">
+            <button type="button" data-value="2">2</button>
+            <button type="button" data-value="3">3</button>
+            <button type="button" data-value="4">4</button>
+          </div>
+        </div>
+        <div class="opt" id="humOpt">
+          <span class="opt-label">HUMANOS</span>
+          <div class="seg" data-setting="humanos" id="humSeg">
+            <button type="button" data-value="2">2</button>
+            <button type="button" data-value="3">3</button>
+            <button type="button" data-value="4">4</button>
+          </div>
+        </div>
+        <div class="opt">
+          <span class="opt-label">CALANGOS POR EQUIPE</span>
+          <div class="seg" data-setting="calangos">
+            <button type="button" data-value="2">2</button>
+            <button type="button" data-value="3">3</button>
+            <button type="button" data-value="4">4</button>
+          </div>
+        </div>
+      </div>
+      <div class="opt" id="cpuOpt">
+        <span class="opt-label">CPU</span>
+        <div class="seg" data-setting="cpu">
+          <button type="button" data-value="facil">FÁCIL</button>
+          <button type="button" data-value="normal">NORMAL</button>
+          <button type="button" data-value="dificil">DIFÍCIL</button>
+        </div>
+      </div>
+      <div class="opt">
+        <span class="opt-label">CENÁRIO</span>
+        <div class="seg" data-setting="cenario">
+          <button type="button" data-value="aleatorio">ALEATÓRIO</button>
+          <button type="button" data-value="praia">PRAIA</button>
+          <button type="button" data-value="favela">FAVELA</button>
+          <button type="button" data-value="obras">OBRAS</button>
+          <button type="button" data-value="lua">LUA</button>
+          <button type="button" data-value="caverna">CAVERNA</button>
+        </div>
+      </div>
+      <p class="sub" id="modeInfo"></p>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">INICIAR</button>
+      </div>
+      <div id="codeMount"></div>
+      <div class="keys">
+        <div>Cada vez dura 45 s. Depois do tiro você tem 5 s para fugir (apertar FOGO de novo encerra a vez).</div>
+        <div class="no-touch"><kbd>←</kbd><kbd>→</kbd> anda · <kbd>↑</kbd><kbd>↓</kbd> mira · segure e solte <kbd>Espaço</kbd> para atirar · <kbd>Enter</kbd> pula · <kbd>Backspace</kbd> pulo para trás</div>
+        <div class="no-touch"><kbd>Tab</kbd>/<kbd>Q</kbd><kbd>E</kbd> troca arma · <kbd>1</kbd>–<kbd>9</kbd>, <kbd>0</kbd> escolhe · <kbd>W</kbd> ou clique direito abre o arsenal · <kbd>F</kbd> pavio da granada</div>
+        <div class="no-touch">Clique no mapa para mirar ali ou escolher o alvo (setas também movem o alvo) · arraste com o botão do meio/direito ou role a roda para olhar o mapa · <kbd>P</kbd>/<kbd>Esc</kbd> pausa · <kbd>M</kbd> som</div>
+        <div>Na tela: ◄ ► anda, ▲ ▼ mira, PULO (dois toques = pulo para trás), ARMA abre o arsenal, segure e solte FOGO (🎮 mostra/esconde). Toque no mapa para mirar ou escolher o alvo; arraste para olhar a ilha.</div>
+        <div>Controle de videogame: analógico/direcional anda e mira, <kbd>A</kbd> pula, <kbd>B</kbd> pulo para trás, <kbd>X</kbd>/<kbd>RT</kbd> segura e solta o tiro, <kbd>Y</kbd> arsenal, <kbd>LB</kbd>/<kbd>RB</kbd> troca arma, <kbd>LT</kbd> pavio, analógico direito olha o mapa, <kbd>Start</kbd> pausa.</div>
+      </div>
+    </section>
+
+    <section class="panel" id="pausePanel" hidden>
+      <h2>PAUSADO</h2>
+      <p class="sub">Os calangos foram tomar um solzinho. Ninguém mexe em nada.</p>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="resume">CONTINUAR</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+
+    <section class="panel" id="overPanel" hidden>
+      <h2 id="overTitle">FIM DE JOGO</h2>
+      <div class="big-score" id="overScore">0</div>
+      <p class="sub" id="overInfo"></p>
+      <p class="record" id="overRecord" hidden>NOVO RECORDE!</p>
+      <ul class="stats" id="overStats"></ul>
+      <div class="rank" id="rankBox" hidden></div>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" data-action="start">JOGAR DE NOVO</button>
+        <button class="btn-ghost" type="button" data-action="menu">MENU</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<script src="../../shared/common.js"></script>
+<script src="../../shared/firebase-config.js"></script>
+<script src="../../shared/ranking.js"></script>
+<script src="../../shared/presenca.js"></script>
+<script src="calangada.js"></script>
+</body>
+</html>
