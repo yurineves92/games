@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="pt-BR" data-base="../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Super Neon Nº 7</title>
+<meta name="description" content="Super Neon Nº 7, edição especial: Calangada, a artilharia por turnos com calangos de capacete neon, guia completo do arsenal, os 5 cenários e todos os códigos secretos.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ff2bd6'/%3E%3Ctext x='16' y='24' font-family='Arial Black' font-size='20' text-anchor='middle' fill='%23ffd400' stroke='%23000' stroke-width='1.5'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee&family=Caveat:wght@600&family=Press+Start+2P&family=Roboto+Condensed:ital,wght@0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../revista/revista.css">
+<style>
+  .arsenal { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 14px; margin: 6px 0 22px; }
+  .arma { border: 3px solid #000; background: #fff; padding: 12px 14px; box-shadow: 5px 5px 0 var(--c, #000); }
+  .arma h3 { font-family: var(--f-logo); font-weight: normal; font-size: 20px; line-height: 1.1; }
+  .arma .tags { display: flex; flex-wrap: wrap; gap: 4px; margin: 6px 0; }
+  .arma .tags span { font-family: var(--f-pixel); font-size: 8px; padding: 4px 6px; background: #111; color: var(--amarelo); }
+  .arma p { font-size: 15px; line-height: 1.4; }
+  .arma.lendaria { background: linear-gradient(135deg, #fff7c0, #ffd400); }
+  .cenarios { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 16px; margin: 6px 0 26px; }
+  .cenario { border: 3px solid #000; background: var(--bg); color: #fff; padding: 14px; box-shadow: 5px 5px 0 #000; }
+  .cenario h3 { font-family: var(--f-logo); font-weight: normal; font-size: 21px; text-shadow: 2px 2px 0 #000; }
+  .cenario p { font-size: 15px; line-height: 1.4; margin-top: 6px; }
+</style>
+</head>
+<body style="--cor: var(--verde)">
+
+<section class="mesa" aria-label="Capa">
+  <div data-capa="7"></div>
+  <div class="mesa-acoes">
+    <a class="botao" href="#editorial">Abrir a revista ▼</a>
+    <a class="botao escuro" href="#cdrom">💿 Direto pro CD-ROM</a>
+    <a class="botao alt" href="../../">◄ Banca</a>
+  </div>
+</section>
+
+<nav class="nav" aria-label="Seções da revista">
+  <a class="nav-logo" href="../../">SUPER <i>NEON</i> Nº7</a>
+  <a href="#editorial">Editorial</a>
+  <a href="#plantao">Plantão</a>
+  <a href="#calangada">Análise</a>
+  <a href="#arsenal">Arsenal</a>
+  <a href="#mapas">Mapas</a>
+  <a href="#dicas">Dicas</a>
+  <a href="#cartas">Cartas</a>
+  <a href="#classificados">Classificados</a>
+  <a href="#cdrom">CD-ROM</a>
+</nav>
+
+<main class="revista">
+
+  <article class="pagina surge" id="editorial">
+    <span class="chapeu">Editorial</span>
+    <h1 class="titulo">Um jogo só. E que jogo!</h1>
+    <p class="linha-fina">Pela primeira vez, o CD-ROM da Super Neon vem com um único jogo. A revista inteira é dele.</p>
+    <div class="colunas">
+      <p>Tudo começou numa reunião de pauta que virou briga. Metade da redação queria um jogo de guerra, a outra metade queria um jogo de bicho. Alguém viu um calango tomando sol na janela e pronto: nasceu a <b>Calangada</b>.</p>
+      <p>É artilharia por turnos. Cada equipe tem seus calangos de capacete neon, espalhados por ilhas que vão se desmanchando a cada explosão. Você escolhe a arma, acerta o ângulo, segura o botão para dar força, olha o vento e reza. Errou? A ilha do vizinho continua lá. Acertou? O calango dele sai voando para o mar.</p>
+      <p>Dá para jogar sozinho contra a CPU ou chamar a turma: até quatro equipes no mesmo aparelho, passando o computador (ou o celular) de mão em mão. A redação testou. Duas amizades não sobreviveram.</p>
+      <h3>Por que edição especial?</h3>
+      <p>Porque um jogo deste tamanho merece. Esta edição traz o <a href="#arsenal">guia completo do arsenal</a>, os <a href="#mapas">5 cenários</a> explicados e todos os códigos secretos. Custa um pouquinho mais, mas vem com mais páginas e um CD-ROM que não sai do drive.</p>
+      <p class="assinatura">A Redação</p>
+    </div>
+
+    <h2 class="titulo" style="font-size:34px;margin-top:30px">Nesta edição</h2>
+    <ul class="sumario">
+      <li><a href="#plantao"><span>04</span><div><b>Plantão Neon</b><small>Notícias quentes como asfalto ao meio-dia</small></div></a></li>
+      <li><a href="#calangada"><span>06</span><div><b>Calangada</b><small>Capa! A análise completa</small></div></a></li>
+      <li><a href="#arsenal"><span>12</span><div><b>Arsenal</b><small>Todas as armas, uma por uma</small></div></a></li>
+      <li><a href="#mapas"><span>18</span><div><b>Mapas</b><small>Os 5 cenários e seus perigos</small></div></a></li>
+      <li><a href="#dicas"><span>22</span><div><b>Dicas &amp; Macetes</b><small>Os 3 códigos secretos e a cartilha do bom calango</small></div></a></li>
+      <li><a href="#cartas"><span>26</span><div><b>Cartas</b><small>O correio da galera</small></div></a></li>
+      <li><a href="#classificados"><span>28</span><div><b>Classificados</b><small>Compra, vende, troca e procura</small></div></a></li>
+      <li><a href="#cdrom"><span>30</span><div><b>CD-ROM</b><small>O jogo completo desta edição</small></div></a></li>
+    </ul>
+    <div class="folio"><span>Super Neon Nº 7 · Edição especial</span><span>3</span></div>
+  </article>
+
+  <section class="pagina surge" id="plantao" style="--cor: var(--laranja)">
+    <span class="chapeu">Plantão Neon</span>
+    <h2 class="titulo">Calor de lagarto</h2>
+    <div class="noticias">
+      <div class="noticia" style="--c: var(--verde)">
+        <h3>Calangos exigem capacete</h3>
+        <p>O sindicato dos calangos aprovou por unanimidade: nenhum membro entra em jogo sem capacete neon. "Segurança em primeiro lugar", declarou o porta-voz, antes de ser arremessado no mar.</p>
+      </div>
+      <div class="noticia" style="--c: var(--amarelo)">
+        <h3>Preço da manga dispara</h3>
+        <p>Feirantes não entendem a procura repentina por mangas. A redação garante que nenhuma manga de verdade foi ferida na produção deste jogo.</p>
+      </div>
+      <div class="noticia" style="--c: var(--ciano)">
+        <h3>Ilhas somem do mapa</h3>
+        <p>Cartógrafos relatam que ilhas inteiras estão desaparecendo, cratera por cratera. A explicação oficial: "estava assim quando a gente chegou".</p>
+      </div>
+      <div class="noticia" style="--c: var(--magenta)">
+        <h3>Recorde de jogadores por teclado</h3>
+        <p>Quatro irmãos de Belém dividiram um único teclado numa partida de 40 minutos. Ninguém sabe quem ganhou, mas todo mundo concorda que foi o caçula que começou.</p>
+      </div>
+    </div>
+    <div class="folio"><span>Plantão</span><span>4</span></div>
+  </section>
+
+  <section class="pagina surge" id="analises" style="--cor: var(--verde)">
+    <span class="chapeu">Análise</span>
+    <h2 class="titulo">Testamos tudo (e explodimos tudo)</h2>
+    <p class="linha-fina">Notas de 0 a 5 em Gráfico, Som, Jogabilidade e Diversão.</p>
+
+    <article class="analise" id="calangada" style="--c:#16a34a">
+      <div class="analise-topo"><h3>Calangada</h3><span>Artilharia por turnos · 1 a 4 jogadores · ★ Capa</span></div>
+      <div class="analise-corpo">
+        <div class="prints">
+          <figure class="print" style="--r:-1.5deg"><img src="prints/calangada-1.jpg" alt="Calangos de capacete coloridos espalhados por um terreno de queijo cheio de buracos, com a Terra no céu e uma mira azul" loading="lazy" width="640" height="480"><figcaption>Lua de Queijo: gravidade baixa, tiro longo.</figcaption></figure>
+          <figure class="print" style="--r:1.2deg"><img src="prints/calangada-2.jpg" alt="Morro coberto de casinhas coloridas, com uma bazuca cruzando o céu em direção a um calango" loading="lazy" width="640" height="480"><figcaption>Favela Fluorescente: as lajes viram trincheira.</figcaption></figure>
+        </div>
+        <div>
+          <div class="texto">
+            <p>Cada equipe tem de 2 a 4 calangos de capacete neon, espalhados por uma ilha sobre o mar. Na sua vez, você tem <b>45 segundos</b> para andar, pular, escolher a arma, mirar e segurar o botão para dar força. Soltou, foi. Depois do tiro ainda sobram 5 segundos para correr para longe da confusão.</p>
+            <p>O terreno se desmancha de verdade: cada explosão abre uma cratera, e o chão que segurava um calango pode sumir debaixo dele. As explosões também arremessam, e cair no mar elimina na hora. O <b>vento</b> muda a cada vez e empurra a bazuca e as mangas. A partir da 8ª rodada vem a <b>morte súbita</b>: o mar sobe um pouco depois de cada vez.</p>
+            <p>São <b>10 armas</b>, da Bazuca de Bambu à lendária Feijoada Atômica, e caixas de paraquedas com vida ou armas extras. Cada calango tem nome (Zé Calango, Dona Creuza, Tô Torrando…), vida em cima da cabeça e fala em balões: "MEU RABO!", "FOI O VENTO!", "ADEUS, MAINHA!". No <b>1 jogador</b> você enfrenta de 1 a 3 equipes da CPU em três dificuldades, e dá para ver a mira dela se ajustando. No <b>Multi</b>, até 4 equipes no mesmo aparelho, com a tela "PASSE O APARELHO!" entre as vezes.</p>
+          </div>
+          <div class="ficha"><dl><dt>Gênero</dt><dd>Artilharia por turnos</dd><dt>Jogadores</dt><dd>1 contra a CPU ou até 4 no mesmo aparelho</dd><dt>Cenários</dt><dd>5, com relevo gerado a cada partida</dd><dt>Controles</dt><dd>Teclado, mouse, toque e controle</dd></dl></div>
+          <div class="notas">
+            <div class="nota-final"><div><small>NOTA</small><b>4,9</b></div></div>
+            <h4>Notas</h4>
+            <div class="nota" style="--v:5">Gráfico<i></i><b>5,0</b></div>
+            <div class="nota" style="--v:4.5">Som<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:4.5">Jogabilidade<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:5">Diversão<i></i><b>5,0</b></div>
+          </div>
+          <p class="veredito">Veredito: o jogo mais completo que a Super Neon já colocou num CD-ROM. Sozinho é estratégia, com a turma é gritaria garantida. A Chinelada na beira do penhasco merecia um prêmio.</p>
+          <p class="jogar-agora"><a class="botao" href="../../jogos/calangada/">▶ Jogar Calangada</a></p>
+        </div>
+      </div>
+    </article>
+
+    <h2 class="titulo" style="font-size:34px;margin-top:30px">Como pontuar no 1 jogador</h2>
+    <div class="colunas">
+      <p><b>10 pontos</b> por ponto de dano em inimigos, <b>+300</b> por inimigo eliminado na sua vez (afogamento conta!) e, na vitória, <b>+1.500</b> mais <b>+500</b> por calango seu que sobreviveu. Tudo isso multiplicado por 1, 2 ou 3, conforme a dificuldade da CPU. Perdeu? O dano e as eliminações continuam valendo.</p>
+      <p>No Multi não tem placar de ranking, mas tem coisa melhor: a tela final mostra o Tiro do Jogo, quem foi nadar, quem mais eliminou e o famoso <b>Prêmio Fogo Amigo</b> para quem mais machucou a própria equipe.</p>
+    </div>
+    <div class="folio"><span>Análise</span><span>6–11</span></div>
+  </section>
+
+  <section class="pagina surge" id="arsenal" style="--cor: var(--vermelho)">
+    <span class="chapeu">Arsenal</span>
+    <h2 class="titulo">Escolha a sua arma</h2>
+    <p class="linha-fina">As 10 armas da Calangada, uma por uma. Abra o arsenal com W, clique direito, o botão ARMA ou Y no controle.</p>
+    <div class="arsenal">
+      <div class="arma" style="--c:#16a34a"><h3>Bazuca de Bambu</h3><div class="tags"><span>INFINITA</span><span>DANO 45</span><span>VENTO</span></div><p>A arma de todo dia. Segure para dar força e solte. Explode ao bater no chão ou num calango. O vento empurra, então olhe a bandeirinha antes.</p></div>
+      <div class="arma" style="--c:#ea580c"><h3>Granada de Caju</h3><div class="tags"><span>INFINITA</span><span>DANO 42</span><span>QUICA</span></div><p>Quica no chão e explode quando o pavio acaba: de 1 a 5 segundos (padrão 3), ajustado com a tecla F. Não liga para o vento. Ótima para mandar por cima de morro.</p></div>
+      <div class="arma" style="--c:#854d0e"><h3>Coco-Bomba</h3><div class="tags"><span>×2</span><span>DANO 30 + 5×18</span></div><p>Explode no impacto e espalha 5 coquinhos, que explodem também. Perfeita para quando os inimigos estão juntinhos.</p></div>
+      <div class="arma" style="--c:#0891b2"><h3>Estilingue Duplo</h3><div class="tags"><span>INFINITA</span><span>DANO 22 + 22</span><span>RETO</span></div><p>Dois tiros retos, sem carregar e sem vento. Dá para mirar de novo entre um e outro. Bom para tirar o último pedacinho de vida de alguém.</p></div>
+      <div class="arma" style="--c:#db2777"><h3>Chinelada</h3><div class="tags"><span>INFINITA</span><span>DANO 20</span><span>EMPURRA</span></div><p>Corpo a corpo, colado no inimigo. Não explode, mas arremessa o coitado longe e para cima. Na beira do mar, é eliminação na certa.</p></div>
+      <div class="arma" style="--c:#dc2626"><h3>Dinamite Junina</h3><div class="tags"><span>×1</span><span>DANO 75</span><span>PAVIO 5 s</span></div><p>Larga aos seus pés com pavio de 5 segundos. "ANARRIÊ! CORRE!" Ande até o inimigo, solte e saia correndo. O estrago é enorme.</p></div>
+      <div class="arma" style="--c:#ca8a04"><h3>Chuva de Mangas</h3><div class="tags"><span>×1</span><span>DANO 5×24</span><span>VENTO</span></div><p>Escolha um ponto do mapa e o urubu entregador solta uma fileira de 5 mangas explosivas. O vento desvia. Não funciona dentro da caverna.</p></div>
+      <div class="arma" style="--c:#57534e"><h3>Pá do Tatu</h3><div class="tags"><span>×3</span><span>CAVA</span></div><p>Cava um túnel na direção da mira por quase 2 segundos. Use para se esconder dentro do morro ou abrir caminho até o outro lado.</p></div>
+      <div class="arma" style="--c:#7c3aed"><h3>Teletransporte</h3><div class="tags"><span>×2</span><span>ALVO</span></div><p>Escolha um lugar vazio no mapa e apareça lá. Se o lugar ficar vermelho e aparecer "AÍ NÃO DÁ!", procure outro. Salva vidas no fim da partida, quando o mar sobe.</p></div>
+      <div class="arma lendaria" style="--c:#000"><h3>★ Feijoada Atômica</h3><div class="tags"><span>SÓ EM CAIXA</span><span>DANO 80 + 6×16</span></div><p>A lendária. Só vem em caixa de armas (10% de chance). A panela borbulha por 3 segundos e explode num raio gigante, soltando 6 linguiças explosivas. Mais forte do cardápio.</p></div>
+    </div>
+    <h2 class="titulo" style="font-size:34px">Caixas de paraquedas</h2>
+    <div class="colunas">
+      <p>A partir da 2ª vez, há 40% de chance por vez de cair uma caixa (no máximo 3 no mapa ao mesmo tempo). O paraquedas desvia com o vento, e caixa que cai no mar afunda. Qualquer calango que encostar nela, de qualquer equipe, pega o conteúdo.</p>
+      <p><b>Caixa de vida (metade das vezes):</b> +25 de vida, até no máximo 200. <b>Caixa de armas:</b> Coco-Bomba, Dinamite, Mangas, Teletransporte ou Pá (+2), e 10% de chance da Feijoada Atômica. Cuidado: caixa de armas atingida por explosão explode junto.</p>
+    </div>
+    <div class="folio"><span>Arsenal</span><span>12–17</span></div>
+  </section>
+
+  <section class="pagina surge" id="mapas" style="--cor: var(--ciano)">
+    <span class="chapeu">Mapas</span>
+    <h2 class="titulo">Os 5 cenários</h2>
+    <p class="linha-fina">O relevo é gerado de novo a cada partida, mas cada cenário tem o seu jeito. Escolha no menu, em CENÁRIO, ou deixe no ALEATÓRIO.</p>
+    <div class="cenarios">
+      <div class="cenario" style="--bg:#0a3a4a">
+        <h3>Praia de Neon</h3>
+        <p>Duas ilhas de areia separadas por um canal de mar no meio, com dunas suaves e coqueiros que dá para escalar e explodir. O canal engole quem for empurrado para o centro: guarde a Chinelada para ele.</p>
+      </div>
+      <div class="cenario" style="--bg:#4a1a3a">
+        <h3>Favela Fluorescente</h3>
+        <p>Um morrão coberto de casinhas coloridas empilhadas, lajes, caixas d'água e janelas acesas. As lajes são ótimas trincheiras, mas as encostas terminam direto no mar.</p>
+      </div>
+      <div class="cenario" style="--bg:#4a3a0a">
+        <h3>Canteiro de Obras</h3>
+        <p>Chão baixo, montes de terra, blocos de concreto, um guindaste amarelo e vigas de aço penduradas no ar. As vigas são finas: um tiro embaixo e quem está em cima despenca. O chão baixo é o primeiro a afundar quando o mar sobe.</p>
+      </div>
+      <div class="cenario" style="--bg:#2a2a10">
+        <h3>Lua de Queijo</h3>
+        <p>Terreno de queijo cheio de buracos e crateras, com a Terra no céu. Gravidade quase pela metade (tudo voa mais longe, os pulos vão mais alto) e só um sopro de vento. Use menos força do que parece.</p>
+      </div>
+      <div class="cenario" style="--bg:#1a0a3a">
+        <h3>Caverna de Cristal</h3>
+        <p>Teto de pedra, estalactites, cristais brilhantes e pilares com janelas. Sem vento nenhum, mas também sem Chuva de Mangas: o urubu não entra. Tiro alto bate no teto, então prefira a granada.</p>
+      </div>
+    </div>
+    <div class="folio"><span>Mapas</span><span>18–21</span></div>
+  </section>
+
+  <section class="pagina surge" id="dicas" style="--cor: var(--amarelo)">
+    <span class="chapeu" style="color:#000">Dicas &amp; Macetes</span>
+    <h2 class="titulo">Códigos secretos</h2>
+    <p class="linha-fina">Digite o código na caixa <b>CÓDIGO SECRETO</b> do menu do jogo. O KONAMI também vale pela sequência <span class="setas">↑ ↑ ↓ ↓ ← → ← → B A</span> no teclado, com o menu aberto. No celular, escreva KONAMI na caixa.</p>
+    <div class="dicas">
+      <div class="dica" style="--c:#16a34a">
+        <h3>Calangada</h3>
+        <div class="dica-corpo">
+          <div class="senha"><code>KONAMI</code><p>Munição infinita de todas as armas, inclusive a Feijoada Atômica.</p></div>
+          <div class="senha"><code>SEMVENTO</code><p>O vento fica sempre zero.</p></div>
+          <div class="senha"><code>SUPERPULO</code><p>Pulos 70% mais altos e nenhum dano de queda.</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="box-aviso">⚠ Com qualquer código ligado, o recorde não é salvo e o placar fica fora do Hall da Fama. Os códigos valem só para as equipes humanas.</p>
+
+    <h2 class="titulo" style="font-size:34px;margin-top:34px">A cartilha do bom calango</h2>
+    <div class="colunas">
+      <h3>1. Chinelada na beirada</h3>
+      <p>A Chinelada arremessa o inimigo longe e sempre um pouco para cima. Se ele estiver na beira de um penhasco ou do canal, vai direto para o mar: eliminação na hora, valendo 300 × multiplicador no 1 jogador.</p>
+      <h3>2. Ventania? Troque de arma</h3>
+      <p>O vento só afeta a Bazuca, as Mangas e os paraquedas. Com a bandeirinha apontando forte, troque para a Granada de Caju, o Coco-Bomba ou o Estilingue Duplo, que não ligam para o vento.</p>
+      <h3>3. Não precisa acertar em cheio</h3>
+      <p>Até cerca de um quarto do raio da explosão, o dano já é o máximo. Mire no chão aos pés do inimigo: além do dano, o empurrão pode jogá-lo morro abaixo.</p>
+      <h3>4. O pulo para trás é o pulo alto</h3>
+      <p>O pulo para trás (Backspace, B no controle ou dois toques no PULO) sobe bem mais que o pulo para a frente. É assim que se escala parede, degrau e laje.</p>
+      <h3>5. Caixa também é bomba</h3>
+      <p>Uma caixa de armas parada perto dos inimigos explode se for atingida, com dano e empurrão extras. Mire nela em vez de mirar neles.</p>
+      <h3>6. Na Lua, menos é mais</h3>
+      <p>Com a gravidade quase pela metade, um tiro carregado demais voa para fora do mapa. Comece com metade da força e vá ajustando. Os pulos também vão mais alto: ótimo para fugir de uma cratera.</p>
+    </div>
+    <div class="folio"><span>Dicas &amp; Macetes</span><span>22–25</span></div>
+  </section>
+
+  <section class="pagina surge" id="cartas" style="--cor: var(--vermelho)">
+    <span class="chapeu">Cartas</span>
+    <h2 class="titulo">Fala, leitor!</h2>
+    <div class="cartas">
+      <div class="carta" style="--r:-0.8deg">
+        <p class="msg">No Rastro de Luz, a Navalha me persegue a partida inteira! O que eu fiz para ela?</p>
+        <p class="de">Gustavo, 12 anos, Uberlândia (MG)</p>
+        <p class="resp"><b>SN:</b> Nada, Gustavo, é o jeito dela. Use isso a seu favor: faça uma curva fechada e deixe a Navalha bater no seu rastro. Vale 150 pontos por vez.</p>
+      </div>
+      <div class="carta" style="--r:0.6deg">
+        <p class="msg">Passei da fase 10 do Bolhas e agora apareceu uma tal de "Espuma Radioativa". Isso tem fim?</p>
+        <p class="de">Marina, Aracaju (SE)</p>
+        <p class="resp"><b>SN:</b> Não tem, Marina! Depois da fase 10, as fases-surpresa vão até onde o seu dedo aguentar. Mande o seu recorde para o Hall da Fama.</p>
+      </div>
+      <div class="carta" style="--r:-0.3deg">
+        <p class="msg">Vocês podiam fazer um jogo em que a gente jogue com bicho brasileiro. Tipo capivara, tatu, calango…</p>
+        <p class="de">Felipe, 11 anos, Cuiabá (MT)</p>
+        <p class="resp"><b>SN:</b> Felipe, abra o CD-ROM desta edição e depois escreva de novo. A capivara fica para a próxima.</p>
+      </div>
+      <div class="carta" style="--r:0.9deg">
+        <p class="msg">Fiz uma cascata ×7 no Joias e minha mãe ouviu o computador gritar "SUPER NEON!" da cozinha. Ela agora quer jogar também.</p>
+        <p class="de">Isadora, 10 anos, Vitória (ES)</p>
+        <p class="resp"><b>SN:</b> Isadora, bem-vinda à família, mãe da Isadora! Dica para começar: jogue sempre pela parte de baixo do tabuleiro.</p>
+      </div>
+    </div>
+    <div class="folio"><span>Cartas</span><span>26–27</span></div>
+  </section>
+
+  <section class="pagina surge" id="classificados" style="--cor: var(--tinta)">
+    <span class="chapeu">Classificados</span>
+    <h2 class="titulo">Troca-troca</h2>
+    <div class="classificados">
+      <div class="classificado"><b>Vendo</b>Ilha com vista para o mar. Pequena cratera no meio, nada que um tapete não resolva.<span class="tel">TEL (81) 5555-0707</span></div>
+      <div class="classificado"><b>Procuro</b>Calango que saiba nadar. Motivo: todos os meus caíram no mar.<span class="tel">CX. POSTAL 7070</span></div>
+      <div class="classificado"><b>Troco</b>Chinelo de dedo usado (muito usado, em combate) por par novo.<span class="tel">TEL (98) 5555-0141</span></div>
+      <div class="classificado"><b>Ofereço</b>Serviço de meteorologia. Prevejo o vento do próximo turno com 50% de acerto.<span class="tel">TEL (53) 5555-0186</span></div>
+      <div class="classificado"><b>Compro</b>Capacete neon tamanho calango. Pago em mangas (não explosivas).<span class="tel">TEL (86) 5555-0123</span></div>
+      <div class="classificado"><b>Clube</b>Associação dos Calangos que Caíram no Mar. Reuniões na beira da praia, longe da água.<span class="tel">PRAIA DE NEON, S/N</span></div>
+    </div>
+    <div class="anuncio" style="--anuncio: linear-gradient(135deg, #06102a, #1a5a3a 50%, #7dff3a)">
+      <h3>Boia de Calango Neon</h3>
+      <p>Para todo calango que já subestimou o vento. Infla em 2 segundos, brilha no escuro e vem com apito para pedir ajuda à equipe.</p>
+      <span class="preco">só R$ 9,90</span>
+      <small>Produto imaginário. Não boia. Calango de verdade também não usa capacete.</small>
+    </div>
+    <div class="folio"><span>Classificados</span><span>28–29</span></div>
+  </section>
+
+  <section class="cdrom-mesa" id="cdrom" aria-label="CD-ROM da edição">
+    <div data-cdrom="7"></div>
+  </section>
+
+  <section class="pagina surge" style="--cor: var(--magenta)">
+    <span class="chapeu">Até a próxima</span>
+    <h2 class="titulo">Continue jogando!</h2>
+    <p class="linha-fina">Sete edições e dezenove jogos depois, a redação vai juntar os cacos da ilha e pensar na próxima. Os CD-ROMs continuam aqui, e o Hall da Fama continua aberto.</p>
+    <p><a class="botao escuro" href="../../">◄ Voltar para a banca</a> <a class="botao alt" href="../../#hall">Ver o Hall da Fama</a></p>
+    <h3 style="font-family:var(--f-grito);font-size:24px;margin-top:26px;font-weight:normal">Expediente</h3>
+    <div class="expediente">
+      <p><b>Super Neon</b>, a revista de games que vem com jogo. Número 7, Ano 2. Edição especial.</p>
+      <p><b>Redação:</b> procurando um calango que fugiu da sala de testes. <b>CD-ROM:</b> jogo feito só com HTML, CSS e JavaScript.</p>
+      <p>Fan games não oficiais e sem fins lucrativos. Os clássicos que inspiraram nossos jogos são marcas de seus respectivos donos.</p>
+    </div>
+    <div class="folio"><span>Super Neon Nº 7</span><span>32</span></div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <a href="../06/">◄ Edição anterior</a> · <a href="../../">Banca</a>
+</footer>
+
+<script src="../../shared/common.js"></script>
+<script src="../../shared/firebase-config.js"></script>
+<script src="../../shared/ranking.js"></script>
+<script src="../../shared/presenca.js"></script>
+<script src="../../revista/edicoes.js"></script>
+<script src="../../revista/revista.js"></script>
+<script src="../../revista/musica.js"></script>
+</body>
+</html>

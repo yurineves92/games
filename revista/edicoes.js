@@ -21,6 +21,7 @@ const ICONE = {
   rastro: `<svg viewBox="0 0 16 16" shape-rendering="crispEdges"><rect width="16" height="16" fill="#020812"/><path d="M4 0v16M8 0v16M12 0v16M0 4h16M0 8h16M0 12h16" stroke="#0b3550" stroke-width=".3"/><path d="M1 15V6h6v4h3" fill="none" stroke="#00e5ff" stroke-width="1.2"/><rect x="9.6" y="9.2" width="2" height="1.6" fill="#fff"/><path d="M15 2H9v3H5.5" fill="none" stroke="#ff2bd6" stroke-width="1.2"/><rect x="3.8" y="4.2" width="2" height="1.6" fill="#fff"/></svg>`,
   bolhas: `<svg viewBox="0 0 16 16"><rect width="16" height="16" fill="#14002a"/><g stroke="#000" stroke-width=".3"><circle cx="2.5" cy="2.3" r="1.9" fill="#ff2bd6"/><circle cx="6.5" cy="2.3" r="1.9" fill="#00e5ff"/><circle cx="10.5" cy="2.3" r="1.9" fill="#ff2bd6"/><circle cx="14.5" cy="2.3" r="1.9" fill="#ffd400"/><circle cx="4.5" cy="5.8" r="1.9" fill="#39ff14"/><circle cx="8.5" cy="5.8" r="1.9" fill="#ffd400"/><circle cx="12.5" cy="5.8" r="1.9" fill="#00e5ff"/><circle cx="8" cy="13.6" r="1.9" fill="#39ff14"/></g><g fill="#fff" opacity=".7"><circle cx="1.9" cy="1.7" r=".5"/><circle cx="5.9" cy="1.7" r=".5"/><circle cx="7.4" cy="13" r=".5"/></g><path d="M8 11.4L9.4 8" stroke="#fff" stroke-width=".5" stroke-dasharray=".6 .6"/></svg>`,
   joias: `<svg viewBox="0 0 16 16"><rect width="16" height="16" fill="#1a0f00"/><path d="M4 .8L7.2 4 4 7.2.8 4Z" fill="#ff3b5c" stroke="#fff" stroke-width=".3"/><circle cx="12" cy="4" r="3" fill="#00e5ff" stroke="#fff" stroke-width=".3"/><path d="M4 8.8l3 5.6H1Z" fill="#39ff14" stroke="#fff" stroke-width=".3"/><path d="M12 8.6l.9 2 2.2.2-1.7 1.4.6 2.2L12 13.2l-2 1.2.6-2.2-1.7-1.4 2.2-.2Z" fill="#ffd400" stroke="#fff" stroke-width=".3"/><g fill="#fff" opacity=".75"><path d="M2.6 3.4L4 2v1.6Z"/><circle cx="11" cy="3" r=".7"/></g></svg>`,
+  calangada: `<svg viewBox="0 0 16 16"><rect width="16" height="16" fill="#0a1a3a"/><path d="M0 11c2-2 4-1 6-2s3-3 5-2 3 1 5 0v9H0Z" fill="#2a1a0a" stroke="#7dff3a" stroke-width=".6"/><circle cx="9.5" cy="9.2" r="1.6" fill="#0a1a3a"/><rect y="14.5" width="16" height="1.5" fill="#00e5ff" opacity=".7"/><path d="M3 9.4c.6-.8 1.6-.9 2.4-.5l1 .6-.3.5-.9-.3-.3.9h-.5l.1-.9-.7.2-.4.9h-.5Z" fill="#7dff3a"/><path d="M4.4 8.6a1 1 0 0 1 1.6-.2" stroke="#ff2bd6" stroke-width=".7" fill="none"/><path d="M6.4 8.4L8 6.6" stroke="#ffd400" stroke-width=".6"/><path d="M8.6 2.6Q11 1 13 3.6" stroke="#fff" stroke-width=".4" stroke-dasharray=".6 .5" fill="none"/><circle cx="13.2" cy="4" r=".9" fill="#ffb000"/></svg>`,
 };
 
 const JOGOS = {
@@ -42,6 +43,7 @@ const JOGOS = {
   rastro: { nome: 'Rastro de Luz', pasta: 'jogos/rastro/', cor: '#00e5ff', ed: 6, recordes: [['rastro_hi_facil', 'Fácil'], ['rastro_hi_normal', 'Normal'], ['rastro_hi_dificil', 'Difícil']], ranking: 'rastro-normal', rankingNome: 'Normal' },
   bolhas: { nome: 'Bolhas', pasta: 'jogos/bolhas/', cor: '#ff2bd6', ed: 6, recordes: [['bolhas_hi_fases', 'Fases'], ['bolhas_hi_infinito', 'Infinito']], ranking: 'bolhas-fases', rankingNome: 'Fases' },
   joias: { nome: 'Joias', pasta: 'jogos/joias/', cor: '#ffd400', ed: 6, recordes: [['joias_hi_classico', 'Clássico'], ['joias_hi_relogio', 'Relógio']], ranking: 'joias-classico', rankingNome: 'Clássico' },
+  calangada: { nome: 'Calangada', pasta: 'jogos/calangada/', cor: '#7dff3a', ed: 7, recordes: [['calangada_hi_facil', 'Fácil'], ['calangada_hi_normal', 'Normal'], ['calangada_hi_dificil', 'Difícil']], ranking: 'calangada-normal', rankingNome: 'Normal' },
 };
 
 const EDICOES = [
@@ -116,5 +118,17 @@ const EDICOES = [
     ],
     selo: '3 jogos no CD-ROM!', rodape: 'Detonado das 10 fases do Bolhas',
     jogos: ['rastro', 'bolhas', 'joias'],
+  },
+  {
+    n: 7, slug: '07', mes: 'Maio', ano: 'Ano 2', preco: 'R$ 7,90', cod: '7 891234 000079', especial: true,
+    fundo: 'linear-gradient(170deg, #06102a 0%, #0a2a5a 45%, #1a5a3a 75%, #ffb000 100%)',
+    manchete: 'Calangada!', manchete2: 'Arme seu bando e exploda a ilha do vizinho', corManchete: '#7dff3a',
+    chamadas: [
+      ['Arsenal', 'Todas as armas, da Chinelada à Feijoada', '#ff3b5c'],
+      ['Mapas', 'Os 5 cenários explicados', '#00c8e6'],
+      ['Turma toda', 'Até 4 equipes no mesmo aparelho', '#ff8a00'],
+    ],
+    selo: 'Edição especial!', rodape: 'Guia completo do arsenal',
+    jogos: ['calangada'],
   },
 ];
