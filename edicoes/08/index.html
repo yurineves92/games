@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="pt-BR" data-base="../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Super Neon Nº 8</title>
+<meta name="description" content="Super Neon Nº 8, edição especial: Cripta Neon, a masmorra de 10 andares do folclore brasileiro, com detonado e mapas de todos os andares, bestiário, senhas e códigos secretos.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ff2bd6'/%3E%3Ctext x='16' y='24' font-family='Arial Black' font-size='20' text-anchor='middle' fill='%23ffd400' stroke='%23000' stroke-width='1.5'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bungee&family=Caveat:wght@600&family=Press+Start+2P&family=Roboto+Condensed:ital,wght@0,400;0,700;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../revista/revista.css">
+<style>
+  .bestiario { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 14px; margin: 6px 0 22px; }
+  .fera { border: 3px solid #000; background: #0d0818; color: #fff; padding: 12px 14px; box-shadow: 5px 5px 0 var(--c, #b26bff); }
+  .fera h3 { font-family: var(--f-logo); font-weight: normal; font-size: 20px; line-height: 1.1; color: var(--c, #b26bff); text-shadow: 2px 2px 0 #000; }
+  .fera .tags { display: flex; flex-wrap: wrap; gap: 4px; margin: 6px 0; }
+  .fera .tags span { font-family: var(--f-pixel); font-size: 8px; padding: 4px 6px; background: #fff; color: #000; }
+  .fera p { font-size: 15px; line-height: 1.4; }
+  .fera.chefe { box-shadow: 5px 5px 0 #ff3b5c; border-color: #ff3b5c; }
+  .andares { display: grid; gap: 22px; margin-top: 10px; }
+  .andar { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 18px; align-items: start; border-top: 3px dashed var(--tinta-2); padding-top: 18px; }
+  .andar:first-child { border-top: none; padding-top: 0; }
+  @media (max-width: 640px) { .andar { grid-template-columns: 1fr; } }
+  .andar canvas { display: block; width: 100%; height: auto; image-rendering: pixelated; border: 3px solid #000; background: #07040f; box-shadow: 4px 4px 0 #000; }
+  .andar h3 { font-family: var(--f-logo); font-weight: normal; font-size: 22px; line-height: 1.1; }
+  .andar h3 small { display: block; font-family: var(--f-pixel); font-size: 9px; color: var(--tinta-2); margin-bottom: 4px; }
+  .andar p { margin-top: 6px; line-height: 1.45; }
+  .andar .chefe-box { margin-top: 8px; padding: 8px 10px; border: 3px solid #ff3b5c; background: #fff0f2; }
+  .legenda-mapa { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 8px 0 16px; font-size: 14px; font-weight: 700; }
+  .legenda-mapa i { display: inline-block; width: 14px; height: 14px; border: 2px solid #000; vertical-align: -2px; margin-right: 5px; }
+  .senhas { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 10px 0 16px; }
+  .senhas div { border: 3px solid #000; background: #111; color: #fff; padding: 10px; text-align: center; box-shadow: 4px 4px 0 var(--roxo); }
+  .senhas small { display: block; font-size: 12px; font-weight: 900; letter-spacing: 0.1em; text-transform: uppercase; color: #bbb; }
+  .senhas b { font-family: var(--f-pixel); font-size: 14px; color: var(--amarelo); letter-spacing: 0.1em; }
+  .senhas .tapada b { color: #555; }
+</style>
+</head>
+<body style="--cor: var(--roxo)">
+
+<section class="mesa" aria-label="Capa">
+  <div data-capa="8"></div>
+  <div class="mesa-acoes">
+    <a class="botao" href="#editorial">Abrir a revista ▼</a>
+    <a class="botao escuro" href="#cdrom">💿 Direto pro CD-ROM</a>
+    <a class="botao alt" href="../../">◄ Banca</a>
+  </div>
+</section>
+
+<nav class="nav" aria-label="Seções da revista">
+  <a class="nav-logo" href="../../">SUPER <i>NEON</i> Nº8</a>
+  <a href="#editorial">Editorial</a>
+  <a href="#plantao">Plantão</a>
+  <a href="#cripta">Análise</a>
+  <a href="#bestiario">Bestiário</a>
+  <a href="#detonado">Detonado</a>
+  <a href="#dicas">Dicas</a>
+  <a href="#cartas">Cartas</a>
+  <a href="#classificados">Classificados</a>
+  <a href="#cdrom">CD-ROM</a>
+</nav>
+
+<main class="revista">
+
+  <article class="pagina surge" id="editorial">
+    <span class="chapeu">Editorial</span>
+    <h1 class="titulo">Apague a luz. Ou melhor, não apague.</h1>
+    <p class="linha-fina">A edição mais escura, mais difícil e mais assustadora da história da Super Neon. Leitores sensíveis: leiam de dia.</p>
+    <div class="colunas">
+      <p>Depois da gritaria da Calangada, a redação recebeu uma carta curta: "vocês fazem jogo muito fácil". A carta não tinha assinatura, só um desenho de um gorro vermelho. Aceitamos o desafio.</p>
+      <p>A <b>Cripta Neon</b> é uma masmorra de dez andares. O herói é o <b>Solfat</b>, nossa homenagem ao streamer <b>solfat_guy</b>: armado com uma lanterna neon e um facão, ele desce cada vez mais fundo numa catacumba tomada pelas criaturas do folclore brasileiro. Fora do círculo da lanterna, é escuridão total. E no escuro tem coisa olhando para você.</p>
+      <p>É difícil de verdade. Cada inimigo avisa antes de atacar, e o segredo é <b>rolar</b> na hora certa. Morrer faz parte do aprendizado. Para ninguém desistir, o jogo tem um sistema de <b>senhas</b> como os cartuchos de antigamente: perdeu as três vidas, anote a senha do andar e continue de onde parou.</p>
+      <h3>O que tem nesta edição</h3>
+      <p>Um detonado com o <a href="#detonado">mapa de cada um dos 10 andares</a>, o <a href="#bestiario">bestiário</a> completo com o jeito de vencer cada criatura, e algumas senhas. Só algumas. As outras, você vai ter que conquistar.</p>
+      <p class="assinatura">A Redação</p>
+    </div>
+
+    <h2 class="titulo" style="font-size:34px;margin-top:30px">Nesta edição</h2>
+    <ul class="sumario">
+      <li><a href="#plantao"><span>04</span><div><b>Plantão Neon</b><small>Notícias do subsolo</small></div></a></li>
+      <li><a href="#cripta"><span>06</span><div><b>Cripta Neon</b><small>Capa! A análise completa</small></div></a></li>
+      <li><a href="#bestiario"><span>10</span><div><b>Bestiário</b><small>Todas as criaturas e como vencer cada uma</small></div></a></li>
+      <li><a href="#detonado"><span>14</span><div><b>Detonado</b><small>Os 10 andares, com mapa</small></div></a></li>
+      <li><a href="#dicas"><span>24</span><div><b>Dicas &amp; Macetes</b><small>Senhas, códigos e a cartilha do caçador</small></div></a></li>
+      <li><a href="#cartas"><span>28</span><div><b>Cartas</b><small>O correio da galera</small></div></a></li>
+      <li><a href="#classificados"><span>30</span><div><b>Classificados</b><small>Compra, vende, troca e procura</small></div></a></li>
+      <li><a href="#cdrom"><span>32</span><div><b>CD-ROM</b><small>O jogo completo desta edição</small></div></a></li>
+    </ul>
+    <div class="folio"><span>Super Neon Nº 8 · Edição especial</span><span>3</span></div>
+  </article>
+
+  <section class="pagina surge" id="plantao" style="--cor: var(--ciano)">
+    <span class="chapeu">Plantão Neon</span>
+    <h2 class="titulo">Notícias do subsolo</h2>
+    <div class="noticias">
+      <div class="noticia" style="--c: var(--roxo)">
+        <h3>Venda de lanternas bate recorde</h3>
+        <p>Lojas de todo o país ficaram sem lanternas depois que leitores descobriram o que tem no escuro da Cripta Neon. Pilhas também estão em falta.</p>
+      </div>
+      <div class="noticia" style="--c: var(--vermelho)">
+        <h3>Gorro vermelho encontrado na redação</h3>
+        <p>Um gorro vermelho apareceu em cima do teclado do diretor de arte na segunda-feira. Junto, um bilhete: "sumiu a sua chave? hihihi". A chave ainda não foi encontrada.</p>
+      </div>
+      <div class="noticia" style="--c: var(--laranja)">
+        <h3>Bombeiros chamados por cavalo sem cabeça</h3>
+        <p>Vizinhos ligaram para os bombeiros ao ver um clarão de fogo saindo da sala de testes. Era só o andar 5. Ninguém se feriu, exceto o Solfat. Várias vezes.</p>
+      </div>
+      <div class="noticia" style="--c: var(--verde)">
+        <h3>Professores aprovam</h3>
+        <p>Uma professora de Manaus contou que a turma inteira aprendeu as lendas do folclore depois de jogar a Cripta Neon. "Agora sabem que o Curupira tem os pés virados. Na prova e no jogo."</p>
+      </div>
+    </div>
+    <div class="folio"><span>Plantão</span><span>4</span></div>
+  </section>
+
+  <section class="pagina surge" id="analises" style="--cor: var(--roxo)">
+    <span class="chapeu">Análise</span>
+    <h2 class="titulo">Descemos até o fundo</h2>
+    <p class="linha-fina">Notas de 0 a 5 em Gráfico, Som, Jogabilidade e Diversão.</p>
+
+    <article class="analise" id="cripta" style="--c:#7c3aed">
+      <div class="analise-topo"><h3>Cripta Neon</h3><span>Ação e aventura · 1 jogador · ★ Capa</span></div>
+      <div class="analise-corpo">
+        <div class="prints">
+          <figure class="print" style="--r:-1.5deg"><img src="prints/cripta-1.jpg" alt="O herói Solfat, de boné roxo e moletom azul, golpeando ratos com o facão numa sala escura iluminada por velas" loading="lazy" width="640" height="480"><figcaption>Andar 1: o facão gira e os ratos voam. +10!</figcaption></figure>
+          <figure class="print" style="--r:1.2deg"><img src="prints/cripta-2.jpg" alt="Tela preta com os dizeres ANDAR 5, CURRAL DA MULA, SOLFAT DESCE PARA O ANDAR 5 e a senha TROPEL" loading="lazy" width="640" height="480"><figcaption>Toda abertura de andar mostra a senha. Anote!</figcaption></figure>
+        </div>
+        <div>
+          <div class="texto">
+            <p>O <b>Solfat</b>, nossa homenagem ao streamer solfat_guy, desce os dez andares de uma catacumba esquecida com uma lanterna neon e um facão. A câmera fica no alto, a ação é em tempo real e o escuro é de verdade: fora da luz da lanterna, das velas e dos cristais, não se vê nada. Só os olhos.</p>
+            <p>O combate tem três peças. O <b>facão</b>, com combo de três golpes (o terceiro gira e dá dano dobrado). O <b>rolamento</b>, que deixa você invencível por um instante. E os <b>itens</b>: bombas para abrir paredes rachadas, um bodoque e o sal grosso, que espanta assombração. Todo inimigo avisa antes de atacar, com um "!", uma linha vermelha ou um círculo no chão. Quem presta atenção não apanha.</p>
+            <p>Cada andar tem chaves, portas, alavancas, armadilhas, uma sala secreta e um guardião: Iara, Curupira, <b>Mula sem Cabeça</b>, Mapinguari, Boitatá, Saci Pererê e, lá no fundo, a <b>Cuca</b>, em três fases. São três vidas. Acabaram? O jogo mostra a <b>senha</b> do andar, como nos cartuchos de antigamente. O Seu Boto vende garrafadas e bombas em três andares.</p>
+          </div>
+          <div class="ficha"><dl><dt>Gênero</dt><dd>Masmorra de ação</dd><dt>Andares</dt><dd>10, com 2 chefes e 5 mini-chefes</dd><dt>Controles</dt><dd>Teclado, joystick na tela e controle</dd><dt>Dificuldade</dt><dd>Normal (difícil) ou Pesadelo (muito difícil)</dd></dl></div>
+          <div class="notas">
+            <div class="nota-final"><div><small>NOTA</small><b>4,9</b></div></div>
+            <h4>Notas</h4>
+            <div class="nota" style="--v:5">Gráfico<i></i><b>5,0</b></div>
+            <div class="nota" style="--v:4.5">Som<i></i><b>4,5</b></div>
+            <div class="nota" style="--v:5">Jogabilidade<i></i><b>5,0</b></div>
+            <div class="nota" style="--v:5">Diversão<i></i><b>5,0</b></div>
+          </div>
+          <p class="veredito">Veredito: difícil de dar raiva, justo de dar vontade de tentar de novo. A primeira vez que você vence a Mula, dá vontade de sair gritando pela casa.</p>
+          <p class="jogar-agora"><a class="botao" href="../../jogos/cripta/">▶ Jogar Cripta Neon</a></p>
+        </div>
+      </div>
+    </article>
+
+    <h2 class="titulo" style="font-size:34px;margin-top:30px">Como funciona a pontuação</h2>
+    <div class="colunas">
+      <p>Moeda vale 10, baú vale 50, cada bicho tem o seu valor (veja o <a href="#bestiario">bestiário</a>), mini-chefe vale 1.500, a Mula 3.000 e a Cuca 10.000. No fim de cada andar entra a contagem: bônus de tempo, <b>+2.000</b> se você passou sem levar dano, <b>+500</b> por sala secreta e <b>+500 × o número do andar</b>.</p>
+      <p>Venceu a Cuca? Mais <b>+20.000</b>, e cada vida que sobrou vale 5.000. Morrer devolve os pontos e o inventário ao que eram no começo do andar. Partida começada por senha ou com código ligado não entra no recorde nem no Hall da Fama.</p>
+    </div>
+    <div class="folio"><span>Análise</span><span>6–9</span></div>
+  </section>
+
+  <section class="pagina surge" id="bestiario" style="--cor: var(--verde)">
+    <span class="chapeu">Bestiário</span>
+    <h2 class="titulo">Conheça o inimigo</h2>
+    <p class="linha-fina">Todas as criaturas da Cripta, com a vida, os pontos e o jeito de vencer. "Meio" é meio coração. No modo Pesadelo, todo mundo bate o dobro.</p>
+    <div class="bestiario">
+      <div class="fera" style="--c:#a3a3a3"><h3>Rato</h3><div class="tags"><span>VIDA 2</span><span>10 PTS</span></div><p>Guincha, mostra um "!" e corre para cima de você. Um golpe resolve, mas eles vêm em bando.</p></div>
+      <div class="fera" style="--c:#8b5cf6"><h3>Morcego</h3><div class="tags"><span>VIDA 2</span><span>15 PTS</span></div><p>Voa por cima de buraco e água. Avisa e mergulha. Role de lado e golpeie quando ele passar.</p></div>
+      <div class="fera" style="--c:#b45309"><h3>Caranguejeira</h3><div class="tags"><span>VIDA 6</span><span>30 PTS</span></div><p>Prepara o salto e pula onde você estava. Depois descansa quase um segundo: é a sua hora.</p></div>
+      <div class="fera" style="--c:#65a30d"><h3>Sapo-cururu</h3><div class="tags"><span>VIDA 4</span><span>25 PTS</span></div><p>Incha e cospe veneno (1 meio). O facão rebate o cuspe de volta.</p></div>
+      <div class="fera" style="--c:#e5e7eb"><h3>Esqueleto de bandeirante</h3><div class="tags"><span>VIDA 8</span><span>40 PTS</span></div><p>Ergue a espada antes do golpe (2 meios). Recue, deixe o golpe passar e entre com o combo.</p></div>
+      <div class="fera" style="--c:#ef4444"><h3>Bandeirante arcabuzeiro</h3><div class="tags"><span>VIDA 6</span><span>50 PTS</span></div><p>Fica longe e mira com um laser vermelho. Quando o laser trava, role. A bala pode ser rebatida.</p></div>
+      <div class="fera" style="--c:#92400e"><h3>Queixada da Caipora</h3><div class="tags"><span>VIDA 8</span><span>45 PTS</span></div><p>Raspa o casco e investe (2 meios). Se bater na parede, fica tonta. Fique de costas para a parede.</p></div>
+      <div class="fera" style="--c:#a16207"><h3>Corpo-Seco</h3><div class="tags"><span>VIDA 10</span><span>60 PTS</span></div><p>Anda debaixo da terra, onde não leva dano. Um círculo amarelo avisa onde ele vai subir. Sal grosso arranca ele do chão.</p></div>
+      <div class="fera" style="--c:#6b7280"><h3>Lobisomem</h3><div class="tags"><span>VIDA 14</span><span>100 PTS</span></div><p>Uiva, dá bote de longe e garrada de perto (2 meios). Sal grosso tira 6 de vida de uma vez.</p></div>
+      <div class="fera" style="--c:#22d3ee"><h3>Fogo-fátuo</h3><div class="tags"><span>VIDA 4</span><span>35 PTS</span></div><p>Uma chama que brilha, avisa e investe. Pouca vida, mas aparece em grupo no Rio de Fogo.</p></div>
+      <div class="fera" style="--c:#dc2626"><h3>Saci</h3><div class="tags"><span>VIDA 6</span><span>60 PTS</span></div><p>Pula num pé só, some em redemoinho e, se encostar, rouba itens ou moedas e foge. Derrote o danado e ele larga o saco.</p></div>
+    </div>
+    <h2 class="titulo" style="font-size:34px">Os guardiões</h2>
+    <div class="bestiario">
+      <div class="fera chefe" style="--c:#38bdf8"><h3>Iara</h3><div class="tags"><span>ANDAR 3</span><span>VIDA 30</span></div><p>Sobe na beira do lago, canta e puxa você para a água, ou dispara jatos d'água em leque. Só leva dano fora da água. Os jatos podem ser rebatidos.</p></div>
+      <div class="fera chefe" style="--c:#f97316"><h3>Curupira</h3><div class="tags"><span>ANDAR 4</span><span>VIDA 40</span></div><p>Some, reaparece atrás de você, mira (assobio e linha vermelha) e dispara até bater na parede. Tonto, leva dano extra. Fique perto da parede e role.</p></div>
+      <div class="fera chefe" style="--c:#ff3b5c"><h3>★ Mula sem Cabeça</h3><div class="tags"><span>ANDAR 5</span><span>VIDA 70</span><span>CHEFE</span></div><p>De perto empina e pisa. De longe investe deixando fogo no chão. Bateu na pilastra? Fica tonta e leva o dobro. Abaixo da metade, investida dupla e anel de brasas. Deixa um coração extra.</p></div>
+      <div class="fera chefe" style="--c:#78716c"><h3>Mapinguari</h3><div class="tags"><span>ANDAR 7</span><span>VIDA 80</span></div><p>Garrada de perto, pisão com onda de choque e pedras caindo, e a bocarra na barriga que suga você. Enquanto ele suga, a barriga leva dano em dobro.</p></div>
+      <div class="fera chefe" style="--c:#fb923c"><h3>Boitatá</h3><div class="tags"><span>ANDAR 8</span><span>VIDA 54</span></div><p>Serpente de fogo que atravessa a lava, se enrola e dá o bote. Só a cabeça leva dano, e mais quando está cansada. A bomba acerta a cabeça a qualquer hora.</p></div>
+      <div class="fera chefe" style="--c:#ef4444"><h3>Saci Pererê</h3><div class="tags"><span>ANDAR 9</span><span>VIDA 48</span></div><p>Atira brasas do cachimbo, solta redemoinhos que roubam bombas e se teleporta. Depois de sumir duas vezes, senta para fumar e gargalhar: aí ele apanha. Sal grosso deixa ele tonto.</p></div>
+      <div class="fera chefe" style="--c:#a855f7"><h3>★ Cuca</h3><div class="tags"><span>ANDAR 10</span><span>VIDA 135</span><span>CHEFE FINAL</span></div><p>Três fases. Bruxa: feitiços e poções que viram bichos, e só apanha quando gargalha. Caldeirão: espirais e anéis de orbes com uma brecha. Jacaré: rabada, mordida e investida que a deixa tonta na parede.</p></div>
+    </div>
+    <div class="folio"><span>Bestiário</span><span>10–13</span></div>
+  </section>
+
+  <section class="pagina surge" id="detonado" style="--cor: var(--laranja)">
+    <span class="chapeu">Detonado</span>
+    <h2 class="titulo">Os 10 andares</h2>
+    <p class="linha-fina">Cada mapa abaixo é o andar inteiro, desenhado a partir do próprio jogo. Dentro da cripta, o mapa (Tab ou o botão 🗺️) só mostra o que você já explorou.</p>
+    <div class="legenda-mapa">
+      <span><i style="background:#39ff14"></i>Início</span>
+      <span><i style="background:#00e5ff"></i>Escada</span>
+      <span><i style="background:#ffd400"></i>Chave</span>
+      <span><i style="background:#ffb000"></i>Baú</span>
+      <span><i style="background:#ff8a00"></i>Porta</span>
+      <span><i style="background:#ff2bd6"></i>Parede secreta</span>
+      <span><i style="background:#ff3b5c"></i>Guardião</span>
+      <span><i style="background:#2563eb"></i>Água</span>
+      <span><i style="background:#ff6a00"></i>Lava e brasa</span>
+      <span><i style="background:#9ca3af"></i>Armadilha</span>
+    </div>
+    <div class="andares">
+      <div class="andar"><canvas data-andar="1" aria-label="Mapa do andar 1"></canvas><div><h3><small>ANDAR 1</small>Porão das Velas</h3><p>O tutorial disfarçado: as placas ensinam a andar, golpear, rolar, usar item, abrir o mapa e puxar alavanca. Passe pelos ratos, atravesse a faixa de espinhos no ritmo deles e pegue a chave. O baú da sala oeste tem as <b>bombas</b>. A porta leva à alavanca, que abre o portão da escada.</p><p><b>Segredo:</b> a parede rachada fica logo abaixo do baú das bombas. Dentro: lanterna maior, garrafinha e moedas.</p></div></div>
+      <div class="andar"><canvas data-andar="2" aria-label="Mapa do andar 2"></canvas><div><h3><small>ANDAR 2</small>Galeria dos Ratos</h3><p>Esgoto com muitos ratos, água rasa que deixa lento e uma ponte sobre o poço que despenca: não pare em cima dela. São duas chaves, uma na sala norte e outra na sul. Uma porta leva ao baú do <b>bodoque</b>, a outra, à saída. O Seu Boto tem loja no norte do andar.</p><p><b>Segredo:</b> parede rachada no lado oeste da sala norte, com um <b>coração extra</b>.</p></div></div>
+      <div class="andar"><canvas data-andar="3" aria-label="Mapa do andar 3"></canvas><div><h3><small>ANDAR 3</small>Poço da Iara</h3><p>A cada 10 segundos vem o Canto da Iara: um aviso e um puxão para a água funda. Ande para longe da água. A sala leste guarda uma chave e o <b>Facão Afiado</b>; a outra chave está no salão alagado.</p><p><b>Segredo:</b> parede rachada no oeste do salão alagado (bombas e garrafinha).</p><p class="chefe-box"><b>Iara:</b> ataque só quando ela estiver fora da água, e rebata os jatos com o facão.</p></div></div>
+      <div class="andar"><canvas data-andar="4" aria-label="Mapa do andar 4"></canvas><div><h3><small>ANDAR 4</small>Mata do Curupira</h3><p>Capim alto que o facão corta e pegadas que sempre apontam para longe da saída: <b>ande na direção do calcanhar</b>. O beco norte tem espinhos e moedas de isca; o sul, buracos. O baú do <b>coração extra</b> está escondido atrás do capim, e a chave fica na clareira sudeste.</p><p><b>Segredo:</b> parede rachada no oeste do beco sul.</p><p class="chefe-box"><b>Curupira:</b> fique perto de uma parede, role na investida e bata enquanto ele estiver tonto.</p></div></div>
+      <div class="andar"><canvas data-andar="5" aria-label="Mapa do andar 5"></canvas><div><h3><small>ANDAR 5</small>Curral da Mula</h3><p>Bicos de fogo e dois campos de brasa. A chave abre a baia leste, onde está a <b>garrafa</b> que enche todos os corações. A baia oeste tem bombas. Pegue a garrafinha e as bombas da antessala antes de entrar na arena com as quatro pilastras.</p><p><b>Segredo:</b> parede rachada no norte da baia oeste.</p><p class="chefe-box"><b>Mula sem Cabeça:</b> fique entre ela e uma pilastra. Role no último instante da investida: ela bate e fica tonta, levando o dobro.</p></div></div>
+      <div class="andar"><canvas data-andar="6" aria-label="Mapa do andar 6"></canvas><div><h3><small>ANDAR 6</small>Ossuário dos Bandeirantes</h3><p>Comece pelo corredor das pedras rolantes: elas tremem antes de rolar, e os nichos na parede salvam você. Na Capela dos Ossos há uma <b>emboscada</b> em três ondas. Vencida, ela libera o <b>sal grosso</b> e a chave. Lá embaixo, a cripta tem outra chave e o baú da lanterna. Seu Boto atende no nordeste.</p><p><b>Segredo:</b> parede rachada atrás da pedra no sul.</p></div></div>
+      <div class="andar"><canvas data-andar="7" aria-label="Mapa do andar 7"></canvas><div><h3><small>ANDAR 7</small>Toca do Mapinguari</h3><p>O andar mais escuro: a lanterna ilumina menos. Buracos, chão que despenca, pedras rolantes e um abismo com ponte frágil. O ninho oeste tem a <b>bolsa de bombas</b>; atrás da porta leste estão outra chave e um <b>coração extra</b>.</p><p><b>Segredo:</b> parede rachada no sul do ninho, com uma garrafa.</p><p class="chefe-box"><b>Mapinguari:</b> quando a barriga abrir, golpeie: o dano dobra. Role por dentro da onda do pisão e fuja dos círculos amarelos das pedras.</p></div></div>
+      <div class="andar"><canvas data-andar="8" aria-label="Mapa do andar 8"></canvas><div><h3><small>ANDAR 8</small>Rio de Fogo do Boitatá</h3><p>Um rio de lava corta o andar. Atravesse a ponte que despenca até a sala norte: chave e <b>Facão de Prata Neon</b>. Volte, passe pela sala dos bicos de fogo (chave e bombas) e pela ponte de brasa até a arena.</p><p><b>Segredo:</b> parede rachada no leste da sala norte, com uma garrafa.</p><p class="chefe-box"><b>Boitatá:</b> bata só na cabeça, de preferência quando ela estiver cansada depois do bote. A bomba sempre acerta.</p></div></div>
+      <div class="andar"><canvas data-andar="9" aria-label="Mapa do andar 9"></canvas><div><h3><small>ANDAR 9</small>Labirinto do Saci</h3><p>Corredores, espinhos, setas e doze sacis ladrões. O redemoinho da sala inicial leva para o centro (cercado de espinhos); o do canto sudoeste, onde está a chave, leva ao canto sudeste, que tem um <b>coração extra</b> e dois lobisomens. No fim, pise na placa e corra: o portão fica aberto só 6 segundos.</p><p><b>Segredo:</b> parede rachada no sul do canto sudeste, com a bolsa de bombas.</p><p class="chefe-box"><b>Saci Pererê:</b> espere ele sentar para fumar e gargalhar, e jogue o sal grosso. Atordoado, ele apanha em dobro.</p></div></div>
+      <div class="andar"><canvas data-andar="10" aria-label="Mapa do andar 10"></canvas><div><h3><small>ANDAR 10</small>Covil da Cuca</h3><p>A galeria das setas tem espinhos em onda. A sala oeste tem brasa, uma chave e a garrafa; a leste, quatro pedras rolantes, outra chave e bombas. As chaves abrem as torres, que têm garrafinhas. Na antessala, só uma faixa do chão é firme.</p><p><b>Segredo:</b> parede rachada no norte da torre oeste, com uma garrafa.</p><p class="chefe-box"><b>Cuca:</b> na fase bruxa, espere a gargalhada para atacar. No caldeirão, procure a brecha nos anéis. Como jacaré, ela sempre apanha: role na investida para ela bater na parede.</p></div></div>
+    </div>
+    <div class="folio"><span>Detonado</span><span>14–23</span></div>
+  </section>
+
+  <section class="pagina surge" id="dicas" style="--cor: var(--amarelo)">
+    <span class="chapeu" style="color:#000">Dicas &amp; Macetes</span>
+    <h2 class="titulo">Senhas</h2>
+    <p class="linha-fina">No menu, digite a senha em <b>CONTINUAR COM SENHA</b> para começar naquele andar com o equipamento certo para ele. Partida por senha não vale recorde. Publicamos só as quatro primeiras: as outras, você conquista.</p>
+    <div class="senhas">
+      <div><small>Andar 2</small><b>QUEIJO</b></div>
+      <div><small>Andar 3</small><b>SEREIA</b></div>
+      <div><small>Andar 4</small><b>PEGADA</b></div>
+      <div><small>Andar 5</small><b>TROPEL</b></div>
+      <div class="tapada"><small>Andar 6</small><b>??????</b></div>
+      <div class="tapada"><small>Andar 7</small><b>??????</b></div>
+      <div class="tapada"><small>Andar 8</small><b>??????</b></div>
+      <div class="tapada"><small>Andar 9</small><b>??????</b></div>
+      <div class="tapada"><small>Andar 10</small><b>??????</b></div>
+    </div>
+
+    <h2 class="titulo" style="font-size:34px;margin-top:30px">Códigos secretos</h2>
+    <div class="dicas">
+      <div class="dica" style="--c:#7c3aed">
+        <h3>Cripta Neon</h3>
+        <div class="dica-corpo">
+          <div class="senha"><code>KONAMI</code><p>Vidas infinitas.</p></div>
+          <div class="senha"><code>LANTERNA</code><p>Acaba a escuridão, e o mapa aparece inteiro.</p></div>
+          <div class="senha"><code>FACAO</code><p>O facão dá dano triplo.</p></div>
+        </div>
+      </div>
+    </div>
+    <p class="box-aviso">⚠ Com qualquer código ligado, o recorde não é salvo e o placar fica fora do Hall da Fama. O KONAMI também vale pela sequência ↑ ↑ ↓ ↓ ← → ← → B A com o menu aberto.</p>
+
+    <h2 class="titulo" style="font-size:34px;margin-top:34px">A cartilha do caçador</h2>
+    <div class="colunas">
+      <h3>1. O facão também é escudo</h3>
+      <p>Um golpe na hora certa rebate setas, balas de arcabuz, cuspe de sapo, jatos da Iara e os orbes da Cuca, e cada rebatida vale +5. Bolas de fogo e redemoinhos não voltam: para esses, role.</p>
+      <h3>2. Use a pedra a seu favor</h3>
+      <p>A pedra rolante esmaga qualquer bicho no caminho (20 de dano). Atraia os inimigos para a linha dela e saia da frente no último instante.</p>
+      <h3>3. Sal grosso nas assombrações</h3>
+      <p>O sal tira 6 de vida do Saci, do Corpo-Seco, do Lobisomem e do Fogo-fátuo, e arranca o Corpo-Seco de dentro da terra. No Saci Pererê, deixa ele tonto por 2,5 segundos, apanhando com dano extra.</p>
+      <h3>4. Parede é amiga</h3>
+      <p>A Mula sem Cabeça, o Curupira e as queixadas ficam tontos quando batem na parede ou numa pilastra. Fique de costas para ela e role no último instante.</p>
+      <h3>5. Procure o brilho</h3>
+      <p>Toda parede rachada brilha de leve, mesmo no escuro. Procure em volta dos baús. Cada sala secreta vale +500 no fim do andar e quase sempre esconde uma cura.</p>
+      <h3>6. Pegadas ao contrário</h3>
+      <p>No andar do Curupira, as pegadas sempre apontam para longe da saída. Ande para o lado do calcanhar e você chega.</p>
+    </div>
+    <div class="folio"><span>Dicas &amp; Macetes</span><span>24–27</span></div>
+  </section>
+
+  <section class="pagina surge" id="cartas" style="--cor: var(--vermelho)">
+    <span class="chapeu">Cartas</span>
+    <h2 class="titulo">Fala, leitor!</h2>
+    <div class="cartas">
+      <div class="carta" style="--r:-0.8deg">
+        <p class="msg">Na Calangada, eu e meus três primos jogamos das 2 da tarde até a hora da janta. Minha tia teve que desligar o computador da tomada.</p>
+        <p class="de">Thiago, 13 anos, Juiz de Fora (MG)</p>
+        <p class="resp"><b>SN:</b> Thiago, a sua tia salvou o computador e talvez a amizade de vocês. Na próxima, combinem uma regra: quem cai no mar lava a louça.</p>
+      </div>
+      <div class="carta" style="--r:0.6deg">
+        <p class="msg">A Feijoada Atômica é muito apelona! Caiu numa caixa na minha frente e o meu irmão pegou primeiro. Exijo justiça.</p>
+        <p class="de">Larissa, Campo Grande (MS)</p>
+        <p class="resp"><b>SN:</b> Larissa, caixa é de quem chega primeiro, é a lei das ilhas. Mas uma dica: caixa de armas explode se for atingida. Da próxima vez, mire nela antes que ele chegue.</p>
+      </div>
+      <div class="carta" style="--r:-0.3deg">
+        <p class="msg">Vocês poderiam fazer um jogo bem difícil, daqueles que a gente perde muito e fica com raiva mas não consegue parar?</p>
+        <p class="de">Anônimo (com um desenho de gorro vermelho)</p>
+        <p class="resp"><b>SN:</b> Pedido atendido. Agora devolva a chave do diretor de arte.</p>
+      </div>
+      <div class="carta" style="--r:0.9deg">
+        <p class="msg">Minha avó me contou a lenda da Cuca quando eu era pequeno e eu tinha muito medo. Agora vou poder me vingar!</p>
+        <p class="de">Enzo, 10 anos, Goiânia (GO)</p>
+        <p class="resp"><b>SN:</b> Enzo, a Cuca está esperando no andar 10. Leve corações extras, muita paciência e, se possível, a sua avó para torcer.</p>
+      </div>
+    </div>
+    <div class="folio"><span>Cartas</span><span>28–29</span></div>
+  </section>
+
+  <section class="pagina surge" id="classificados" style="--cor: var(--tinta)">
+    <span class="chapeu">Classificados</span>
+    <h2 class="titulo">Troca-troca</h2>
+    <div class="classificados">
+      <div class="classificado"><b>Procuro</b>Chave de bronze perdida no andar 9. Desconfio de um rapaz de uma perna só.<span class="tel">TEL (11) 5555-0808</span></div>
+      <div class="classificado"><b>Vendo</b>Lanterna neon com pilhas novas. Motivo: decidi não descer mais.<span class="tel">TEL (71) 5555-0190</span></div>
+      <div class="classificado"><b>Troco</b>Pegadas de Curupira em ótimo estado por um mapa que aponte para o lado certo.<span class="tel">CX. POSTAL 8888</span></div>
+      <div class="classificado"><b>Aluga-se</b>Curral espaçoso no andar 5. Ex-inquilina se mudou (foi derrotada). Aceita animais com cabeça.<span class="tel">TEL (35) 5555-0150</span></div>
+      <div class="classificado"><b>Ofereço</b>Aulas de rolamento. Turmas às terças. Traga joelheira.<span class="tel">TEL (41) 5555-0177</span></div>
+      <div class="classificado"><b>Clube</b>Grupo de Apoio aos Derrotados pela Cuca. Reuniões no andar 10, se você conseguir chegar.<span class="tel">COVIL DA CUCA, FUNDO</span></div>
+    </div>
+    <div class="anuncio" style="--anuncio: linear-gradient(135deg, #000, #2a0a4a 50%, #b26bff)">
+      <h3>Kit Caçador de Lendas</h3>
+      <p>Lanterna neon de bolso, facão de espuma, um apito anti-Saci e um guia de bolso com as fraquezas de cada criatura. Para quem desce sem medo. Ou com medo, mas desce.</p>
+      <span class="preco">só R$ 29,90</span>
+      <small>Produto imaginário. O apito não espanta Saci nenhum. Pode até chamar.</small>
+    </div>
+    <div class="folio"><span>Classificados</span><span>30–31</span></div>
+  </section>
+
+  <section class="cdrom-mesa" id="cdrom" aria-label="CD-ROM da edição">
+    <div data-cdrom="8"></div>
+  </section>
+
+  <section class="pagina surge" style="--cor: var(--magenta)">
+    <span class="chapeu">Até a próxima</span>
+    <h2 class="titulo">Saiu da cripta? Respire.</h2>
+    <p class="linha-fina">Oito edições e vinte jogos depois, a redação vai subir para tomar um pouco de sol. Os CD-ROMs continuam aqui, e o Hall da Fama continua aberto para quem vencer a Cuca.</p>
+    <p><a class="botao escuro" href="../../">◄ Voltar para a banca</a> <a class="botao alt" href="../../#hall">Ver o Hall da Fama</a></p>
+    <h3 style="font-family:var(--f-grito);font-size:24px;margin-top:26px;font-weight:normal">Expediente</h3>
+    <div class="expediente">
+      <p><b>Super Neon</b>, a revista de games que vem com jogo. Número 8, Ano 2. Edição especial.</p>
+      <p><b>Redação:</b> dormindo de luz acesa. <b>CD-ROM:</b> jogo feito só com HTML, CSS e JavaScript.</p>
+      <p>Fan games não oficiais e sem fins lucrativos. O herói Solfat é uma homenagem de fã ao streamer solfat_guy; a Cripta Neon não é um produto oficial dele. Os clássicos que inspiraram nossos jogos são marcas de seus respectivos donos. As lendas do folclore brasileiro são patrimônio de todos.</p>
+    </div>
+    <div class="folio"><span>Super Neon Nº 8</span><span>34</span></div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <a href="../07/">◄ Edição anterior</a> · <a href="../../">Banca</a>
+</footer>
+
+<script src="../../shared/common.js"></script>
+<script src="../../shared/firebase-config.js"></script>
+<script src="../../shared/ranking.js"></script>
+<script src="../../shared/presenca.js"></script>
+<script src="../../revista/edicoes.js"></script>
+<script src="../../revista/revista.js"></script>
+<script src="../../revista/musica.js"></script>
+<script src="../../jogos/cripta/andares.js"></script>
+<script>
+// Desenha a miniatura de cada andar a partir dos mapas do próprio jogo (jogos/cripta/andares.js).
+(() => {
+  const andares = window.CRIPTA_ANDARES || [];
+  const cor = ch => {
+    if (ch === '#' || ch === 't') return '#3a2f58';
+    if (ch === '%') return '#ff2bd6';
+    if (ch === 'S') return '#39ff14';
+    if (ch === 'E') return '#00e5ff';
+    if (ch === 'k') return '#ffd400';
+    if (ch === '$') return '#ffb000';
+    if (ch === 'D') return '#ff8a00';
+    if ('GHX'.includes(ch)) return '#8aa0ff';
+    if ('IUMNBPK'.includes(ch)) return '#ff3b5c';
+    if (ch === 'W') return '#1e3a8a';
+    if (ch === '~') return '#2563eb';
+    if (ch === 'L') return '#ff6a00';
+    if (ch === ';') return '#9a3412';
+    if ('^f@T_'.includes(ch)) return '#9ca3af';
+    if (ch === 'O') return '#000000';
+    if (ch === '"') return '#166534';
+    if (ch === 'Y') return '#e5e7eb';
+    if (ch === 'm') return '#22c55e';
+    if (ch === '*' || ch === 'i') return '#fde68a';
+    return '#16102a';
+  };
+  const P = 4;
+  for (const cv of document.querySelectorAll('canvas[data-andar]')) {
+    const a = andares.find(x => x.n === Number(cv.dataset.andar));
+    if (!a) { cv.remove(); continue; }
+    const linhas = a.mapa, h = linhas.length, w = linhas[0].length;
+    cv.width = w * P; cv.height = h * P;
+    const g = cv.getContext('2d');
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const ch = linhas[y][x];
+      g.fillStyle = cor(ch);
+      // destaques um pouco maiores para aparecerem na miniatura
+      if ('SEk$DIUMNBPK%'.includes(ch)) { g.fillStyle = '#16102a'; g.fillRect(x * P, y * P, P, P); g.fillStyle = cor(ch); g.fillRect(x * P - 1, y * P - 1, P + 2, P + 2); }
+      else g.fillRect(x * P, y * P, P, P);
+    }
+  }
+})();
+</script>
+</body>
+</html>

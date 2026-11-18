@@ -22,6 +22,7 @@ const ICONE = {
   bolhas: `<svg viewBox="0 0 16 16"><rect width="16" height="16" fill="#14002a"/><g stroke="#000" stroke-width=".3"><circle cx="2.5" cy="2.3" r="1.9" fill="#ff2bd6"/><circle cx="6.5" cy="2.3" r="1.9" fill="#00e5ff"/><circle cx="10.5" cy="2.3" r="1.9" fill="#ff2bd6"/><circle cx="14.5" cy="2.3" r="1.9" fill="#ffd400"/><circle cx="4.5" cy="5.8" r="1.9" fill="#39ff14"/><circle cx="8.5" cy="5.8" r="1.9" fill="#ffd400"/><circle cx="12.5" cy="5.8" r="1.9" fill="#00e5ff"/><circle cx="8" cy="13.6" r="1.9" fill="#39ff14"/></g><g fill="#fff" opacity=".7"><circle cx="1.9" cy="1.7" r=".5"/><circle cx="5.9" cy="1.7" r=".5"/><circle cx="7.4" cy="13" r=".5"/></g><path d="M8 11.4L9.4 8" stroke="#fff" stroke-width=".5" stroke-dasharray=".6 .6"/></svg>`,
   joias: `<svg viewBox="0 0 16 16"><rect width="16" height="16" fill="#1a0f00"/><path d="M4 .8L7.2 4 4 7.2.8 4Z" fill="#ff3b5c" stroke="#fff" stroke-width=".3"/><circle cx="12" cy="4" r="3" fill="#00e5ff" stroke="#fff" stroke-width=".3"/><path d="M4 8.8l3 5.6H1Z" fill="#39ff14" stroke="#fff" stroke-width=".3"/><path d="M12 8.6l.9 2 2.2.2-1.7 1.4.6 2.2L12 13.2l-2 1.2.6-2.2-1.7-1.4 2.2-.2Z" fill="#ffd400" stroke="#fff" stroke-width=".3"/><g fill="#fff" opacity=".75"><path d="M2.6 3.4L4 2v1.6Z"/><circle cx="11" cy="3" r=".7"/></g></svg>`,
   calangada: `<svg viewBox="0 0 16 16"><rect width="16" height="16" fill="#0a1a3a"/><path d="M0 11c2-2 4-1 6-2s3-3 5-2 3 1 5 0v9H0Z" fill="#2a1a0a" stroke="#7dff3a" stroke-width=".6"/><circle cx="9.5" cy="9.2" r="1.6" fill="#0a1a3a"/><rect y="14.5" width="16" height="1.5" fill="#00e5ff" opacity=".7"/><path d="M3 9.4c.6-.8 1.6-.9 2.4-.5l1 .6-.3.5-.9-.3-.3.9h-.5l.1-.9-.7.2-.4.9h-.5Z" fill="#7dff3a"/><path d="M4.4 8.6a1 1 0 0 1 1.6-.2" stroke="#ff2bd6" stroke-width=".7" fill="none"/><path d="M6.4 8.4L8 6.6" stroke="#ffd400" stroke-width=".6"/><path d="M8.6 2.6Q11 1 13 3.6" stroke="#fff" stroke-width=".4" stroke-dasharray=".6 .5" fill="none"/><circle cx="13.2" cy="4" r=".9" fill="#ffb000"/></svg>`,
+  cripta: `<svg viewBox="0 0 16 16" shape-rendering="crispEdges"><rect width="16" height="16" fill="#07040f"/><g fill="#2a2140"><rect x="0" y="0" width="16" height="3"/><rect x="0" y="0" width="2" height="16"/><rect x="14" y="0" width="2" height="16"/></g><g fill="#3a2f58"><rect x="2" y="1" width="3" height="1"/><rect x="9" y="1" width="4" height="1"/></g><rect x="6" y="2" width="4" height="3" fill="#000"/><rect x="7" y="3" width="2" height="2" fill="#b26bff"/><circle cx="8" cy="10" r="4.5" fill="#b26bff" opacity=".18" shape-rendering="auto"/><rect x="7" y="8" width="2" height="2" fill="#ffd9b0"/><rect x="6" y="10" width="4" height="3" fill="#b26bff"/><rect x="10" y="9" width="1" height="2" fill="#ffd400"/><rect x="5" y="9" width="1" height="3" fill="#c0c0c0"/><rect x="11" y="12" width="2" height="2" fill="#ff3b5c"/><rect x="11" y="12" width="1" height="1" fill="#000"/></svg>`,
 };
 
 const JOGOS = {
@@ -44,6 +45,7 @@ const JOGOS = {
   bolhas: { nome: 'Bolhas', pasta: 'jogos/bolhas/', cor: '#ff2bd6', ed: 6, recordes: [['bolhas_hi_fases', 'Fases'], ['bolhas_hi_infinito', 'Infinito']], ranking: 'bolhas-fases', rankingNome: 'Fases' },
   joias: { nome: 'Joias', pasta: 'jogos/joias/', cor: '#ffd400', ed: 6, recordes: [['joias_hi_classico', 'Clássico'], ['joias_hi_relogio', 'Relógio']], ranking: 'joias-classico', rankingNome: 'Clássico' },
   calangada: { nome: 'Calangada', pasta: 'jogos/calangada/', cor: '#7dff3a', ed: 7, recordes: [['calangada_hi_facil', 'Fácil'], ['calangada_hi_normal', 'Normal'], ['calangada_hi_dificil', 'Difícil']], ranking: 'calangada-normal', rankingNome: 'Normal' },
+  cripta: { nome: 'Cripta Neon', pasta: 'jogos/cripta/', cor: '#b26bff', ed: 8, recordes: [['cripta_hi_normal', 'Normal'], ['cripta_hi_pesadelo', 'Pesadelo']], ranking: 'cripta-normal', rankingNome: 'Normal' },
 };
 
 const EDICOES = [
@@ -130,5 +132,17 @@ const EDICOES = [
     ],
     selo: 'Edição especial!', rodape: 'Guia completo do arsenal',
     jogos: ['calangada'],
+  },
+  {
+    n: 8, slug: '08', mes: 'Junho', ano: 'Ano 2', preco: 'R$ 7,90', cod: '7 891234 000086', especial: true,
+    fundo: 'linear-gradient(170deg, #000 0%, #120624 45%, #2a0a4a 75%, #b26bff 100%)',
+    manchete: 'Cripta Neon', manchete2: '10 andares de folclore, escuridão e pavor', corManchete: '#b26bff',
+    chamadas: [
+      ['Detonado', 'Os 10 andares com mapa', '#ff3b5c'],
+      ['Bestiário', 'Do Saci à Cuca: como vencer cada um', '#22c55e'],
+      ['Senhas', 'Pule direto para o andar 5', '#ffb000'],
+    ],
+    selo: 'Edição especial!', rodape: 'Mapas de todos os andares',
+    jogos: ['cripta'],
   },
 ];
