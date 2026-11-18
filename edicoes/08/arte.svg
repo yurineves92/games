@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+  <defs>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="g"/><feMerge><feMergeNode in="g"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="nevoa" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="16"/></filter>
+    <radialGradient id="luz" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff3c0" stop-opacity=".95"/><stop offset=".4" stop-color="#ffd400" stop-opacity=".45"/><stop offset="1" stop-color="#b26bff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="feixe" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#fff3c0" stop-opacity=".7"/><stop offset="1" stop-color="#fff3c0" stop-opacity="0"/></linearGradient>
+    <pattern id="pedra" width="60" height="40" patternUnits="userSpaceOnUse">
+      <rect width="60" height="40" fill="#1a1230"/>
+      <path d="M0 20H60M30 0V20M0 20V40M60 20V40M15 20V40M45 20V40" stroke="#0a0618" stroke-width="3"/>
+      <path d="M2 2h26M32 2h26M2 22h11M17 22h26M47 22h11" stroke="#2e2450" stroke-width="2"/>
+    </pattern>
+  </defs>
+  <!-- paredes de pedra -->
+  <rect width="600" height="800" fill="url(#pedra)"/>
+  <rect width="600" height="800" fill="#05020c" opacity=".55"/>
+  <!-- arco da cripta -->
+  <path d="M120 800V330Q120 170 300 170T480 330V800Z" fill="#05020c"/>
+  <path d="M120 800V330Q120 170 300 170T480 330V800" fill="none" stroke="#b26bff" stroke-width="8" filter="url(#glow)"/>
+  <path d="M150 800V340Q150 205 300 205T450 340V800" fill="none" stroke="#3a2f58" stroke-width="4"/>
+  <g transform="translate(0 -120)">
+  <!-- escada descendo -->
+  <g fill="#120a24" stroke="#3a2f58" stroke-width="3"><path d="M200 640h200v30H200Z"/><path d="M215 600h170v40H215Z"/><path d="M230 565h140v35H230Z"/><path d="M243 535h114v30H243Z"/></g>
+  </g>
+  <!-- olhos no escuro -->
+  <g filter="url(#glow)">
+    <g fill="#ff3b5c"><circle cx="230" cy="330" r="7"/><circle cx="256" cy="330" r="7"/></g>
+    <g fill="#39ff14"><circle cx="350" cy="290" r="5"/><circle cx="368" cy="292" r="5"/></g>
+    <g fill="#ffd400"><ellipse cx="312" cy="420" rx="9" ry="5"/><ellipse cx="346" cy="420" rx="9" ry="5"/></g>
+    <g fill="#00e5ff"><circle cx="190" cy="460" r="4"/><circle cx="204" cy="460" r="4"/></g>
+  </g>
+  <!-- redemoinho do saci e gorro -->
+  <g transform="translate(400 460)" opacity=".85"><path d="M-30 40Q0 20 30 40M-24 24Q0 8 24 24M-18 8Q0-6 18 8M-10-6Q0-16 10-6" fill="none" stroke="#c0c8e0" stroke-width="4" stroke-linecap="round"/><path d="M-8-18L0-50 10-18Z" fill="#ff3b5c" filter="url(#glow)"/></g>
+  <!-- fogo da mula -->
+  <path d="M440 300q-10-30 10-50q-4 22 12 26q-2-18 10-30q8 34-10 54Z" fill="#ff8a00" filter="url(#glow)"/>
+  <g transform="translate(0 -120)">
+  <!-- Solfat com a lanterna (homenagem de fã, visual genérico) -->
+  <circle cx="300" cy="610" r="190" fill="url(#luz)" filter="url(#nevoa)"/>
+  <path d="M312 600L520 330 600 420Z" fill="url(#feixe)" opacity=".6"/>
+  <g transform="translate(300 640)">
+    <ellipse cx="0" cy="72" rx="40" ry="10" fill="#000" opacity=".5"/>
+    <path d="M-20 70l6-50h28l6 50Z" fill="#2a1450"/>
+    <path d="M-24 20l4-46h40l4 46Z" fill="#b26bff" stroke="#000" stroke-width="3"/>
+    <circle cx="0" cy="-42" r="18" fill="#c68a5a" stroke="#000" stroke-width="3"/>
+    <!-- boné e fone de streamer -->
+    <path d="M-19-46q0-22 20-22t19 20Z" fill="#1a0a2a" stroke="#000" stroke-width="3"/>
+    <path d="M14-50h22q2 6-4 8H14Z" fill="#1a0a2a" stroke="#000" stroke-width="2"/>
+    <path d="M-12-62q-6 0-6 6" stroke="#b26bff" stroke-width="3" fill="none"/>
+    <path d="M-21-38v-10a21 21 0 0 1 2-6" stroke="#00e5ff" stroke-width="4" fill="none"/>
+    <rect x="-26" y="-46" width="9" height="14" rx="3" fill="#00e5ff" stroke="#000" stroke-width="2"/>
+    <path d="M-20-32q2 14 14 16" stroke="#00e5ff" stroke-width="2" fill="none"/>
+    <circle cx="-5" cy="-16" r="2.5" fill="#00e5ff"/>
+    <circle cx="6" cy="-40" r="2.5" fill="#000"/>
+    <path d="M2-32q5 3 10 0" stroke="#000" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- braço com lanterna -->
+    <path d="M18-10q16 0 22-14" stroke="#c68a5a" stroke-width="9" stroke-linecap="round" fill="none"/>
+    <g transform="translate(42 -34)" filter="url(#glow)"><rect x="-8" y="-10" width="16" height="22" rx="3" fill="#00e5ff" stroke="#000" stroke-width="2"/><rect x="-5" y="-6" width="10" height="12" fill="#fff3c0"/></g>
+    <!-- facão -->
+    <path d="M-20-6q-18 4-26 26" stroke="#c68a5a" stroke-width="9" stroke-linecap="round" fill="none"/>
+    <path d="M-44 18l-30 44 6 4 32-40Z" fill="#e8eeff" stroke="#000" stroke-width="2"/>
+  </g>
+  </g>
+  <!-- teias -->
+  <path d="M0 0L90 0M0 0L0 90M0 0L70 70M20 0Q22 22 0 20M45 0Q48 48 0 45M70 0Q75 75 0 70" fill="none" stroke="#c0c8e0" stroke-width="2" opacity=".35"/>
+  <path d="M600 0L510 0M600 0L600 90M600 0L530 70M580 0Q578 22 600 20M555 0Q552 48 600 45" fill="none" stroke="#c0c8e0" stroke-width="2" opacity=".35"/>
+</svg>
